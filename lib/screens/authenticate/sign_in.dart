@@ -44,6 +44,7 @@ class _SignInState extends State<SignIn> {
                 //Email
                 SizedBox(height: 20.0),
                 TextFormField(
+                    decoration: InputDecoration(hintText: "Email"),
                     validator: (val) => val!.isEmpty ? 'Enter an email' : null,
                     onChanged: (val) {
                       setState(() => email = val);
@@ -51,6 +52,7 @@ class _SignInState extends State<SignIn> {
                 //Password
                 SizedBox(height: 20.0),
                 TextFormField(
+                  decoration: InputDecoration(hintText: "Password"),
                   validator: (val) =>
                       val!.length < 6 ? 'Enter password 6+ chars long' : null,
                   obscureText: true,
@@ -69,7 +71,9 @@ class _SignInState extends State<SignIn> {
                     if (_formKey.currentState!.validate()) {
                       dynamic result =
                           _auth.signInWithEmailAndPassword(email, password);
-                      if (result == null) {
+                      String invalid_user =
+                          "The password is invalid or the user does not have a password.";
+                      if (result == invalid_user) {
                         setState(() => error = "Invalid User");
                       }
                     }
