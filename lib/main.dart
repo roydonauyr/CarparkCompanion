@@ -1,10 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_application_2/screens/wrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/screens/authenticate/sign_in.dart';
 import 'package:flutter_application_2/services/auth.dart';
 import 'package:provider/provider.dart';
-import 'firebase_options.dart';
 import 'models/localUser.dart';
 
 //Testing git push
