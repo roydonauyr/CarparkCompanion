@@ -23,62 +23,6 @@ class Home extends StatelessWidget {
                 )
               ],
             ),
-<<<<<<< Updated upstream
-            bottomNavigationBar: BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                items: const <BottomNavigationBarItem>[
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.home),
-                      label: 'Home',
-                      backgroundColor: Colors.blue),
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.star),
-                      label: 'Favourites',
-                      backgroundColor: Colors.blue),
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.car_rental),
-                      label: 'Lot Remember',
-                      backgroundColor: Colors.blue),
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.help),
-                      label: 'Help',
-                      backgroundColor: Colors.blue),
-                ])));
-=======
-            body: Stack(
-              children: const <Widget> [
-                GoogleMap(
-                  initialCameraPosition: CameraPosition(
-                    target: LatLng(37.77483, -122.41942),
-                    zoom: 12,
-                    ),
-                ),
-              ],
-            ),
-            // bottomNavigationBar: BottomNavigationBar(
-            //     type: BottomNavigationBarType.fixed,
-            //     items: const <BottomNavigationBarItem>[
-            //       BottomNavigationBarItem(
-            //           icon: Icon(Icons.home),
-            //           label: 'Home',
-            //           backgroundColor: Colors.blue),
-            //       BottomNavigationBarItem(
-            //           icon: Icon(Icons.star),
-            //           label: 'Favourites',
-            //           backgroundColor: Colors.blue),
-            //       BottomNavigationBarItem(
-            //           icon: Icon(Icons.car_rental),
-            //           label: 'Lot Remember',
-            //           backgroundColor: Colors.blue),
-            //       BottomNavigationBarItem(
-            //           icon: Icon(Icons.help),
-            //           label: 'Help',
-            //           backgroundColor: Colors.blue),
-            //     ])
-            );
-
-
-
->>>>>>> Stashed changes
+            ));
   }
 }
