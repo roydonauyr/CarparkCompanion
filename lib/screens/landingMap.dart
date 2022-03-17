@@ -1,9 +1,8 @@
-// ignore_for_file: unnecessary_new
+// ignore_for_file: unnecessary_new, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/models/localUser.dart';
-import 'package:flutter_application_2/screens/Favourites.dart';
-import 'package:flutter_application_2/screens/wrapper.dart';
+import 'package:location/location.dart';
 import 'package:flutter_application_2/services/auth.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -20,10 +19,27 @@ class landingMap extends StatefulWidget {
 class _landingMap extends State<landingMap> {
   final AuthService _auth = AuthService();
 
+  //Location is to obtain live location of user
+  Location _location = new Location();
+  late GoogleMapController _controller;
+
+  void _onMapCreated(GoogleMapController _cntlr) {
+    var _controller = _cntlr;
+    _location.onLocationChanged.listen((l) {
+      _controller.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(target: LatLng(l.latitude!, l.longitude!), zoom: 15),
+        ),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    //User is to check if the user is logged in
     final user = Provider.of<LocalUser?>(context);
 
+    //To make code more efficient, can create 2 classes, 1 for login, 1 for not logged in
     if (user == null) {
       return Scaffold(
         appBar: AppBar(
@@ -44,12 +60,14 @@ class _landingMap extends State<landingMap> {
           ],
         ),
         body: Stack(
-          children: const <Widget>[
+          children: <Widget>[
             GoogleMap(
               initialCameraPosition: CameraPosition(
-                target: LatLng(37.77483, -122.41942),
+                target: LatLng(1.348572682702342, 103.68310251054965),
                 zoom: 12,
               ),
+              onMapCreated: _onMapCreated,
+              myLocationEnabled: true,
             ),
           ],
         ),
@@ -71,12 +89,14 @@ class _landingMap extends State<landingMap> {
           ],
         ),
         body: Stack(
-          children: const <Widget>[
+          children: <Widget>[
             GoogleMap(
               initialCameraPosition: CameraPosition(
-                target: LatLng(37.77483, -122.41942),
+                target: LatLng(1.348572682702342, 103.68310251054965),
                 zoom: 12,
               ),
+              onMapCreated: _onMapCreated,
+              myLocationEnabled: true,
             ),
           ],
         ),
