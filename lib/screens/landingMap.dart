@@ -66,7 +66,7 @@ class _landingMap extends State<landingMap> {
                 target: LatLng(1.348572682702342, 103.68310251054965),
                 zoom: 12,
               ),
-              onMapCreated: _onMapCreated,
+              /*onMapCreated: _onMapCreated,*/
               myLocationEnabled: true,
             ),
           ],
@@ -95,7 +95,7 @@ class _landingMap extends State<landingMap> {
                 target: LatLng(1.348572682702342, 103.68310251054965),
                 zoom: 12,
               ),
-              onMapCreated: _onMapCreated,
+              /*onMapCreated: _onMapCreated,*/
               myLocationEnabled: true,
             ),
           ],
