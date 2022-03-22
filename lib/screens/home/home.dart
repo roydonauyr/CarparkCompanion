@@ -68,7 +68,10 @@ class _MyBottomNavigatioBarState extends State<MyBottomNavigatioBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: children[_currentIndex],
+        body: IndexedStack(
+          index: _currentIndex,
+          children: children,
+        ),
         bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             showSelectedLabels: true,
