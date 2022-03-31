@@ -46,7 +46,6 @@ dependencies:
   location: ^4.2.0
   flutter_countdown_timer: ^4.1.0
   simple_timer: ^2.0.0
-
   #flutter_polylinr_points: ^0.2.6
 
 dev_dependencies:
