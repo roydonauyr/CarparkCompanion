@@ -1,4 +1,3 @@
-// ignore_for_file: unnecessary_new, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/models/localUser.dart';
@@ -44,11 +43,15 @@ class _landingMap extends State<landingMap> {
       return Scaffold(
         appBar: AppBar(
           title: const Text("Map"),
-          backgroundColor: Colors.blue[400],
+          backgroundColor: Color.fromARGB(255, 20, 27, 66),
           elevation: 0.0,
           actions: <Widget>[
             ElevatedButton.icon(
               icon: const Icon(Icons.person),
+              style: ElevatedButton.styleFrom(
+                primary: Color.fromARGB(255, 20, 27, 66),
+                ),
+
               onPressed: () {
                 Navigator.push(
                     context,
@@ -76,11 +79,16 @@ class _landingMap extends State<landingMap> {
       return Scaffold(
         appBar: AppBar(
           title: const Text("Map"),
-          backgroundColor: Colors.blue[400],
+          backgroundColor: Color.fromARGB(255, 20, 27, 66),
+
           elevation: 0.0,
           actions: <Widget>[
             ElevatedButton.icon(
               icon: const Icon(Icons.person),
+              style: ElevatedButton.styleFrom(
+                primary: Color.fromARGB(255, 20, 27, 66),
+                ),
+
               onPressed: () async {
                 await _auth.signOut();
               },

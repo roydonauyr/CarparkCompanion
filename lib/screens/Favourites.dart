@@ -17,6 +17,7 @@ class _favouritePageState extends State<favouritePage> {
     return Scaffold(
       appBar: new AppBar(
         title: new Text("Favourite"),
+        backgroundColor: Color.fromARGB(255, 20, 27, 66),
       ),
       body: new Center(
         child: new Text("This is fav page"),

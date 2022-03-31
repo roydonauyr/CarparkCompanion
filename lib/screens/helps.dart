@@ -17,6 +17,8 @@ class _helpPageState extends State<helpPage> {
     return Scaffold(
       appBar: new AppBar(
         title: new Text("Help"),
+        backgroundColor: Color.fromARGB(255, 20, 27, 66),
+
       ),
       body: new Center(
         child: new Text("This is help page"),

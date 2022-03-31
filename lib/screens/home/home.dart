@@ -65,6 +65,10 @@ class _MyBottomNavigatioBarState extends State<MyBottomNavigatioBar> {
     });
   }
 
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +80,7 @@ class _MyBottomNavigatioBarState extends State<MyBottomNavigatioBar> {
             type: BottomNavigationBarType.fixed,
             showSelectedLabels: true,
             showUnselectedLabels: true,
-            backgroundColor: Color.fromARGB(255, 3, 19, 32),
+            backgroundColor: Color.fromARGB(255, 20, 27, 66),
             unselectedItemColor: Colors.white,
             onTap: onTappedBar,
             currentIndex: _currentIndex,
