@@ -1,5 +1,4 @@
-
-import 'dart:async';
+import 'dart:async'; 
 
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
@@ -17,7 +16,6 @@ class _LotsRembererState extends State<LotsRemberer> {
 
   //Lot remember details
   String codeDialog = "";
-
   String codeDialog2 = "";
   int codeDialog3 = 0;
   String valueText = "";
@@ -26,21 +24,18 @@ class _LotsRembererState extends State<LotsRemberer> {
   bool remembered = false;
   late Timer _timer;
 
-
   Future<void> _displayTextInputDialog(BuildContext context) async {
     return showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
             title: Text('Enter carpark details'),
-
             content: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                 TextField(
-
               onChanged: (value) {
                 setState(() {
                   valueText = value;
@@ -48,7 +43,6 @@ class _LotsRembererState extends State<LotsRemberer> {
               },
               controller: _textFieldController,
               decoration: InputDecoration(hintText: "Carpark Name"),
-
               ),
               TextField(
               maxLength: 10,
@@ -76,7 +70,6 @@ class _LotsRembererState extends State<LotsRemberer> {
               },
               )
               ],),),
-
             actions: <Widget>[
               ElevatedButton(
                 child: Text('CANCEL'),
@@ -89,14 +82,12 @@ class _LotsRembererState extends State<LotsRemberer> {
               ElevatedButton(
                 child: Text('OK'),
                 onPressed: () {
-                  
                   _startTimer();
                   remembered = true;
                   setState(() {
                     codeDialog = valueText;
                     codeDialog2= numText;
                     codeDialog3=timeText;
-
                     Navigator.pop(context);
                   });
                 },
@@ -120,8 +111,12 @@ class _LotsRembererState extends State<LotsRemberer> {
 
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: new AppBar(
+          title: new Text("LotsRememberer"),
           backgroundColor: Color.fromARGB(255, 20, 27, 66),
-
         ),
         body: Center(
             child: remembered
@@ -150,13 +145,11 @@ class _LotsRembererState extends State<LotsRemberer> {
                                 ),
                               
                               tileColor: Colors.white,),
-
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
                               TextButton(
                                 child: const Text("Remove",style: TextStyle(color: Colors.white,),),
-
                                 onPressed: () {
                                   remembered = false;
                                   setState(() {});
@@ -198,6 +191,5 @@ class _LotsRembererState extends State<LotsRemberer> {
             ),],),
                   ),backgroundColor: Color.fromARGB(255, 52, 53, 61)
                   );
-
   }
 }
