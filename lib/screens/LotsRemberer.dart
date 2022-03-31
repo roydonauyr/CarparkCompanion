@@ -1,6 +1,8 @@
 import 'dart:async'; 
 
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/main.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:simple_timer/simple_timer.dart';
 
@@ -13,6 +15,10 @@ class LotsRemberer extends StatefulWidget {
 
 class _LotsRembererState extends State<LotsRemberer> {
   TextEditingController _textFieldController = TextEditingController();
+
+  //Firebase linking
+  FirebaseDatabase database = FirebaseDatabase.instance;
+  
 
   //Lot remember details
   String codeDialog = "";
@@ -177,8 +183,9 @@ class _LotsRembererState extends State<LotsRemberer> {
                         Align(
                           alignment:Alignment.bottomCenter,
                           child:ElevatedButton(
-                            onPressed: () {
+                            onPressed: () async {
                               _displayTextInputDialog(context);
+                              carparkDetail().call();
                               },
                               style: ElevatedButton.styleFrom(
                                 primary: Color.fromARGB(255, 6, 35, 58),
