@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/models/localUser.dart';
 import 'package:location/location.dart';
@@ -50,6 +51,7 @@ class _landingMap extends State<landingMap> {
               style: ElevatedButton.styleFrom(
                 primary: Color.fromARGB(255, 20, 27, 66),
                 ),
+
               onPressed: () {
                 Navigator.push(
                     context,
@@ -78,6 +80,7 @@ class _landingMap extends State<landingMap> {
         appBar: AppBar(
           title: const Text("Map"),
           backgroundColor: Color.fromARGB(255, 20, 27, 66),
+
           elevation: 0.0,
           actions: <Widget>[
             ElevatedButton.icon(
@@ -85,6 +88,7 @@ class _landingMap extends State<landingMap> {
               style: ElevatedButton.styleFrom(
                 primary: Color.fromARGB(255, 20, 27, 66),
                 ),
+
               onPressed: () async {
                 await _auth.signOut();
               },
