@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:simple_timer/simple_timer.dart';
+import 'package:flutter_application_2/screens/landingMap.dart';
 
 class LotsRemberer extends StatefulWidget {
   const LotsRemberer({Key? key}) : super(key: key);
@@ -13,13 +14,13 @@ class LotsRemberer extends StatefulWidget {
 
 class _LotsRembererState extends State<LotsRemberer> {
   TextEditingController _textFieldController = TextEditingController();
-
+  landingMap map = new landingMap();
   //Lot remember details
   String codeDialog = "";
   String codeDialog2 = "";
   int codeDialog3 = 0;
   String valueText = "";
-  String numText ="";
+  String numText = "";
   int timeText = 0;
   bool remembered = false;
   late Timer _timer;
@@ -35,41 +36,42 @@ class _LotsRembererState extends State<LotsRemberer> {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                TextField(
-              onChanged: (value) {
-                setState(() {
-                  valueText = value;
-                });
-              },
-              controller: _textFieldController,
-              decoration: InputDecoration(hintText: "Carpark Name"),
+                  TextField(
+                    onChanged: (value) {
+                      setState(() {
+                        valueText = value;
+                      });
+                    },
+                    controller: _textFieldController,
+                    decoration: InputDecoration(hintText: "Carpark Name"),
+                  ),
+                  TextField(
+                    maxLength: 10,
+                    decoration: InputDecoration(
+                      labelText: 'Carpark Lot No.',
+                    ),
+                    textInputAction: TextInputAction.next,
+                    onChanged: (num) {
+                      setState(() {
+                        numText = num;
+                      });
+                    },
+                  ),
+                  TextField(
+                    maxLength: 4,
+                    decoration: InputDecoration(
+                      labelText: 'Duration(mins)',
+                    ),
+                    textInputAction: TextInputAction.next,
+                    onChanged: (time) {
+                      setState(() {
+                        timeText = int.parse(time);
+                      });
+                    },
+                  )
+                ],
               ),
-              TextField(
-              maxLength: 10,
-              
-              decoration: InputDecoration(
-                labelText: 'Carpark Lot No.',
-              ),
-              textInputAction: TextInputAction.next,
-              onChanged: (num) {
-                setState(() {
-                  numText = num;
-                });
-              },
-              ),
-              TextField(
-              maxLength: 4,
-              decoration: InputDecoration(
-                labelText: 'Duration(mins)',
-              ),
-              textInputAction: TextInputAction.next,
-              onChanged: (time) {
-                setState(() {
-                  timeText = int.parse(time);
-                });
-              },
-              )
-              ],),),
+            ),
             actions: <Widget>[
               ElevatedButton(
                 child: Text('CANCEL'),
@@ -86,8 +88,8 @@ class _LotsRembererState extends State<LotsRemberer> {
                   remembered = true;
                   setState(() {
                     codeDialog = valueText;
-                    codeDialog2= numText;
-                    codeDialog3=timeText;
+                    codeDialog2 = numText;
+                    codeDialog3 = timeText;
                     Navigator.pop(context);
                   });
                 },
@@ -97,18 +99,17 @@ class _LotsRembererState extends State<LotsRemberer> {
         });
   }
 
-  void _startTimer(){
-    codeDialog3=timeText;
-    _timer= Timer.periodic(Duration(minutes: 1), (timer){
+  void _startTimer() {
+    codeDialog3 = timeText;
+    _timer = Timer.periodic(Duration(minutes: 1), (timer) {
       setState(() {
-        if(codeDialog3>0){
+        if (codeDialog3 > 0) {
           codeDialog3--;
-        }else{
+        } else {
           _timer.cancel();
         }
       });
     });
-
   }
 
   @override
@@ -119,77 +120,80 @@ class _LotsRembererState extends State<LotsRemberer> {
           backgroundColor: Color.fromARGB(255, 20, 27, 66),
         ),
         body: Center(
-            child: remembered
-                ? Center(
-                  
-
-                    child: Card(
-                      child: Column(
-                        children: <Widget>[
-                          
-                          ListTile(
-                              leading: Icon(Icons.car_rental),
-                              title: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  Text("CarPark Name: "+codeDialog),
-                                  Text("Lot Number: "+codeDialog2),
-                                  (codeDialog3>0)
-                                  ? Text('Count Down: $codeDialog3 mins',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 28,),
-                                  ) 
-                                  : Text("Time Up",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 48,)),
-                                  
-
-                                  
-                                ],
-                                ),
-                              
-                              tileColor: Colors.white,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+          child: remembered
+              ? Center(
+                  child: Card(
+                    child: Column(
+                      children: <Widget>[
+                        ListTile(
+                          leading: Icon(Icons.car_rental),
+                          title: Column(
+                            mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
-                              TextButton(
-                                child: const Text("Remove",style: TextStyle(color: Colors.white,),),
-                                onPressed: () {
-                                  remembered = false;
-                                  setState(() {});
-                                },
-                              )
+                              Text("CarPark Name: " + codeDialog),
+                              Text("Lot Number: " + codeDialog2),
+                              (codeDialog3 > 0)
+                                  ? Text(
+                                      'Count Down: $codeDialog3 mins',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 28,
+                                      ),
+                                    )
+                                  : Text("Time Up",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 48,
+                                      )),
                             ],
                           ),
-                          
-                        ],
-                        
-                      ),
-                      color: Color.fromARGB(255, 52, 53, 61),
-                      
-                      
-                    ),
-                  )
-                
-                  : Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Image(
-                        image:AssetImage('assets/LR_pic.jpg'),
-                        height: 250,
+                          tileColor: Colors.white,
                         ),
-                        Align(
-                          alignment:Alignment.bottomCenter,
-                          child:ElevatedButton(
-                            onPressed: () {
-                              _displayTextInputDialog(context);
-                              },
-                              style: ElevatedButton.styleFrom(
-                                primary: Color.fromARGB(255, 6, 35, 58),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            TextButton(
+                              child: const Text(
+                                "Remove",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
                               ),
-                              child: Text('Lot Rememberer'),
-                              
-                              
-                      
+                              onPressed: () {
+                                remembered = false;
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ],
                     ),
-            ),],),
-                  ),backgroundColor: Color.fromARGB(255, 52, 53, 61)
-                  );
+                    color: Color.fromARGB(255, 52, 53, 61),
+                  ),
+                )
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image(
+                      image: AssetImage('assets/LR_pic.jpg'),
+                      height: 250,
+                    ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          _displayTextInputDialog(context);
+                          print(map.ge
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Color.fromARGB(255, 6, 35, 58),
+                        ),
+                        child: Text('Lot Rememberer'),
+                      ),
+                    ),
+                  ],
+                ),
+        ),
+        backgroundColor: Color.fromARGB(255, 52, 53, 61));
   }
 }
