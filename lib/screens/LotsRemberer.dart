@@ -1,10 +1,13 @@
+
 import 'dart:async'; 
 
 import 'package:firebase_database/firebase_database.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/main.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:simple_timer/simple_timer.dart';
+import 'package:flutter_application_2/screens/landingMap.dart';
 
 class LotsRemberer extends StatefulWidget {
   const LotsRemberer({Key? key}) : super(key: key);
@@ -15,17 +18,16 @@ class LotsRemberer extends StatefulWidget {
 
 class _LotsRembererState extends State<LotsRemberer> {
   TextEditingController _textFieldController = TextEditingController();
-
+  
   //Firebase linking
   FirebaseDatabase database = FirebaseDatabase.instance;
   
-
   //Lot remember details
   String codeDialog = "";
   String codeDialog2 = "";
   int codeDialog3 = 0;
   String valueText = "";
-  String numText ="";
+  String numText = "";
   int timeText = 0;
   bool remembered = false;
   late Timer _timer;
@@ -103,18 +105,17 @@ class _LotsRembererState extends State<LotsRemberer> {
         });
   }
 
-  void _startTimer(){
-    codeDialog3=timeText;
-    _timer= Timer.periodic(Duration(minutes: 1), (timer){
+  void _startTimer() {
+    codeDialog3 = timeText;
+    _timer = Timer.periodic(Duration(minutes: 1), (timer) {
       setState(() {
-        if(codeDialog3>0){
+        if (codeDialog3 > 0) {
           codeDialog3--;
-        }else{
+        } else {
           _timer.cancel();
         }
       });
     });
-
   }
 
   @override
@@ -144,9 +145,6 @@ class _LotsRembererState extends State<LotsRemberer> {
                                   ? Text('Count Down: $codeDialog3 mins',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 28,),
                                   ) 
                                   : Text("Time Up",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 48,)),
-                                  
-
-                                  
                                 ],
                                 ),
                               
@@ -161,24 +159,10 @@ class _LotsRembererState extends State<LotsRemberer> {
                                   setState(() {});
                                 },
                               )
+
                             ],
                           ),
-                          
-                        ],
-                        
-                      ),
-                      color: Color.fromARGB(255, 52, 53, 61),
-                      
-                      
-                    ),
-                  )
-                
-                  : Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Image(
-                        image:AssetImage('assets/LR_pic.jpg'),
-                        height: 250,
+                          tileColor: Colors.white,
                         ),
                         Align(
                           alignment:Alignment.bottomCenter,
@@ -189,14 +173,20 @@ class _LotsRembererState extends State<LotsRemberer> {
                               },
                               style: ElevatedButton.styleFrom(
                                 primary: Color.fromARGB(255, 6, 35, 58),
+
                               ),
-                              child: Text('Lot Rememberer'),
-                              
-                              
-                      
+                              onPressed: () {
+                                remembered = false;
+                                setState(() {});
+                              },
+                            )
+                          ],
+                        ),
+                      ],
                     ),
             ),],),
                   ),backgroundColor: Color.fromARGB(255, 52, 53, 61)
                   );
+
   }
 }
