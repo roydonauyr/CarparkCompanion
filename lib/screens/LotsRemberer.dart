@@ -183,7 +183,6 @@ class _LotsRembererState extends State<LotsRemberer> {
                       child: ElevatedButton(
                         onPressed: () {
                           _displayTextInputDialog(context);
-                          print(map.ge
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Color.fromARGB(255, 6, 35, 58),
