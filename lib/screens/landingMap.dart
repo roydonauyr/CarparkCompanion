@@ -1,3 +1,6 @@
+// ignore_for_file: unnecessary_new, prefer_const_constructors
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/models/localUser.dart';
 import 'package:location/location.dart';
@@ -7,6 +10,10 @@ import 'package:provider/provider.dart';
 import 'package:search_map_place_updated/search_map_place_updated.dart';
 
 import 'authenticate/login_or_register.dart';
+
+//for firebase
+import "package:firebase_database/firebase_database.dart";
+import 'package:firebase_core/firebase_core.dart';
 
 class landingMap extends StatefulWidget {
   const landingMap({Key? key}) : super(key: key);
@@ -39,6 +46,10 @@ class _landingMap extends State<landingMap> {
     Geolocation? geolocation;
     //User is to check if the user is logged in
     final user = Provider.of<LocalUser?>(context);
+
+    //Firebase initialisation
+    FirebaseDatabase database = FirebaseDatabase.instance;
+    DatabaseReference ref = FirebaseDatabase.instance.ref("results/records");
 
     //To make code more efficient, can create 2 classes, 1 for login, 1 for not logged in
     if (user == null) {
