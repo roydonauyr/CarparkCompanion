@@ -63,7 +63,7 @@ class _landingMap extends State<landingMap> {
           infoWindow: InfoWindow(
               //popup info
               title: address,
-              snippet: 'Availability: ' + vacancy.toString(),
+              snippet: 'ID: ' + id.toString(),
               onTap: () {
                 showModalBottomSheet(
                     context: context,
@@ -77,9 +77,8 @@ class _landingMap extends State<landingMap> {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               Text(address),
-                              Text(vacancy.toString()),
                               ElevatedButton(
-                                child: Text(address),
+                                child: Text("View full details"),
                                 onPressed: () {
                                   Navigator.push(
                                       context,
@@ -96,95 +95,16 @@ class _landingMap extends State<landingMap> {
               })));
     }
 
-    void initMarkers() async {
-      coorConverter coorTest = coorConverter();
-
-      for (int i = 50; i < 90; i += 10) {
-        String path = i.toString();
-        DatabaseReference _id =
-            FirebaseDatabase.instance.ref(path + "/car_park_number)");
-
-        //Address
-        DatabaseReference address =
-            FirebaseDatabase.instance.ref(path + "/address");
-
-        DatabaseEvent address_event = await address.once();
-        String _address = address_event.snapshot.value.toString();
-
-        //Basement
-        DatabaseReference carpark_basement =
-            FirebaseDatabase.instance.ref(path + "/carpark_basement");
-
-        DatabaseEvent carpark_basement_event = await carpark_basement.once();
-        String _carpark_basement =
-            carpark_basement_event.snapshot.value.toString();
-
-        DatabaseReference carpark_decks =
-            FirebaseDatabase.instance.ref(path + "/carpark_decks");
-        DatabaseReference carpark_no =
-            FirebaseDatabase.instance.ref(path + "/carpark_np");
-        DatabaseReference capark_type =
-            FirebaseDatabase.instance.ref(path + "/carpark_type");
-        DatabaseReference free_parking =
-            FirebaseDatabase.instance.ref(path + "/free_parking");
-        DatabaseReference gantry_height =
-            FirebaseDatabase.instance.ref(path + "/gantry_height");
-        DatabaseReference night_parking =
-            FirebaseDatabase.instance.ref(path + "/night_parking");
-        DatabaseReference short_term_parking =
-            FirebaseDatabase.instance.ref(path + "/short_term_parking");
-        DatabaseReference type_of_parking_system =
-            FirebaseDatabase.instance.ref(path + "/type_of_parking_system");
-        DatabaseReference x_coord =
-            FirebaseDatabase.instance.ref(path + "/x_coord");
-
-        //getting into double
-        DatabaseEvent x_cord_event = await x_coord.once();
-        double x_coord_double =
-            double.parse(x_cord_event.snapshot.value.toString());
-
-        DatabaseReference y_coord =
-            FirebaseDatabase.instance.ref(path + "/y_coord");
-
-        //getting into double
-        DatabaseEvent y_cord_event = await y_coord.once();
-        double y_coord_double =
-            double.parse(y_cord_event.snapshot.value.toString());
-
-        // carparkObjects2.add(carparkDetail(
-        //     _id,
-        //     _address,
-        //     // carpark_basement,
-        //     // carpark_decks,
-        //     // carpark_no,
-        //     // capark_type,
-        //     // free_parking,
-        //     // gantry_height,
-        //     // night_parking,
-        //     // short_term_parking,
-        //     // type_of_parking_system,
-        //     x_coord_double,
-        //     y_coord_double));
-        var lat = coorTest.computeLatLon(y_coord_double, x_coord_double)[0];
-        var long = coorTest.computeLatLon(y_coord_double, x_coord_double)[1];
-        var vacancy = 10;
-        generate_marker_set(lat, long, _address, _id, vacancy);
-        print("Generated marker " +
-            i.toString() +
-            "with lat of: " +
-            lat.toString());
-        print(_address);
-      }
+    for (carparkDetail objects in globals.carparkObjects) {
+      print("Carpark lat: ");
+      print(objects.lat);
+      generate_marker_set(objects.lat, objects.long, objects.address,
+          objects.id, objects.vacancy);
     }
 
-    initMarkers();
     Geolocation? geolocation;
     //User is to check if the user is logged in
     final user = Provider.of<LocalUser?>(context);
-
-    //Firebase initialisation
-    FirebaseDatabase database = FirebaseDatabase.instance;
-    DatabaseReference ref = FirebaseDatabase.instance.ref("results/records");
 
     //To make code more efficient, can create 2 classes, 1 for login, 1 for not logged in
 
