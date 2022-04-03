@@ -63,55 +63,6 @@ class _landingMap extends State<landingMap> {
 
   @override
   Widget build(BuildContext context) {
-    void generate_marker_set(lat, long, address, id, vacancy) {
-      print("adding " + lat.toString() + " " + long.toString());
-      //list of markers
-      globals.markers.add(Marker(
-          markerId: MarkerId(id.toString()),
-          position: LatLng(lat, long),
-          icon: BitmapDescriptor.defaultMarker,
-          infoWindow: InfoWindow(
-              //popup info
-              title: address,
-              snippet: 'ID: ' + id.toString(),
-              onTap: () {
-                showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return Container(
-                        height: 200,
-                        color: Colors.amber[50],
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Text(address),
-                              ElevatedButton(
-                                child: Text("View full details"),
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              FullDetails(address)));
-                                },
-                              )
-                            ],
-                          ),
-                        ),
-                      );
-                    });
-              })));
-    }
-
-    for (carparkDetail objects in globals.carparkObjects) {
-      print("Carpark lat: ");
-      print(objects.lat);
-      generate_marker_set(objects.lat, objects.long, objects.address,
-          objects.id, objects.vacancy);
-    }
-
     Geolocation? geolocation;
 
     //User is to check if the user is logged in
@@ -158,6 +109,7 @@ class _landingMap extends State<landingMap> {
                         CameraUpdate.newLatLng(geolocation?.coordinates));
                     mapController.animateCamera(
                         CameraUpdate.newLatLngBounds(geolocation?.bounds, 0));
+                    print("Chosen location: " + geolocation.toString());
                   }),
               Padding(
                 padding: const EdgeInsets.all(0.0),

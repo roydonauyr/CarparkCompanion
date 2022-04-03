@@ -10,17 +10,15 @@ class carparkDetail extends StatelessWidget {
   //Define attributes
   late String id;
   late String address;
-  // late DatabaseReference carpark_basement;
-  // late DatabaseReference carpark_decks;
-  // late DatabaseReference carpark_no;
-  // late DatabaseReference capark_type;
-  // late DatabaseReference free_parking;
-  // late DatabaseReference gantry_height;
-  // late DatabaseReference night_parking;
-  // late DatabaseReference short_term_parking;
-  // late DatabaseReference type_of_parking_system;
-  late double x_cord;
-  late double y_cord;
+  late String carpark_basement;
+  late String carpark_decks;
+  late String carpark_no;
+  late String carpark_type;
+  late String free_parking;
+  late String gantry_height;
+  late String night_parking;
+  late String short_term_parking;
+  late String type_of_parking_system;
   late double lat;
   late double long;
   late int vacancy;
@@ -31,28 +29,29 @@ class carparkDetail extends StatelessWidget {
   carparkDetail(
     String id,
     String address,
-    // DatabaseReference carpark_basement,
-    // DatabaseReference carpark_decks,
-    // DatabaseReference carpark_no,
-    // DatabaseReference capark_type,
-    // DatabaseReference free_parking,
-    // DatabaseReference gantry_height,
-    // DatabaseReference night_parking,
-    // DatabaseReference short_term_parking,
-    // DatabaseReference type_of_parking_system,
+    String carpark_basement,
+    String carpark_decks,
+    String carpark_no,
+    String carpark_type,
+    String free_parking,
+    String gantry_height,
+    String night_parking,
+    String short_term_parking,
+    String type_of_parking_system,
     double x_cord,
     double y_cord,
   ) {
     this.id = id;
     this.address = address;
-    // this.carpark_basement = carpark_basement;
-    // this.carpark_decks = carpark_decks;
-    // this.carpark_no = carpark_no;
-    // this.capark_type = capark_type;
-    // this.free_parking = free_parking;
-    // this.gantry_height = gantry_height;
-    // this.night_parking = night_parking;
-    // this.type_of_parking_system = type_of_parking_system;
+    this.carpark_basement = carpark_basement;
+    this.carpark_decks = carpark_decks;
+    this.carpark_no = carpark_no;
+    this.carpark_type = carpark_type;
+    this.free_parking = free_parking;
+    this.gantry_height = gantry_height;
+    this.night_parking = night_parking;
+    this.short_term_parking = short_term_parking;
+    this.type_of_parking_system = type_of_parking_system;
     this.lat = coorTest.computeLatLon(y_cord, x_cord)[0];
     this.long = coorTest.computeLatLon(y_cord, x_cord)[1];
     this.vacancy = 10;
