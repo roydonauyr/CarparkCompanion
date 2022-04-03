@@ -44,21 +44,21 @@ class markersGenerator extends StatefulWidget {
                           leading: const Icon(Icons.location_pin),
                           contentPadding: EdgeInsets.all(7.0),
                           title:
-                              Text(address, style: TextStyle(fontSize: 25.0)),
+                              Text(address, style: TextStyle(fontSize: 18.0)),
                         )),
                         Card(
                             child: ListTile(
                           leading: const Icon(Icons.credit_card),
                           contentPadding: EdgeInsets.all(7.0),
                           title: Text("ID : " + id.toString(),
-                              style: TextStyle(fontSize: 25.0)),
+                              style: TextStyle(fontSize: 18.0)),
                         )),
                         Card(
                             child: ListTile(
                           leading: const Icon(Icons.car_rental),
                           contentPadding: EdgeInsets.all(7.0),
                           title: Text("Availability: " + vacancy.toString(),
-                              style: TextStyle(fontSize: 25.0)),
+                              style: TextStyle(fontSize: 18.0)),
                         )),
                         SizedBox(height: 20.0),
                         ElevatedButton(

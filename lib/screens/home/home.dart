@@ -95,8 +95,8 @@ class _MyBottomNavigatioBarState extends State<MyBottomNavigatioBar> {
                 label: 'Lot Remember',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.help),
-                label: 'Help',
+                icon: Icon(Icons.forum),
+                label: 'Forum',
               ),
             ]));
   }

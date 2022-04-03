@@ -93,39 +93,40 @@ class _FullDetailsState extends State<FullDetails> {
               Card(
                   elevation: 5.0,
                   child: ListTile(
-                    leading: Icon(Icons.car_rental, size: 30.0),
-                    title: Text(
-                        '\nCarpark Information\n\n' 'Carpark Type: ' +
-                            widget._carpark_type +
-                            '\n\n' +
-                            'Carpark Basement: ' +
-                            widget._carpark_basement +
-                            '\n\n' +
-                            'Gantry Height: ' +
-                            widget._gantry_height +
-                            '\n',
-                        textAlign: TextAlign.justify),
-                  )),
+                      leading: Icon(Icons.car_rental, size: 30.0),
+                      title: Text('\nCarpark Information\n\n'),
+                      subtitle: Text(
+                          'Carpark Type: ' +
+                              widget._carpark_type +
+                              '\n\n' +
+                              'Carpark Basement: ' +
+                              widget._carpark_basement +
+                              '\n\n' +
+                              'Gantry Height: ' +
+                              widget._gantry_height +
+                              '\n',
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(fontSize: 15.0)))),
               Card(
                   elevation: 5.0,
                   child: ListTile(
                       leading: Icon(Icons.local_parking, size: 28.0),
-                      title: Text(
-                        '\nParking Information\n\n' +
-                            'Free Parking: ' +
-                            widget._free_parking +
-                            '\n\n' +
-                            'Short Term Parking: ' +
-                            widget._short_term_parking +
-                            '\n\n' +
-                            'Night Parking: ' +
-                            widget._night_parking +
-                            '\n\n' +
-                            'Parking System: ' +
-                            widget._type_of_parking_system +
-                            '\n',
-                        textAlign: TextAlign.justify,
-                      )))
+                      title: Text('\nParking Information\n\n'),
+                      subtitle: Text(
+                          'Free Parking: ' +
+                              widget._free_parking +
+                              '\n\n' +
+                              'Short Term Parking: ' +
+                              widget._short_term_parking +
+                              '\n\n' +
+                              'Night Parking: ' +
+                              widget._night_parking +
+                              '\n\n' +
+                              'Parking System: ' +
+                              widget._type_of_parking_system +
+                              '\n',
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(fontSize: 15.0))))
             ],
             shrinkWrap: true,
           ));

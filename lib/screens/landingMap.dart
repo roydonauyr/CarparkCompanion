@@ -136,36 +136,65 @@ class _landingMap extends State<landingMap> {
           ))));
     } else {
       return Scaffold(
-        appBar: AppBar(
-          title: const Text("Map"),
-          backgroundColor: Color.fromARGB(255, 20, 27, 66),
-          elevation: 0.0,
-          actions: <Widget>[
-            ElevatedButton.icon(
-              icon: const Icon(Icons.person),
-              style: ElevatedButton.styleFrom(
-                primary: Color.fromARGB(255, 20, 27, 66),
+          appBar: AppBar(
+            title: const Text("Map"),
+            backgroundColor: Color.fromARGB(255, 20, 27, 66),
+            elevation: 0.0,
+            actions: <Widget>[
+              ElevatedButton.icon(
+                icon: const Icon(Icons.person),
+                style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 20, 27, 66),
+                ),
+                onPressed: () async {
+                  await _auth.signOut();
+                },
+                label: const Text('Log Out'),
+              )
+            ],
+          ),
+          body: Container(
+              child: SingleChildScrollView(
+                  child: Column(
+            children: [
+              SearchMapPlaceWidget(
+                  bgColor: Color.fromARGB(255, 246, 245, 244),
+                  hasClearButton: true,
+                  placeType: PlaceType.address,
+                  placeholder: 'Enter the location',
+                  textColor: Color.fromARGB(255, 14, 13, 13),
+                  apiKey: 'AIzaSyAUvR8wEIPEudD_xfJ6BpGx02vKoohOn5M',
+                  onSelected: (Place place) async {
+                    geolocation = await place.geolocation;
+                    mapController.animateCamera(
+                        CameraUpdate.newLatLng(geolocation?.coordinates));
+                    mapController.animateCamera(
+                        CameraUpdate.newLatLngBounds(geolocation?.bounds, 0));
+                    print("Chosen location: " + geolocation.toString());
+                  }),
+              Padding(
+                padding: const EdgeInsets.all(0.0),
+                child: SizedBox(
+                  height: 490.0,
+                  child: GoogleMap(
+                    onMapCreated: (GoogleMapController googleMapController) {
+                      setState(() {
+                        mapController = googleMapController;
+                      });
+                    },
+                    initialCameraPosition: CameraPosition(
+                      target: LatLng(1.348572682702342, 103.68310251054965),
+                      zoom: 15.0,
+                    ),
+                    /*onMapCreated: _onMapCreated,*/
+                    mapType: MapType.normal,
+                    myLocationEnabled: true,
+                    markers: globals.markers,
+                  ),
+                ),
               ),
-              onPressed: () async {
-                await _auth.signOut();
-              },
-              label: const Text('Log Out'),
-            )
-          ],
-        ),
-        body: Stack(
-          children: <Widget>[
-            GoogleMap(
-              initialCameraPosition: CameraPosition(
-                target: LatLng(1.348572682702342, 103.68310251054965),
-                zoom: 12,
-              ),
-              /*onMapCreated: _onMapCreated,*/
-              myLocationEnabled: true,
-            ),
-          ],
-        ),
-      );
+            ],
+          ))));
     }
   }
 }
