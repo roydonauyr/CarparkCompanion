@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/Database/carparkDetail.dart';
 import 'package:flutter_application_2/main.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:simple_timer/simple_timer.dart';
@@ -187,7 +188,7 @@ class _LotsRembererState extends State<LotsRemberer> {
                       child: ElevatedButton(
                         onPressed: () async {
                           _displayTextInputDialog(context);
-                          carparkDetail().call();
+                          // carparkDetail().x_cordinate_call();
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Color.fromARGB(255, 6, 35, 58),
