@@ -52,6 +52,8 @@ dependencies:
   flutter_countdown_timer: ^4.1.0
   simple_timer: ^2.0.0
   #flutter_polylinr_points: ^0.2.6
+  meta: ^1.7.0
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:

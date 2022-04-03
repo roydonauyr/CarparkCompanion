@@ -65,10 +65,6 @@ class _MyBottomNavigatioBarState extends State<MyBottomNavigatioBar> {
     });
   }
 
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
