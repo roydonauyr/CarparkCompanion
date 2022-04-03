@@ -8,7 +8,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class carparkDetail extends StatelessWidget {
   //Define attributes
-  late DatabaseReference _id;
+  late String id;
   late String address;
   // late DatabaseReference carpark_basement;
   // late DatabaseReference carpark_decks;
@@ -29,7 +29,7 @@ class carparkDetail extends StatelessWidget {
   coorConverter coorTest = coorConverter();
 
   carparkDetail(
-    DatabaseReference _id,
+    String id,
     String address,
     // DatabaseReference carpark_basement,
     // DatabaseReference carpark_decks,
@@ -43,7 +43,7 @@ class carparkDetail extends StatelessWidget {
     double x_cord,
     double y_cord,
   ) {
-    this._id = _id;
+    this.id = id;
     this.address = address;
     // this.carpark_basement = carpark_basement;
     // this.carpark_decks = carpark_decks;
