@@ -1,5 +1,6 @@
 // ignore_for_file: unnecessary_new, prefer_const_constructors
 
+
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
@@ -7,13 +8,16 @@ import 'package:flutter_application_2/Database/CoorConverter.dart';
 import 'package:flutter_application_2/Database/carparkDetail.dart';
 import 'package:flutter_application_2/main.dart' as globals;
 import 'package:flutter_application_2/models/localUser.dart';
+
 import 'package:flutter_application_2/screens/FullDetails.dart';
 import 'package:flutter_application_2/screens/HalfDetails.dart';
+
 import 'package:location/location.dart';
 import 'package:flutter_application_2/services/auth.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:search_map_place_updated/search_map_place_updated.dart';
+
 import 'package:flutter_application_2/main.dart';
 import 'authenticate/login_or_register.dart';
 
@@ -26,9 +30,15 @@ class landingMap extends StatefulWidget {
 
   @override
   _landingMap createState() => _landingMap();
+
+  // final Position initialPosition;
+  // landingMap(this.initialPosition);
 }
 
 class _landingMap extends State<landingMap> {
+  Set<Marker> markers = new Set();
+  int id = 0;
+  late Position _currentPosition;
   final AuthService _auth = AuthService();
 
   Set<Marker> markers2 = new Set();
@@ -103,6 +113,21 @@ class _landingMap extends State<landingMap> {
     }
 
     Geolocation? geolocation;
+
+    void generate_marker_set(xcord, ycord) {
+      //list of markers
+      markers.add(Marker(
+        markerId: MarkerId("1"),
+        position: LatLng(xcord, ycord),
+        infoWindow: InfoWindow(
+          //popup info
+          title: 'My Custom Title ',
+          snippet: 'My Custom Subtitle',
+        ),
+        icon: BitmapDescriptor.defaultMarker,
+      ));
+    }
+
     //User is to check if the user is logged in
     final user = Provider.of<LocalUser?>(context);
 
@@ -147,6 +172,24 @@ class _landingMap extends State<landingMap> {
                         CameraUpdate.newLatLng(geolocation?.coordinates));
                     mapController.animateCamera(
                         CameraUpdate.newLatLngBounds(geolocation?.bounds, 0));
+                  }),
+              FlatButton(
+                  child: Text('get coordinates'),
+                  onPressed: () {
+                    var test = geolocation?.coordinates;
+                    markers.add(Marker(
+                      markerId: MarkerId('1'),
+                      position: test,
+                      infoWindow: InfoWindow(
+                        title: 'bla',
+                        snippet: 'a',
+                      ),
+                      icon: BitmapDescriptor.defaultMarker,
+                    ));
+                    id++;
+                    print(test);
+                    print(markers.elementAt(0));
+                    setState(() {});
                   }),
               Padding(
                 padding: const EdgeInsets.all(0.0),

@@ -53,6 +53,8 @@ dependencies:
   simple_timer: ^2.0.0
   get: ^4.6.1
   #flutter_polylinr_points: ^0.2.6
+  meta: ^1.7.0
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:
