@@ -1,14 +1,24 @@
 // ignore_for_file: unnecessary_new, prefer_const_constructors
 
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/Database/CoorConverter.dart';
+import 'package:flutter_application_2/Database/carparkDetail.dart';
+import 'package:flutter_application_2/main.dart' as globals;
 import 'package:flutter_application_2/models/localUser.dart';
+
+import 'package:flutter_application_2/screens/FullDetails.dart';
+import 'package:flutter_application_2/screens/HalfDetails.dart';
+import 'package:geolocator/geolocator.dart';
+
 import 'package:location/location.dart';
 import 'package:flutter_application_2/services/auth.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:search_map_place_updated/search_map_place_updated.dart';
 
+import 'package:flutter_application_2/main.dart';
 import 'authenticate/login_or_register.dart';
 
 //for firebase
@@ -20,10 +30,19 @@ class landingMap extends StatefulWidget {
 
   @override
   _landingMap createState() => _landingMap();
+
+  // final Position initialPosition;
+  // landingMap(this.initialPosition);
 }
 
 class _landingMap extends State<landingMap> {
+  Set<Marker> markers = new Set();
+  int id = 0;
+  late Position _currentPosition;
   final AuthService _auth = AuthService();
+
+  Set<Marker> markers2 = new Set();
+  List<carparkDetail> carparkObjects2 = <carparkDetail>[];
 
   //Location is to obtain live location of user
   Location _location = new Location();
@@ -41,17 +60,65 @@ class _landingMap extends State<landingMap> {
   }
 
   late GoogleMapController mapController;
+
   @override
   Widget build(BuildContext context) {
+    void generate_marker_set(lat, long, address, id, vacancy) {
+      print("adding " + lat.toString() + " " + long.toString());
+      //list of markers
+      globals.markers.add(Marker(
+          markerId: MarkerId(id.toString()),
+          position: LatLng(lat, long),
+          icon: BitmapDescriptor.defaultMarker,
+          infoWindow: InfoWindow(
+              //popup info
+              title: address,
+              snippet: 'ID: ' + id.toString(),
+              onTap: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Container(
+                        height: 200,
+                        color: Colors.amber[50],
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Text(address),
+                              ElevatedButton(
+                                child: Text("View full details"),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              FullDetails(address)));
+                                },
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    });
+              })));
+    }
+
+    for (carparkDetail objects in globals.carparkObjects) {
+      print("Carpark lat: ");
+      print(objects.lat);
+      generate_marker_set(objects.lat, objects.long, objects.address,
+          objects.id, objects.vacancy);
+    }
+
     Geolocation? geolocation;
+
     //User is to check if the user is logged in
     final user = Provider.of<LocalUser?>(context);
 
-    //Firebase initialisation
-    FirebaseDatabase database = FirebaseDatabase.instance;
-    DatabaseReference ref = FirebaseDatabase.instance.ref("results/records");
-
     //To make code more efficient, can create 2 classes, 1 for login, 1 for not logged in
+
     if (user == null) {
       return Scaffold(
           appBar: AppBar(
@@ -95,7 +162,7 @@ class _landingMap extends State<landingMap> {
               Padding(
                 padding: const EdgeInsets.all(0.0),
                 child: SizedBox(
-                  height: 575.0,
+                  height: 490.0,
                   child: GoogleMap(
                     onMapCreated: (GoogleMapController googleMapController) {
                       setState(() {
@@ -109,9 +176,10 @@ class _landingMap extends State<landingMap> {
                     /*onMapCreated: _onMapCreated,*/
                     mapType: MapType.normal,
                     myLocationEnabled: true,
+                    markers: globals.markers,
                   ),
                 ),
-              )
+              ),
             ],
           ))));
     } else {
