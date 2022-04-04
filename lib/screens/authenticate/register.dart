@@ -24,19 +24,21 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[100],
+      backgroundColor: Color.fromARGB(255, 39, 40, 90),
       appBar: AppBar(
-          backgroundColor: Colors.blue[400],
+          backgroundColor: Color.fromARGB(255, 20, 27, 66),
           elevation: 0.0,
           title: Text('Register an account for Carpark Companion'),
           actions: <Widget>[
             TextButton.icon(
-                icon: Icon(Icons.person, color: Colors.black),
+                icon: Icon(Icons.person,
+                    color: Color.fromARGB(255, 248, 248, 248)),
                 onPressed: () {
                   widget.toggleView();
                 },
                 label: const Text("Sign In"),
-                style: TextButton.styleFrom(primary: Colors.black))
+                style: TextButton.styleFrom(
+                    primary: Color.fromARGB(255, 250, 249, 249)))
           ]),
       body: Container(
           padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -47,28 +49,58 @@ class _RegisterState extends State<Register> {
                 //Email
                 SizedBox(height: 20.0),
                 TextFormField(
-                    decoration: InputDecoration(hintText: "Email"),
-                    validator: (val) => val!.isEmpty ? 'Enter an email' : null,
-                    onChanged: (val) {
-                      setState(() => email = val);
-                    }),
+                  decoration: InputDecoration(
+                    hintText: "Email",
+                    hintStyle: TextStyle(
+                        fontSize: 20.0,
+                        color: Color.fromARGB(255, 136, 141, 141)),
+                    filled: true,
+                    fillColor: Color.fromARGB(255, 49, 54, 104),
+                    enabledBorder: const OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Color.fromARGB(255, 136, 141, 141),
+                      ),
+                      //  border:const OutlineInputBorder()
+                    ),
+                  ),
+                  validator: (val) => val!.isEmpty ? 'Enter an email' : null,
+                  onChanged: (val) {
+                    setState(() => email = val);
+                  },
+                  style: TextStyle(color: Color.fromARGB(255, 240, 237, 237)),
+                ),
                 //Password
                 SizedBox(height: 20.0),
                 TextFormField(
-                  decoration: InputDecoration(hintText: "Password"),
+                  decoration: InputDecoration(
+                    hintText: "Password",
+                    hintStyle: TextStyle(
+                        fontSize: 20.0,
+                        color: Color.fromARGB(255, 136, 141, 141)),
+                    filled: true,
+                    fillColor: Color.fromARGB(255, 49, 54, 104),
+                    enabledBorder: const OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Color.fromARGB(255, 136, 141, 141),
+                      ),
+                      //  border:const OutlineInputBorder()
+                    ),
+                  ),
                   validator: (val) =>
                       val!.length < 6 ? 'Enter password 6+ chars long' : null,
                   obscureText: true,
                   onChanged: (val) {
                     setState(() => password = val);
                   },
+                  style: TextStyle(color: Color.fromARGB(255, 240, 237, 237)),
                 ),
                 SizedBox(height: 20.0),
                 ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.pink[400]),
+                  style: ElevatedButton.styleFrom(
+                      primary: Color.fromARGB(255, 253, 251, 252)),
                   child: const Text(
                     'Register',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Color.fromARGB(255, 20, 27, 66)),
                   ),
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
