@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/services/auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_application_2/services/markersGenerator.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -53,7 +54,7 @@ class MyBottomNavigatioBar extends StatefulWidget {
 class _MyBottomNavigatioBarState extends State<MyBottomNavigatioBar> {
   int _currentIndex = 0;
   final List<Widget> children = [
-    landingMap(),
+    markersGenerator(),
     favouritePage(),
     LotsRemberer(),
     helpPage(),
@@ -94,8 +95,8 @@ class _MyBottomNavigatioBarState extends State<MyBottomNavigatioBar> {
                 label: 'Lot Remember',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.help),
-                label: 'Help',
+                icon: Icon(Icons.forum),
+                label: 'Forum',
               ),
             ]));
   }
