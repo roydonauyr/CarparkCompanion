@@ -8,10 +8,17 @@ import 'package:flutter_application_2/services/auth.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'models/localUser.dart';
+import 'package:flutter_application_2/screens/filter.dart';
 
 Set<Marker> markers = new Set();
+bool filterState = false;
+Set<Marker> markersFiltered = new Set();
 List<carparkDetail> carparkObjects = <carparkDetail>[];
 bool fullDetail = false;
+
+void setMarkers(Set<Marker> marked){
+  markers = marked;
+}
 
 //Testing git push
 void main() async {
@@ -48,7 +55,7 @@ Future<void> initCarparkObjects() async {
   coorConverter coorTest = coorConverter();
 
   int x = 0;
-  for (int i = 1; i < 2000; i += 200) {
+  for (int i = 0; i < 20; i ++) {
     String path = i.toString();
 
     //Id

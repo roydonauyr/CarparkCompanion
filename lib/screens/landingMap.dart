@@ -10,6 +10,7 @@ import 'package:flutter_application_2/models/localUser.dart';
 
 import 'package:flutter_application_2/screens/FullDetails.dart';
 import 'package:flutter_application_2/screens/HalfDetails.dart';
+import 'package:flutter_application_2/screens/filter.dart';
 import 'package:geolocator/geolocator.dart';
 
 import 'package:location/location.dart';
@@ -41,8 +42,8 @@ class _landingMap extends State<landingMap> {
   late Position _currentPosition;
   final AuthService _auth = AuthService();
 
-  Set<Marker> markers2 = new Set();
-  List<carparkDetail> carparkObjects2 = <carparkDetail>[];
+  // Set<Marker> markers2 = new Set();
+  // List<carparkDetail> carparkObjects2 = <carparkDetail>[];
 
   //Location is to obtain live location of user
   Location _location = new Location();
@@ -86,11 +87,23 @@ class _landingMap extends State<landingMap> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const LoginOrRegsiter()));
+                          builder: (context) => LoginOrRegsiter()));
                 },
                 label: const Text('Log In'),
-              )
-            ],
+              ),
+              ElevatedButton.icon(
+                icon: const Icon(Icons.add_box_rounded),
+                style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 20, 27, 66),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => filter()));
+                },
+                label: const Text('Filters'),
+              )],
           ),
           body: Container(
               child: SingleChildScrollView(
@@ -132,6 +145,7 @@ class _landingMap extends State<landingMap> {
                   ),
                 ),
               ),
+              
             ],
           ))));
     } else {
@@ -150,6 +164,19 @@ class _landingMap extends State<landingMap> {
                   await _auth.signOut();
                 },
                 label: const Text('Log Out'),
+              ),
+              ElevatedButton.icon(
+                icon: const Icon(Icons.add_box_rounded),
+                style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 20, 27, 66),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => filter()));
+                },
+                label: const Text('Filters'),
               )
             ],
           ),
@@ -189,7 +216,7 @@ class _landingMap extends State<landingMap> {
                     /*onMapCreated: _onMapCreated,*/
                     mapType: MapType.normal,
                     myLocationEnabled: true,
-                    markers: globals.markers,
+                    markers: globals.markersFiltered,
                   ),
                 ),
               ),
