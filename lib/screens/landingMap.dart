@@ -141,7 +141,7 @@ class _landingMap extends State<landingMap> {
                     /*onMapCreated: _onMapCreated,*/
                     mapType: MapType.normal,
                     myLocationEnabled: true,
-                    markers: globals.markers,
+                    markers: globals.markersFiltered,
                   ),
                 ),
               ),
