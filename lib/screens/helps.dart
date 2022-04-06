@@ -66,13 +66,14 @@ class _helpPageState extends State<helpPage> {
       return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Colors.transparent,
+          backgroundColor:Color.fromARGB(255, 20, 27, 66) ,
           elevation: 0,
-          title: notesHeader(),
+          title: const Text(   "Forum",
+                            ),
         ),
         body: noteHeading.length > 0
             ? buildNotes()
-            : Center(child: Text("Forums")),
+            : Center(child: Text("No Entries!")),
         floatingActionButton: FloatingActionButton(
           mini: false,
           backgroundColor: Colors.blueAccent,
@@ -247,7 +248,7 @@ class _helpPageState extends State<helpPage> {
                           ),
                           Flexible(
                             child: Text(
-                              "Username: "+ noteUser[index],
+                              "Written By: "+ noteUser[index],
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontSize: 15.00,
@@ -285,7 +286,7 @@ class _helpPageState extends State<helpPage> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const newComment(),
+                  builder: (context) => newComment(index),
                 ));
           },
         ));
@@ -386,7 +387,7 @@ class _helpPageState extends State<helpPage> {
                         maxLength: notesUserMaxLines,
                         controller: noteUserController,
                         decoration: InputDecoration(
-                          hintText: "User Name",
+                          hintText: "Your Name",
                           hintStyle: TextStyle(
                             fontSize: 15.00,
                             color: Colors.grey,
@@ -461,50 +462,65 @@ Widget notesHeader() {
 }
 
 class newComment extends StatefulWidget {
-  const newComment({Key? key}) : super(key: key);
+  int index;
+   newComment(this.index, {Key? key});
+   
 
   @override
-  _newCommentState createState() => _newCommentState();
+  _newCommentState createState() => _newCommentState(this.index);
 }
 
 class _newCommentState extends State<newComment> {
+  int index;
+
+  _newCommentState (this.index);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          title: notesHeader(),
+          backgroundColor: Color.fromARGB(255, 20, 27, 66),
+          elevation: 0.0,
+          title: Text(
+                              "Carpark: "+noteHeading[index],
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 20.00,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
         ),
-        body: Center(
-          child: Stack(
+        body: ListView(
             children: [
-              Align(
-                alignment: Alignment.bottomRight,
-                child: FloatingActionButton(
-                  onPressed: () {
-                    _editScreen(context);
-                  },
-                  tooltip: 'Edit',
-                  child: Icon(Icons.edit),
-                ),
-              ),
-              Container(
-                height: double.infinity,
-                child: AutoSizeText(
-                  "Description: ",
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 15.00,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
+              Card(
+                  elevation: 5.0,
+                  color: Color.fromARGB(255, 177, 195, 216),
+                  child: ListTile(
+                    leading: Icon(Icons.location_pin, size: 28.0),
+                    title: Text(
+                      noteHeading[index],
+                      textAlign: TextAlign.justify,
+                    ),
+                  )),
+              Card(
+                  elevation: 5.0,
+                  child: ListTile(
+                      leading: Icon(Icons.car_rental, size: 30.0),
+                      title: Text(" "),
+                      subtitle: Text(
+                          "Written By: "+ noteUser[index] +
+                              '\n\n' +
+                              "Description: ${(noteDescription[index])}" +
+                              '\n',
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(color: Colors.black,fontSize: 15.0)))),
+              
             ],
-          ),
-        ));
+            shrinkWrap: true,
+          )
+        ,);
   }
 }
 

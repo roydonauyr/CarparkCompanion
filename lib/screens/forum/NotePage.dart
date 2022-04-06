@@ -8,7 +8,7 @@ TextEditingController noteUserController = new TextEditingController();
 TextEditingController noteDescriptionController = new TextEditingController();
 FocusNode textSecondFocusNode = new FocusNode();
 
-int notesHeaderMaxLenth = 25;
+int notesHeaderMaxLenth = 50;
 int notesDescriptionMaxLines = 10;
 int notesUserMaxLines = 10;
 int? notesDescriptionMaxLenth;
