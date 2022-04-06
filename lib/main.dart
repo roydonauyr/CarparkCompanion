@@ -8,6 +8,11 @@ import 'package:flutter_application_2/services/auth.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'models/localUser.dart';
+
+import 'package:flutter_application_2/models/timer.dart';
+// import 'package:flutter_application_2/services/apiLTA.dart';
+// import 'dart:async';
+
 import 'package:flutter_application_2/screens/filter.dart';
 
 Set<Marker> markers = new Set();
@@ -22,6 +27,7 @@ void setMarkers(Set<Marker> marked){
 
 //Testing git push
 void main() async {
+  APItimer;
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await initCarparkObjects();
