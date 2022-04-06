@@ -50,6 +50,7 @@ class _helpPageState extends State<helpPage> {
             Align(
               alignment: Alignment.bottomCenter,
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(primary: Color.fromARGB(255, 20, 27, 66)),
                 onPressed: () {
                   Navigator.push(
                       context,
