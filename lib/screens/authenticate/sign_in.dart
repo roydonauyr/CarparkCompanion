@@ -103,10 +103,11 @@ class _SignInState extends State<SignIn> {
                     if (_formKey.currentState!.validate()) {
                       dynamic result =
                           _auth.signInWithEmailAndPassword(email, password);
+                      print("result: " + result.toString());
                       String invalid_user =
                           "The password is invalid or the user does not have a password.";
-                      if (result == invalid_user) {
-                        setState(() => error = "Invalid User");
+                      if (result == null) {
+                        setState(() => error = invalid_user);
                       }
                     }
                   },
