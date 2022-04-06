@@ -5,14 +5,14 @@
 // import 'package:meta/meta.dart';
 import 'dart:convert';
 
-CarparkAvailability carparkAvailabilityFromJson(String str) =>
-    CarparkAvailability.fromJson(json.decode(str));
+LTACarparkAvailability ltaCarparkAvailabilityFromJson(String str) =>
+    LTACarparkAvailability.fromJson(json.decode(str));
 
-String carparkAvailabilityToJson(CarparkAvailability data) =>
+String ltaCarparkAvailabilityToJson(LTACarparkAvailability data) =>
     json.encode(data.toJson());
 
-class CarparkAvailability {
-  CarparkAvailability({
+class LTACarparkAvailability {
+  LTACarparkAvailability({
     required this.odataMetadata,
     required this.value,
   });
@@ -20,8 +20,8 @@ class CarparkAvailability {
   String odataMetadata;
   List<Value> value;
 
-  factory CarparkAvailability.fromJson(Map<String, dynamic> json) =>
-      CarparkAvailability(
+  factory LTACarparkAvailability.fromJson(Map<String, dynamic> json) =>
+      LTACarparkAvailability(
         odataMetadata: json["odata.metadata"],
         value: List<Value>.from(json["value"].map((x) => Value.fromJson(x))),
       );
