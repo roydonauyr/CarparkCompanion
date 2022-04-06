@@ -8,19 +8,7 @@ import 'package:flutter_application_2/screens/landingMap.dart';
 import 'package:flutter_application_2/services/markersGenerator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-// void() main() async {
-//     await GetStorage.init;
-//     runApp(globals.MyApp());
-// }
 class filter extends StatefulWidget {
-  // final switchData = GetStorage();
-  // bool isSwitched = false;
-  // @override
-
-  // void initState(){
-  //   super.initState();
-
-  // }
   static Map<String, List<String>> userFilters = {};
   static late Map<String, Map<String, bool>> switchesFilter = {
     'car_park_type': {
@@ -106,8 +94,6 @@ class _filterState extends State<filter> {
     return copy;
   }
 
-// ValueNotifier<int> buttonClickedTimes =ValueNotifier(0);
-
   static List<carparkDetail> filterExecute(
       Map<String, List<String>> filters, List<carparkDetail> carparks) {
     List<carparkDetail> filtered1 = [];
@@ -157,15 +143,8 @@ class _filterState extends State<filter> {
     return filtered2;
   }
 
-  //          ValueListenableBuilder(
-  //   valueListenable: buttonClickedTimes,
-  // builder: (BuildContext context, int counterValue,Widget child){
-  //         return Text("Counter:$counterValue");
-
   @override
   Widget build(BuildContext context) {
-    // final switchData = GetStorage();
-    // bool isSwitched = false;
     setSwitchesFilter(landingMap.GetSwitchesMap());
 
     return Scaffold(
@@ -180,13 +159,6 @@ class _filterState extends State<filter> {
                 primary: Color.fromARGB(255, 20, 27, 66),
               ),
               onPressed: () {
-                //  if(switchData.read('isSwitched') != null){
-                //   setState(() {
-                //     isSwitched = switchData.read('isSwitched');
-                //   });
-
-                //  }
-
                 for (int i = 0; i < switches.length; i++) {
                   String main_key = switches.keys.elementAt(i);
                   Map<String, bool> cur = switches.values.elementAt(i);
@@ -233,6 +205,16 @@ class _filterState extends State<filter> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
+                "                 ",
+                style: TextStyle(
+                    color: Color.fromARGB(255, 247, 248, 250), fontSize: 20),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
                 "Car Park Type",
                 style: TextStyle(color: Colors.blue[700], fontSize: 20),
               ),
@@ -240,11 +222,13 @@ class _filterState extends State<filter> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 "Open Space only",
                 style: TextStyle(fontSize: 15),
               ),
+              SizedBox(width: 105),
               Switch(
                 value: switches['car_park_type']!['SURFACE CAR PARK']!,
                 // value: true,
@@ -260,11 +244,13 @@ class _filterState extends State<filter> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 "Multi-Storey only",
                 style: TextStyle(fontSize: 15),
               ),
+              SizedBox(width: 105),
               Switch(
                 value: switches['car_park_type']!['MULTI-STOREY CAR PARK']!,
                 // value: true,
@@ -272,20 +258,20 @@ class _filterState extends State<filter> {
                   setState(() {
                     switches['car_park_type']!["MULTI-STOREY CAR PARK"] =
                         !(switches['car_park_type']!["MULTI-STOREY CAR PARK"]!);
-                    // isSwitched = value;
-                    // switchData.write('isSwitched',isSwitched);
-                    //   // if(switchData.read('isSwitched') != null){
-                    //  setState((){
-                    //       isSwitched = switchData.read('isSwitched');
-                    // });}
                   });
-                  //   GestureDetector(
-                  //   onTap:()=>buttonClickedTimes.value= buttonClickedTimes.value+1,
-                  // child: Text("Button",style:Theme.of(context).textTheme.button)
-                  // );
                 },
                 activeColor: Colors.green,
               )
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "                 ",
+                style: TextStyle(
+                    color: Color.fromARGB(255, 247, 248, 250), fontSize: 20),
+              ),
             ],
           ),
           Row(
@@ -299,11 +285,13 @@ class _filterState extends State<filter> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 "Electronic only",
                 style: TextStyle(fontSize: 15),
               ),
+              SizedBox(width: 120),
               Switch(
                 value:
                     switches['type_of_parking_system']!['ELECTRONIC PARKING']!,
@@ -342,6 +330,16 @@ class _filterState extends State<filter> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
+                "                 ",
+                style: TextStyle(
+                    color: Color.fromARGB(255, 247, 248, 250), fontSize: 20),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
                 "Others",
                 style: TextStyle(color: Colors.blue[700], fontSize: 20),
               ),
@@ -366,36 +364,6 @@ class _filterState extends State<filter> {
               )
             ],
           ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //   children: [
-          //     Text("NO",
-          //     style: TextStyle(
-          //           fontSize: 15
-          //     ),),
-          //     Switch(
-          //       value: switches['night_parking']!['NO']!,
-          //       onChanged: (value) {
-          //         setState(() {
-          //           switches['night_parking']!['NO'] = ! (switches['night_parking']!['NO']!);
-          //         });
-          //       },
-          //       activeColor: Colors.green,
-          //     )
-          //   ],
-          // ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //     Text("Free Parking",
-          //       style: TextStyle(
-          //           color: Colors.blue[700],
-          //           fontSize: 20
-          //       ),
-
-          //     ),
-          //   ],
-          // ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -415,44 +383,15 @@ class _filterState extends State<filter> {
               )
             ],
           ),
-          //need to find out firebase free parking format
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //   children: [
-          //     Text("NO",
-          //     style: TextStyle(
-          //           fontSize: 15
-          //     ),),
-          //     Switch(
-          //       value: switches['free_parking']!['NO']!,
-          //       onChanged: (value) {
-          //         setState(() {
-          //           switches['free_parking']!['NO'] = ! (switches['free_parking']!['NO']!);
-          //         });
-          //       },
-          //       activeColor: Colors.green,
-          //     )
-          //   ],
-          // ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //     Text("Short Term Parking",
-          //       style: TextStyle(
-          //           color: Colors.blue[700],
-          //           fontSize: 20
-          //       ),
-
-          //     ),
-          //   ],
-          // ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 "Short Term Parking",
                 style: TextStyle(fontSize: 15),
               ),
+              SizedBox(width: 90),
               Switch(
                 value: switches['short_term_parking']!['YES']!,
                 onChanged: (value) {
@@ -465,24 +404,6 @@ class _filterState extends State<filter> {
               )
             ],
           ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //   children: [
-          //     Text("NO",
-          //     style: TextStyle(
-          //           fontSize: 15
-          //     ),),
-          //     Switch(
-          //       value: switches['short_term_parking']!['NO']!,
-          //       onChanged: (value) {
-          //         setState(() {
-          //           switches['short_term_parking']!['NO'] = ! (switches['short_term_parking']!['NO']!);
-          //         });
-          //       },
-          //       activeColor: Colors.green,
-          //     )
-          //   ],
-          // ),
         ]));
   }
 }
