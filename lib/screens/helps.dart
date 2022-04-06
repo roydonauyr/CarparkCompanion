@@ -31,6 +31,7 @@ class _helpPageState extends State<helpPage> {
   void dispose() {
     noteDescriptionController.dispose();
     noteHeadingController.dispose();
+    noteUserController.dispose();
     super.dispose();
   }
 
@@ -103,8 +104,10 @@ class _helpPageState extends State<helpPage> {
                 setState(() {
                   deletedNoteHeading = noteHeading[index];
                   deletedNoteDescription = noteDescription[index];
+                  deletedNoteUser = noteUser[index];
                   noteHeading.removeAt(index);
                   noteDescription.removeAt(index);
+                  noteUser.removeAt(index);
                   Scaffold.of(context).showSnackBar(
                     new SnackBar(
                       backgroundColor: Colors.purple,
@@ -122,11 +125,12 @@ class _helpPageState extends State<helpPage> {
                                     setState(() {
                                       if (deletedNoteHeading != "") {
                                         noteHeading.add(deletedNoteHeading);
-                                        noteDescription
-                                            .add(deletedNoteDescription);
+                                        noteDescription.add(deletedNoteDescription);
+                                        noteUser.add(deletedNoteUser);
                                       }
                                       deletedNoteHeading = "";
                                       deletedNoteDescription = "";
+                                      deletedNoteUser="";
                                     });
                                   },
                                   child: new Text(
@@ -229,12 +233,26 @@ class _helpPageState extends State<helpPage> {
                         children: [
                           Flexible(
                             child: Text(
-                              noteHeading[index],
+                              "Carpark: "+noteHeading[index],
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontSize: 20.00,
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 2.5,
+                          ),
+                          Flexible(
+                            child: Text(
+                              "Username: "+ noteUser[index],
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 15.00,
+                                color: Colors.black,
+                                
                               ),
                             ),
                           ),
@@ -315,10 +333,11 @@ class _helpPageState extends State<helpPage> {
                               {
                                 setState(() {
                                   noteHeading.add(noteHeadingController.text);
-                                  noteDescription
-                                      .add(noteDescriptionController.text);
+                                  noteDescription.add(noteDescriptionController.text);
+                                  noteUser.add(noteUserController.text);
                                   noteHeadingController.clear();
                                   noteDescriptionController.clear();
+                                  noteUserController.clear();
                                 });
                                 Navigator.pop(context);
                               }
@@ -350,7 +369,24 @@ class _helpPageState extends State<helpPage> {
                         maxLength: notesHeaderMaxLenth,
                         controller: noteHeadingController,
                         decoration: InputDecoration(
-                          hintText: "Forum Heading",
+                          hintText: "Carpark Name",
+                          hintStyle: TextStyle(
+                            fontSize: 15.00,
+                            color: Colors.grey,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          prefixIcon: Icon(Icons.text_fields),
+                        ),
+                        onFieldSubmitted: (String value) {
+                          FocusScope.of(context)
+                              .requestFocus(textSecondFocusNode);
+                        },
+                      ),
+                      TextFormField(
+                        maxLength: notesUserMaxLines,
+                        controller: noteUserController,
+                        decoration: InputDecoration(
+                          hintText: "User Name",
                           hintStyle: TextStyle(
                             fontSize: 15.00,
                             color: Colors.grey,
@@ -450,8 +486,8 @@ class _newCommentState extends State<newComment> {
                   onPressed: () {
                     _editScreen(context);
                   },
-                  tooltip: 'Add',
-                  child: Icon(Icons.add),
+                  tooltip: 'Edit',
+                  child: Icon(Icons.edit),
                 ),
               ),
               Container(
@@ -563,10 +599,11 @@ void _editScreen(context) {
                             {
                               setState2(() {
                                 noteHeading.add(noteHeadingController.text);
-                                noteDescription
-                                    .add(noteDescriptionController.text);
+                                noteDescription.add(noteDescriptionController.text);
+                                noteUser.add(noteUserController.text);
                                 noteHeadingController.clear();
                                 noteDescriptionController.clear();
+                                noteUserController.clear();
                               });
                               Navigator.pop(context);
                             }
