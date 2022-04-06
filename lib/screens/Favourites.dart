@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/screens/FullDetails.dart';
+import 'package:provider/provider.dart';
 
-List<String> myFavourites = <String>[];
-Set<String> favourited = Set<String>();
+import '../models/localUser.dart';
+import 'authenticate/login_or_register.dart';
+import 'home/home.dart';
+
+List<FullDetails> myFavourites = <FullDetails>[];
+List<String> favourited = <String>[];
 
 
 class favouritePage extends StatefulWidget {
@@ -17,11 +22,38 @@ class favouritePage extends StatefulWidget {
 }
 
 class _favouritePageState extends State<favouritePage> {
-
+  
   @override
   Widget build(BuildContext context) {
-    print("enter");
-    return Scaffold(
+    final user = Provider.of<LocalUser?>(context);
+     if (user == null) {
+      return Scaffold(
+        appBar: new AppBar(
+          title: new Text("Favourites"),
+          backgroundColor: Color.fromARGB(255, 20, 27, 66),
+        ),
+        body: Center(
+            child: Column(
+          children: <Widget>[
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(primary: Color.fromARGB(255, 20, 27, 66)),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginOrRegsiter()));
+                },
+                child: Text('Login'),
+              ),
+            )
+          ],
+        )),
+      );
+    } 
+    else{
+      return Scaffold(
       appBar: new AppBar(
         title: new Text("Favourite"),
         backgroundColor: Color.fromARGB(255, 20, 27, 66),
@@ -29,61 +61,53 @@ class _favouritePageState extends State<favouritePage> {
       body: ListView.builder(
         itemCount: myFavourites.length,
         itemBuilder: (BuildContext context, int index){
-          String favourite = myFavourites[index];
-          bool isFavourite = favourited.contains(favourite);
-          return Row(
-            children: <Widget>[
-              ElevatedButton(child: Text(favourite), onPressed: (){
-                setState((){
-                    Navigator.pop(context, MaterialPageRoute(builder: (context) => FullDetails(id,
-                                          address,
-                                          carpark_basement,
-                                          carpark_decks,
-                                          carpark_no,
-                                          carpark_type,
-                                          free_parking,
-                                          gantry_height,
-                                          night_parking,
-                                          short_term_parking,
-                                          type_of_parking_system,
-                                          lat,
-                                          long,)));
-                });
-              }), 
-              RaisedButton(
-                  onPressed: (){
-                    setState((){
-                      if(isFavourite){
-                        favourited.remove(favourite);
-                        myFavourites.remove(favourite);
-                      }
-                    });
-                  },
-                  child: new Icon(
-                    isFavourite ? Icons.favorite : Icons.favorite_border,
-                    color: isFavourite ? Colors.red : null,
-                  ),
+          FullDetails favourite = myFavourites[index];
+          bool isFavourite = favourited.contains(favourite.address);
+          return ListView(
+            children: [
+              InkWell(
+                onTap: (){
+                  setState(() {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => FullDetails(favourite.id, favourite.address, favourite.carpark_basement, favourite.carpark_decks, favourite.carpark_no, favourite.carpark_type, favourite.free_parking, favourite.gantry_height, favourite.night_parking, favourite.short_term_parking, favourite.type_of_parking_system, favourite.x_coord, favourite.y_coord)));
+                  });
+                },
+                child: Card(
+                    elevation: 10.0,
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    child: ListTile(
+                      leading: Icon(Icons.location_pin, size: 28.0, color: Color.fromARGB(255, 14, 82, 138)), 
+                      title:
+                      Row(children: [
+                        Text(
+                        favourite.address,
+                        textAlign: TextAlign.left,
+                        textScaleFactor: 1.1,
+                      ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(62, 2, 2, 2),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Colors.white, elevation: 0),
+                            onPressed: (){ 
+                              setState((){
+                                if(isFavourite){
+                                  favourited.remove(favourite.address);
+                                  myFavourites.remove(favourite);
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+                                }
+                              });
+                            },
+                            child: Icon(isFavourite ? Icons.favorite : Icons.favorite_border,
+                                  color: isFavourite ? Colors.red : null,),
+                          ),
+                        ),
+                      ]),
+                )),
               ),
-            ]
-          );
-        },
-      ),
-    );
+            ],
+            shrinkWrap: true,
+      );
+      },
+    ));
+    }
   }
 }
-
-// ListTile(
-//                 title: Text(favourite),
-//                 trailing: Icon(
-//                   isFavourite ? Icons.favorite : Icons.favorite_border,
-//                   color: isFavourite ? Colors.red : null,
-//                 ),
-//                 onTap: (){
-//                   setState((){
-//                     if(isFavourite){
-//                       favourited.remove(favourite);
-//                       myFavourites.remove(favourite);
-//                     }
-//                   });
-//                 },
-//               ),
