@@ -27,12 +27,13 @@ class _helpPageState extends State<helpPage> {
         notesDescriptionMaxLines * notesDescriptionMaxLines;
   }
 
-  @override
-  void dispose() {
-    noteDescriptionController.dispose();
-    noteHeadingController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   noteDescriptionController.dispose();
+  //   noteHeadingController.dispose();
+  //   noteUserController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +50,9 @@ class _helpPageState extends State<helpPage> {
             Align(
               alignment: Alignment.bottomCenter,
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 20, 27, 66),
+                ),
                 onPressed: () {
                   Navigator.push(
                       context,
@@ -65,13 +69,15 @@ class _helpPageState extends State<helpPage> {
       return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Color.fromARGB(255, 20, 27, 66),
           elevation: 0,
-          title: notesHeader(),
+          title: const Text(
+            "Forum",
+          ),
         ),
         body: noteHeading.length > 0
             ? buildNotes()
-            : Center(child: Text("Forums")),
+            : Center(child: Text("No Entries!")),
         floatingActionButton: FloatingActionButton(
           mini: false,
           backgroundColor: Colors.blueAccent,
@@ -103,8 +109,10 @@ class _helpPageState extends State<helpPage> {
                 setState(() {
                   deletedNoteHeading = noteHeading[index];
                   deletedNoteDescription = noteDescription[index];
+                  deletedNoteUser = noteUser[index];
                   noteHeading.removeAt(index);
                   noteDescription.removeAt(index);
+                  noteUser.removeAt(index);
                   Scaffold.of(context).showSnackBar(
                     new SnackBar(
                       backgroundColor: Colors.purple,
@@ -124,9 +132,11 @@ class _helpPageState extends State<helpPage> {
                                         noteHeading.add(deletedNoteHeading);
                                         noteDescription
                                             .add(deletedNoteDescription);
+                                        noteUser.add(deletedNoteUser);
                                       }
                                       deletedNoteHeading = "";
                                       deletedNoteDescription = "";
+                                      deletedNoteUser = "";
                                     });
                                   },
                                   child: new Text(
@@ -229,12 +239,25 @@ class _helpPageState extends State<helpPage> {
                         children: [
                           Flexible(
                             child: Text(
-                              noteHeading[index],
+                              "Carpark: " + noteHeading[index],
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontSize: 20.00,
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 2.5,
+                          ),
+                          Flexible(
+                            child: Text(
+                              "Written By: " + noteUser[index],
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 15.00,
+                                color: Colors.black,
                               ),
                             ),
                           ),
@@ -267,7 +290,7 @@ class _helpPageState extends State<helpPage> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const newComment(),
+                  builder: (context) => newComment(index),
                 ));
           },
         ));
@@ -317,8 +340,10 @@ class _helpPageState extends State<helpPage> {
                                   noteHeading.add(noteHeadingController.text);
                                   noteDescription
                                       .add(noteDescriptionController.text);
+                                  noteUser.add(noteUserController.text);
                                   noteHeadingController.clear();
                                   noteDescriptionController.clear();
+                                  noteUserController.clear();
                                 });
                                 Navigator.pop(context);
                               }
@@ -350,7 +375,24 @@ class _helpPageState extends State<helpPage> {
                         maxLength: notesHeaderMaxLenth,
                         controller: noteHeadingController,
                         decoration: InputDecoration(
-                          hintText: "Forum Heading",
+                          hintText: "Carpark Name",
+                          hintStyle: TextStyle(
+                            fontSize: 15.00,
+                            color: Colors.grey,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          prefixIcon: Icon(Icons.text_fields),
+                        ),
+                        onFieldSubmitted: (String value) {
+                          FocusScope.of(context)
+                              .requestFocus(textSecondFocusNode);
+                        },
+                      ),
+                      TextFormField(
+                        maxLength: notesUserMaxLines,
+                        controller: noteUserController,
+                        decoration: InputDecoration(
+                          hintText: "Your Name",
                           hintStyle: TextStyle(
                             fontSize: 15.00,
                             color: Colors.grey,
@@ -425,50 +467,64 @@ Widget notesHeader() {
 }
 
 class newComment extends StatefulWidget {
-  const newComment({Key? key}) : super(key: key);
+  int index;
+  newComment(this.index, {Key? key});
 
   @override
-  _newCommentState createState() => _newCommentState();
+  _newCommentState createState() => _newCommentState(this.index);
 }
 
 class _newCommentState extends State<newComment> {
+  int index;
+
+  _newCommentState(this.index);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          title: notesHeader(),
-        ),
-        body: Center(
-          child: Stack(
-            children: [
-              Align(
-                alignment: Alignment.bottomRight,
-                child: FloatingActionButton(
-                  onPressed: () {
-                    _editScreen(context);
-                  },
-                  tooltip: 'Add',
-                  child: Icon(Icons.add),
-                ),
-              ),
-              Container(
-                height: double.infinity,
-                child: AutoSizeText(
-                  "Description: ",
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 15.00,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ],
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: Color.fromARGB(255, 20, 27, 66),
+        elevation: 0.0,
+        title: Text(
+          "Carpark: " + noteHeading[index],
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            fontSize: 20.00,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
           ),
-        ));
+        ),
+      ),
+      body: ListView(
+        children: [
+          Card(
+              elevation: 5.0,
+              color: Color.fromARGB(255, 177, 195, 216),
+              child: ListTile(
+                leading: Icon(Icons.location_pin, size: 28.0),
+                title: Text(
+                  noteHeading[index],
+                  textAlign: TextAlign.justify,
+                ),
+              )),
+          Card(
+              elevation: 5.0,
+              child: ListTile(
+                  leading: Icon(Icons.car_rental, size: 30.0),
+                  title: Text(" "),
+                  subtitle: Text(
+                      "Written By: " +
+                          noteUser[index] +
+                          '\n\n' +
+                          "Description: ${(noteDescription[index])}" +
+                          '\n',
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(color: Colors.black, fontSize: 15.0)))),
+        ],
+        shrinkWrap: true,
+      ),
+    );
   }
 }
 
@@ -565,8 +621,10 @@ void _editScreen(context) {
                                 noteHeading.add(noteHeadingController.text);
                                 noteDescription
                                     .add(noteDescriptionController.text);
+                                noteUser.add(noteUserController.text);
                                 noteHeadingController.clear();
                                 noteDescriptionController.clear();
+                                noteUserController.clear();
                               });
                               Navigator.pop(context);
                             }

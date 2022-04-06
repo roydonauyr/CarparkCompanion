@@ -18,6 +18,7 @@ import 'package:flutter_application_2/models/carparkAPIinit.dart';
 
 import 'package:flutter_application_2/screens/filter.dart';
 
+Set<Circle> circles = new Set();
 Set<Marker> markers = new Set();
 bool filterState = false;
 Set<Marker> markersFiltered = new Set();
@@ -25,6 +26,7 @@ Set<Marker> markersFiltered = new Set();
 List<carparkDetail> carparkObjects = <carparkDetail>[];
 
 bool fullDetail = false;
+LatLng point = LatLng(1.348572682702342, 103.68310251054965);
 
 void setMarkers(Set<Marker> marked) {
   markers = marked;
@@ -79,6 +81,7 @@ class MyApp extends StatelessWidget {
       initialData: null,
       value: AuthService().user,
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Home(),
       ),
     );
@@ -95,7 +98,10 @@ Future<void> initCarparkObjects() async {
   coorConverter coorTest = coorConverter();
 
   int x = 0;
-  for (int i = 0; i < 20; i++) {
+
+
+  for (int i = 0; i < 2000; i += 4) {
+
     String path = i.toString();
 
     DatabaseReference object = FirebaseDatabase.instance.ref(path + "/details");
@@ -119,7 +125,8 @@ Future<void> initCarparkObjects() async {
     String _carpark_basement = (splitted[12]);
     double x_coord_double = double.parse(_x_coord);
     double y_coord_double = double.parse(_y_coord);
-    //print(splitted);
+
+    print(splitted);
 
     carparkObjects.add(carparkDetail(
         _id,
@@ -136,4 +143,13 @@ Future<void> initCarparkObjects() async {
         x_coord_double,
         y_coord_double));
   }
+
+  //Initialise the circle
+  // circles.add(Circle(
+  //     circleId: CircleId("1"),
+  //     center: LatLng(1.348572682702342, 103.68310251054965),
+  //     strokeWidth: 2,
+  //     strokeColor: Color.fromARGB(255, 171, 209, 239).withOpacity(0.5),
+  //     fillColor: Color.fromARGB(255, 171, 209, 239).withOpacity(0.5),
+  //     radius: 1000));
 }

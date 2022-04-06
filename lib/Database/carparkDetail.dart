@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/Database/CoorConverter.dart';
@@ -54,7 +56,7 @@ class carparkDetail extends StatelessWidget {
     this.type_of_parking_system = type_of_parking_system;
     this.lat = coorTest.computeLatLon(y_cord, x_cord)[0];
     this.long = coorTest.computeLatLon(y_cord, x_cord)[1];
-    this.vacancy = 10;
+    this.vacancy = Random().nextInt(100);
     // generate_marker_set(lat, long, address, _id, vacancy);
   }
 

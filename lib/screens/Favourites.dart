@@ -1,167 +1,136 @@
-import 'dart:async';
-//import 'package:flutter_application_2/Database/Favorites.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_database/ui/utils/stream_subscriber_mixin.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/Database/Account.dart';
+import 'package:flutter_application_2/screens/FullDetails.dart';
+import 'package:provider/provider.dart';
 
+import '../models/localUser.dart';
+import 'authenticate/login_or_register.dart';
+import 'home/home.dart';
 
-
-// class favouritePage extends StatefulWidget {
-//   const favouritePage({ Key? key }) : super(key: key);
-
-//   @override
-//   _favouritePageState createState() => _favouritePageState();
-// }
-
-// class _favouritePageState extends State<favouritePage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: new AppBar(
-//         title: new Text("Favourite"),
-//         backgroundColor: Color.fromARGB(255, 20, 27, 66),
-//       ),
-//       body: new Center(
-//         child: new Text("This is fav page"),
-//       ),
-      
-//     );
-//   }
-// }
+List<FullDetails> myFavourites = <FullDetails>[];
+List<String> favourited = <String>[];
 
 class favouritePage extends StatefulWidget {
-  const favouritePage({ Key? key }) : super(key: key);
+  //final Stream<int> stream;
+  favouritePage({Key? key}) : super(key: key);
+  //favouritePage(this.stream);
 
   @override
-  _WriteFav createState() => _WriteFav();
+  _favouritePageState createState() => _favouritePageState();
 }
 
-class _WriteFav extends State<favouritePage>{
-  final database = FirebaseDatabase.instance.reference();
-
+class _favouritePageState extends State<favouritePage> {
   @override
-  Widget build(BuildContext context){
-    int user = Account.getUserID();
-    final userID = database.child('userID' + user.toString() + '/');
-
-    
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Favorites'),
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 15.0),
-          child: Column(
-            children: [ 
-              ElevatedButton(onPressed: () async {
-                try {
-                  await userID
-                  //need to change this part such that details entered is based on carpark selected
-                    .set({'Carpark Name': 'Carpark C', 
-                'Car_park_type': 'Open space'});
-                print("Fav added");}
-                catch (e){
-                    print('Error in adding! $e');
-                }
-                
-              },
-              child: Text('Add Favorties'))
-            ],
+  Widget build(BuildContext context) {
+    final user = Provider.of<LocalUser?>(context);
+    if (user == null) {
+      return Scaffold(
+        appBar: new AppBar(
+          title: new Text("Favourites"),
+          backgroundColor: Color.fromARGB(255, 20, 27, 66),
+        ),
+        body: Center(
+            child: Column(
+          children: <Widget>[
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: Color.fromARGB(255, 20, 27, 66)),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginOrRegsiter()));
+                },
+                child: Text('Login'),
+              ),
+            )
+          ],
+        )),
+      );
+    } else {
+      return Scaffold(
+          appBar: new AppBar(
+            title: new Text("Favourite"),
+            backgroundColor: Color.fromARGB(255, 20, 27, 66),
           ),
-
-        )
-      )
-    );
+          body: ListView.builder(
+            itemCount: myFavourites.length,
+            itemBuilder: (BuildContext context, int index) {
+              FullDetails favourite = myFavourites[index];
+              bool isFavourite = favourited.contains(favourite.address);
+              return ListView(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FullDetails(
+                                    favourite.id,
+                                    favourite.address,
+                                    favourite.carpark_basement,
+                                    favourite.carpark_decks,
+                                    favourite.carpark_no,
+                                    favourite.carpark_type,
+                                    favourite.free_parking,
+                                    favourite.gantry_height,
+                                    favourite.night_parking,
+                                    favourite.short_term_parking,
+                                    favourite.type_of_parking_system,
+                                    favourite.x_coord,
+                                    favourite.y_coord)));
+                      });
+                    },
+                    child: Card(
+                        elevation: 10.0,
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        child: ListTile(
+                          leading: Icon(Icons.location_pin,
+                              size: 28.0,
+                              color: Color.fromARGB(255, 14, 82, 138)),
+                          title: Row(children: [
+                            Text(
+                              favourite.address,
+                              textAlign: TextAlign.left,
+                              textScaleFactor: 1.1,
+                              style: TextStyle(fontSize: 13),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(62, 2, 2, 2),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    primary: Colors.white, elevation: 0),
+                                onPressed: () {
+                                  setState(() {
+                                    if (isFavourite) {
+                                      favourited.remove(favourite.address);
+                                      myFavourites.remove(favourite);
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => Home()));
+                                    }
+                                  });
+                                },
+                                child: Icon(
+                                  isFavourite
+                                      ? Icons.favorite
+                                      : Icons.favorite_border,
+                                  color: isFavourite ? Colors.red : null,
+                                ),
+                              ),
+                            ),
+                          ]),
+                        )),
+                  ),
+                ],
+                shrinkWrap: true,
+              );
+            },
+          ));
+    }
   }
-
 }
-
-// class ReadFavs extends StatefulWidget {
-//   const ReadFavs({ Key? key }) : super(key: key);
-
-//   @override
-//   _ReadFavs createState() => _ReadFavs();
-// }
-
-
-// class _ReadFavs extends State<ReadFavs>{
-//   String _displayText = 'Results go here';
-//   final _database = FirebaseDatabase.instance.reference();
-//   late StreamSubscription _favStream;
-
-//   @override 
-//   void initState(){
-//     super.initState();
-//     _activateListeners();
-
-//     _database.child("userID").onValue;
-//   }
-
-//   void _performSingleFetch() {
-//       _database.child('dailySpecial').once().then((snapshot) {
-//         final data = new Map<String, dynamic>.from(snapshot.value);
-//         final favs = Favorites.fromRTDB (data);
-//         setState((){
-//           _displayText = favs.carparkName();
-//         });
-//       });
-//   }
-
-//   void _activateListeners(){
-//     _favStream =
-//       _database.child('userID').onValue.listen((event) {
-//     final data = new Map<String, dynamic>.from(event.snapshot.value);
-//     final favs = Favorites.fromRTDB(data);
-
-//     setState(() {
-//       _displayText = favs.fancyDescription();
-//     });
-//   });
-// }
-
-//   @override
-//   Widget build(BuildContext context){
-
-//     return Scaffold(
-//      appBar: AppBar(
-//        title: Text('Read Favs'),
-//      ),
-//      body: Center(
-//        child: Padding(
-//          padding: const EdgeInsets.only(top: 15.0),
-//          child: Column(children: [
-//            Text(
-//              _displayText,
-//              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),
-//              textAlign: TextAlign.center,
-//              ),
-//              SizedBox(height: 50,),
-//              StreamBuilder(stream: _database.child('userID').orderByKey(),limitToLast(10)
-//              ,builder: (context, snapshot) {
-//                final tilesList= <ListTile>[];
-//                 if (snapshot.hasData) {
-//                   final my0rders = Map<String, dynamic>.froml
-//                       (snapshot.data! as Event).snapshot.value); // Map.from
-//                   my0rders. forEach((key, value) {
-//                 final nextOrder = Map<String, dynamic>.from(value) :
-//                 final orderTile = ListTile(
-//                       leading: Icon/(Icons. local_cafel,
-//                       title: Text (nextOrder['description']),
-//                       subtitle: Text (nextOrder['customer'])); // ListTile
-//                 tilesList.add(orderTile);
-//                 });
-//              }
-//              return Expanded(
-//                child: ListView(
-//                  childen: titlesList,
-//                ),
-//              );
-
-//          ],)
-//        )
-//      ), 
-//     )
-//   }
-// }
