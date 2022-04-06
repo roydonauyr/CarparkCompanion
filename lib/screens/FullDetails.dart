@@ -9,7 +9,6 @@ import 'package:provider/provider.dart';
 
 import '../models/localUser.dart';
 
-
 class FullDetails extends StatefulWidget {
   // const FullDetails({ Key? key }) : super(key: key);
   late String _id;
@@ -98,9 +97,9 @@ class FullDetails extends StatefulWidget {
     this._type_of_parking_system = type_of_parking_system;
     this.x_coord = x_cord;
     this.y_coord = y_cord;
-    if (global.favourited.contains(_address)){
+    if (global.favourited.contains(_address)) {
       this.favourite = true;
-    }else{
+    } else {
       this.favourite = false;
     }
   }
@@ -112,7 +111,6 @@ class FullDetails extends StatefulWidget {
 }
 
 class _FullDetailsState extends State<FullDetails> {
-
   @override
   Widget build(BuildContext context) {
       final user = Provider.of<LocalUser?>(context);
