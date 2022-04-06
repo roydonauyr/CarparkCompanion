@@ -125,12 +125,13 @@ class _helpPageState extends State<helpPage> {
                                     setState(() {
                                       if (deletedNoteHeading != "") {
                                         noteHeading.add(deletedNoteHeading);
-                                        noteDescription.add(deletedNoteDescription);
+                                        noteDescription
+                                            .add(deletedNoteDescription);
                                         noteUser.add(deletedNoteUser);
                                       }
                                       deletedNoteHeading = "";
                                       deletedNoteDescription = "";
-                                      deletedNoteUser="";
+                                      deletedNoteUser = "";
                                     });
                                   },
                                   child: new Text(
@@ -233,7 +234,7 @@ class _helpPageState extends State<helpPage> {
                         children: [
                           Flexible(
                             child: Text(
-                              "Carpark: "+noteHeading[index],
+                              "Carpark: " + noteHeading[index],
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontSize: 20.00,
@@ -247,12 +248,11 @@ class _helpPageState extends State<helpPage> {
                           ),
                           Flexible(
                             child: Text(
-                              "Username: "+ noteUser[index],
+                              "Username: " + noteUser[index],
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontSize: 15.00,
                                 color: Colors.black,
-                                
                               ),
                             ),
                           ),
@@ -333,7 +333,8 @@ class _helpPageState extends State<helpPage> {
                               {
                                 setState(() {
                                   noteHeading.add(noteHeadingController.text);
-                                  noteDescription.add(noteDescriptionController.text);
+                                  noteDescription
+                                      .add(noteDescriptionController.text);
                                   noteUser.add(noteUserController.text);
                                   noteHeadingController.clear();
                                   noteDescriptionController.clear();
@@ -599,7 +600,8 @@ void _editScreen(context) {
                             {
                               setState2(() {
                                 noteHeading.add(noteHeadingController.text);
-                                noteDescription.add(noteDescriptionController.text);
+                                noteDescription
+                                    .add(noteDescriptionController.text);
                                 noteUser.add(noteUserController.text);
                                 noteHeadingController.clear();
                                 noteDescriptionController.clear();

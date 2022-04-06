@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 
 final List<String> noteDescription = [];
 final List<String> noteHeading = [];
+final List<String> noteUser = [];
 TextEditingController noteHeadingController = new TextEditingController();
+TextEditingController noteUserController = new TextEditingController();
 TextEditingController noteDescriptionController = new TextEditingController();
 FocusNode textSecondFocusNode = new FocusNode();
 
 int notesHeaderMaxLenth = 25;
 int notesDescriptionMaxLines = 10;
+int notesUserMaxLines = 10;
 int? notesDescriptionMaxLenth;
 String deletedNoteHeading = "";
 String deletedNoteDescription = "";
+String deletedNoteUser = "";
 
 List<Color> noteColor = [
   Color.fromARGB(255, 180, 210, 243),
