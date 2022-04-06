@@ -12,7 +12,7 @@ import 'package:flutter_application_2/screens/FullDetails.dart';
 import 'package:flutter_application_2/screens/HalfDetails.dart';
 import 'package:geolocator/geolocator.dart';
 
-import 'package:location/location.dart';
+//import 'package:location/location.dart';
 import 'package:flutter_application_2/services/auth.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -30,34 +30,24 @@ class landingMap extends StatefulWidget {
 
   @override
   _landingMap createState() => _landingMap();
-
-  // final Position initialPosition;
-  // landingMap(this.initialPosition);
 }
 
+
+
 class _landingMap extends State<landingMap> {
+
+  //Add controller to track current location
+  GoogleMapController? _controller;
+  //Location _currentLocation = Location(); 
+  
+  //Markers
   Set<Marker> markers = new Set();
   int id = 0;
-  late Position _currentPosition;
+  //late Position _currentPosition;
   final AuthService _auth = AuthService();
 
   Set<Marker> markers2 = new Set();
   List<carparkDetail> carparkObjects2 = <carparkDetail>[];
-
-  //Location is to obtain live location of user
-  Location _location = new Location();
-  late GoogleMapController _controller;
-
-  void _onMapCreated(GoogleMapController _cntlr) {
-    var _controller = _cntlr;
-    _location.onLocationChanged.listen((l) {
-      _controller.animateCamera(
-        CameraUpdate.newCameraPosition(
-          CameraPosition(target: LatLng(l.latitude!, l.longitude!), zoom: 15),
-        ),
-      );
-    });
-  }
 
   late GoogleMapController mapController;
 
@@ -164,7 +154,8 @@ class _landingMap extends State<landingMap> {
                 child: SizedBox(
                   height: 490.0,
                   child: GoogleMap(
-                    onMapCreated: (GoogleMapController googleMapController) {
+                    onMapCreated: 
+                    (GoogleMapController googleMapController) {
                       setState(() {
                         mapController = googleMapController;
                       });
@@ -181,7 +172,8 @@ class _landingMap extends State<landingMap> {
                 ),
               ),
             ],
-          ))));
+          ))),
+          );
     } else {
       return Scaffold(
         appBar: AppBar(
