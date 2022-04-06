@@ -1,14 +1,9 @@
-import 'dart:async';
-//import 'package:flutter_application_2/Database/Favorites.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_database/ui/utils/stream_subscriber_mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/screens/FullDetails.dart';
-import 'dart:async';
 
 List<String> myFavourites = <String>[];
 Set<String> favourited = Set<String>();
-import 'package:flutter_application_2/Database/Account.dart';
+
 
 class favouritePage extends StatefulWidget {
 
@@ -40,7 +35,19 @@ class _favouritePageState extends State<favouritePage> {
             children: <Widget>[
               ElevatedButton(child: Text(favourite), onPressed: (){
                 setState((){
-                    Navigator.pop(context, MaterialPageRoute(builder: (context) => FullDetails(favourite)));
+                    Navigator.pop(context, MaterialPageRoute(builder: (context) => FullDetails(id,
+                                          address,
+                                          carpark_basement,
+                                          carpark_decks,
+                                          carpark_no,
+                                          carpark_type,
+                                          free_parking,
+                                          gantry_height,
+                                          night_parking,
+                                          short_term_parking,
+                                          type_of_parking_system,
+                                          lat,
+                                          long,)));
                 });
               }), 
               RaisedButton(
