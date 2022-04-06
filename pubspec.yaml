@@ -55,7 +55,10 @@ dependencies:
   #flutter_polylinr_points: ^0.2.6
   meta: ^1.7.0
   auto_size_text: ^3.0.0
+  #Favourites button
+  favorite_button: ^0.0.4
   get_storage: ^2.0.3
+
 
 dev_dependencies:
   flutter_test:
