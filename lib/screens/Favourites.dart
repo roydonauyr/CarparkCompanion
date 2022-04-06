@@ -1,9 +1,14 @@
+import 'dart:async';
+//import 'package:flutter_application_2/Database/Favorites.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/utils/stream_subscriber_mixin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/screens/FullDetails.dart';
 import 'dart:async';
 
 List<String> myFavourites = <String>[];
 Set<String> favourited = Set<String>();
+import 'package:flutter_application_2/Database/Account.dart';
 
 class favouritePage extends StatefulWidget {
 
