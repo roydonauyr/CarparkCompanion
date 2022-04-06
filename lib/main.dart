@@ -9,29 +9,63 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'models/localUser.dart';
 
+import 'package:flutter_application_2/services/APIs.dart';
 import 'package:flutter_application_2/models/timer.dart';
-// import 'package:flutter_application_2/services/apiLTA.dart';
+
 // import 'dart:async';
+
+import 'package:flutter_application_2/models/carparkAPIinit.dart';
 
 import 'package:flutter_application_2/screens/filter.dart';
 
 Set<Marker> markers = new Set();
 bool filterState = false;
 Set<Marker> markersFiltered = new Set();
+
 List<carparkDetail> carparkObjects = <carparkDetail>[];
+
 bool fullDetail = false;
 
-void setMarkers(Set<Marker> marked){
+void setMarkers(Set<Marker> marked) {
   markers = marked;
 }
 
 //Testing git push
 void main() async {
-  APItimer;
+  //APItimer;
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await initCarparkObjects();
+  // await initCarparkObjects();
   // initCarparkObjects();
+  // print(carparkObjects.length);
+
+  carparkObjects = await initCP();
+
+  updateDG(carparkObjects);
+
+  final APItimer = refreshDG(carparkObjects);
+
+  // var data = await api.fetch();
+
+  // print(data.length);
+
+  // print(data[2179].carParkNo);
+
+  // var data = await api.getCarparks(0);
+  // var data2 = await api2.DGgetCPA();
+
+  // print(data.result.records.length);
+
+  // print(data2.items[0].carparkData.length);
+
+  // print(data2.items[0].carparkData[99].carparkNumber);
+  // print(data2.items[0].carparkData[99].carparkInfo[0].lotsAvailable);
+
+  // print(data.result.records[99].carParkNo);
+
+  //final APItimer = refresh(carparkObjects);
+
+  //await Future.delayed(Duration(seconds: 5));
 
   runApp(MyApp());
 }
@@ -61,7 +95,7 @@ Future<void> initCarparkObjects() async {
   coorConverter coorTest = coorConverter();
 
   int x = 0;
-  for (int i = 0; i < 20; i ++) {
+  for (int i = 0; i < 20; i++) {
     String path = i.toString();
 
     DatabaseReference object = FirebaseDatabase.instance.ref(path + "/details");
@@ -86,7 +120,7 @@ Future<void> initCarparkObjects() async {
     double x_coord_double = double.parse(_x_coord);
     double y_coord_double = double.parse(_y_coord);
     //print(splitted);
-    
+
     carparkObjects.add(carparkDetail(
         _id,
         _address,
