@@ -278,7 +278,7 @@ class markersGenerator extends StatefulWidget {
   }
 
   void generate_colored_markers(carparkDetail objects, BuildContext context) {
-    if (objects.vacancy >= 1 && objects.vacancy < 33) {
+    if (objects.vacancy >= 0 && objects.vacancy < 33) {
       generate_low_marker_set(
           objects.lat,
           objects.long,
