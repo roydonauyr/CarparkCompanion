@@ -48,106 +48,32 @@ Future<void> initCarparkObjects() async {
   coorConverter coorTest = coorConverter();
 
   int x = 0;
-  for (int i = 1; i < 2000; i += 200) {
+  for (int i = 1; i < 3; i++) {
     String path = i.toString();
 
     //Id
-    DatabaseReference id =
-        FirebaseDatabase.instance.ref(path + "/car_park_number");
+    DatabaseReference object = FirebaseDatabase.instance.ref(path + "/details");
 
-    DatabaseEvent id_event = await id.once();
-    String _id = id_event.snapshot.value.toString();
+    DatabaseEvent object_event = await object.once();
+    String object_string = object_event.snapshot.value.toString();
+    final splitted = object_string.split("_");
 
-    //Address
-    DatabaseReference address =
-        FirebaseDatabase.instance.ref(path + "/address");
-
-    DatabaseEvent address_event = await address.once();
-    String _address = address_event.snapshot.value.toString();
-
-    //Basement
-    DatabaseReference carpark_basement =
-        FirebaseDatabase.instance.ref(path + "/car_park_basement");
-
-    DatabaseEvent carpark_basement_event = await carpark_basement.once();
-    String _carpark_basement = carpark_basement_event.snapshot.value.toString();
-
-    //Carpark Decks
-    DatabaseReference carpark_decks =
-        FirebaseDatabase.instance.ref(path + "/car_park_decks");
-
-    DatabaseEvent carpark_decks_event = await carpark_decks.once();
-    String _carpark_decks = carpark_decks_event.snapshot.value.toString();
-
-    //Carpark Number
-    DatabaseReference carpark_no =
-        FirebaseDatabase.instance.ref(path + "/car_park_no");
-
-    DatabaseEvent carpark_no_event = await carpark_no.once();
-    String _carpark_no = carpark_no_event.snapshot.value.toString();
-
-    //Carpark Type
-    DatabaseReference carpark_type =
-        FirebaseDatabase.instance.ref(path + "/car_park_type");
-
-    DatabaseEvent capark_type_event = await carpark_type.once();
-    String _carpark_type = capark_type_event.snapshot.value.toString();
-
-    //Free Parking
-    DatabaseReference free_parking =
-        FirebaseDatabase.instance.ref(path + "/free_parking");
-
-    DatabaseEvent free_parking_event = await free_parking.once();
-    String _free_parking = free_parking_event.snapshot.value.toString();
-
-    //Gantry Height
-    DatabaseReference gantry_height =
-        FirebaseDatabase.instance.ref(path + "/gantry_height");
-
-    DatabaseEvent gantry_height_event = await gantry_height.once();
-    String _gantry_height = gantry_height_event.snapshot.value.toString();
-
-    //Night Parking
-    DatabaseReference night_parking =
-        FirebaseDatabase.instance.ref(path + "/night_parking");
-
-    DatabaseEvent night_parking_event = await night_parking.once();
-    String _night_parking = night_parking_event.snapshot.value.toString();
-
-    //Short term parking
-    DatabaseReference short_term_parking =
-        FirebaseDatabase.instance.ref(path + "/short_term_parking");
-
-    DatabaseEvent short_term_parking_event = await short_term_parking.once();
-    String _short_term_parking =
-        short_term_parking_event.snapshot.value.toString();
-
-    //Type of parking
-    DatabaseReference type_of_parking_system =
-        FirebaseDatabase.instance.ref(path + "/type_of_parking_system");
-
-    DatabaseEvent type_of_parking_system_event =
-        await type_of_parking_system.once();
-    String _type_of_parking_system =
-        type_of_parking_system_event.snapshot.value.toString();
-
-    //x coord
-    DatabaseReference x_coord =
-        FirebaseDatabase.instance.ref(path + "/x_coord");
-
-    //getting into double
-    DatabaseEvent x_cord_event = await x_coord.once();
-    double x_coord_double =
-        double.parse(x_cord_event.snapshot.value.toString());
-
-    //y coord
-    DatabaseReference y_coord =
-        FirebaseDatabase.instance.ref(path + "/y_coord");
-
-    //getting into double
-    DatabaseEvent y_cord_event = await y_coord.once();
-    double y_coord_double =
-        double.parse(y_cord_event.snapshot.value.toString());
+    String _id = splitted[0];
+    String _carpark_no = splitted[1];
+    String _address = splitted[2];
+    String _x_coord = splitted[3];
+    String _y_coord = splitted[4];
+    String _carpark_type = splitted[5];
+    String _type_of_parking_system = splitted[6];
+    String _short_term_parking = splitted[7];
+    String _free_parking = splitted[8];
+    String _night_parking = splitted[9];
+    String _carpark_decks = splitted[10];
+    String _gantry_height = (splitted[11]);
+    String _carpark_basement = (splitted[12]);
+    double x_coord_double = double.parse(_x_coord);
+    double y_coord_double = double.parse(_y_coord);
+    print(splitted);
 
     carparkObjects.add(carparkDetail(
         _id,
