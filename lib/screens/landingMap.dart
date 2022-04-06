@@ -204,6 +204,8 @@ class _landingMap extends State<landingMap> {
                     child: SizedBox(
                       height: 490.0,
                       child: GoogleMap(
+                        zoomControlsEnabled: true,
+                        zoomGesturesEnabled: true,
                         onMapCreated:
                             (GoogleMapController googleMapController) {
                           setState(() {
@@ -231,6 +233,15 @@ class _landingMap extends State<landingMap> {
                   child: RawMaterialButton(
                     onPressed: () {
                       globals.circles.clear();
+                      globals.circles.add(Circle(
+                          circleId: CircleId("1"),
+                          center: LatLng(1.348572682702342, 103.68310251054965),
+                          strokeWidth: 2,
+                          strokeColor: Color.fromARGB(255, 171, 209, 239)
+                              .withOpacity(0.5),
+                          fillColor: Color.fromARGB(255, 171, 209, 239)
+                              .withOpacity(0.5),
+                          radius: 1000));
                       point = LatLng(1.348572682702342, 103.68310251054965);
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Home()));

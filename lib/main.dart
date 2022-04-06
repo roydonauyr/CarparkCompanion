@@ -47,6 +47,7 @@ class MyApp extends StatelessWidget {
       initialData: null,
       value: AuthService().user,
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Home(),
       ),
     );
@@ -63,7 +64,7 @@ Future<void> initCarparkObjects() async {
   coorConverter coorTest = coorConverter();
 
   int x = 0;
-  for (int i = 0; i < 2000; i += 200) {
+  for (int i = 0; i < 2000; i += 4) {
     String path = i.toString();
 
     DatabaseReference object = FirebaseDatabase.instance.ref(path + "/details");
