@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/screens/FullDetails.dart';
+import 'package:flutter_application_2/screens/details/FullDetails.dart';
 import 'package:provider/provider.dart';
 
 import '../models/localUser.dart';
-import 'authenticate/login_or_register.dart';
-import 'home/home.dart';
+import '../screens/authenticate/login_or_register.dart';
+import '../screens/home/home.dart';
 
 List<FullDetails> myFavourites = <FullDetails>[];
 List<String> favourited = <String>[];

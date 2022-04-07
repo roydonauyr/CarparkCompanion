@@ -7,9 +7,9 @@ import 'package:flutter_application_2/Database/carparkDetail.dart';
 import 'package:flutter_application_2/main.dart' as globals;
 import 'package:flutter_application_2/models/localUser.dart';
 
-import 'package:flutter_application_2/screens/FullDetails.dart';
-import 'package:flutter_application_2/screens/HalfDetails.dart';
-import 'package:flutter_application_2/screens/filter.dart';
+import 'package:flutter_application_2/screens/details/FullDetails.dart';
+import 'package:flutter_application_2/screens/details/HalfDetails.dart';
+import 'package:flutter_application_2/screens/filters/filter.dart';
 import 'package:flutter_application_2/screens/home/home.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -20,7 +20,7 @@ import 'package:provider/provider.dart';
 import 'package:search_map_place_updated/search_map_place_updated.dart';
 
 import 'package:flutter_application_2/main.dart';
-import 'authenticate/login_or_register.dart';
+import '../authenticate/login_or_register.dart';
 
 //for firebase
 import "package:firebase_database/firebase_database.dart";

@@ -16,7 +16,7 @@ import 'package:flutter_application_2/models/timer.dart';
 
 import 'package:flutter_application_2/models/carparkAPIinit.dart';
 
-import 'package:flutter_application_2/screens/filter.dart';
+import 'package:flutter_application_2/screens/filters/filter.dart';
 
 Set<Circle> circles = new Set();
 Set<Marker> markers = new Set();
@@ -99,9 +99,7 @@ Future<void> initCarparkObjects() async {
 
   int x = 0;
 
-
   for (int i = 0; i < 2000; i += 4) {
-
     String path = i.toString();
 
     DatabaseReference object = FirebaseDatabase.instance.ref(path + "/details");

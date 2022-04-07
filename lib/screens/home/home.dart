@@ -5,10 +5,10 @@ import 'package:flutter_application_2/services/markersGenerator.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../Favourites.dart';
-import '../LotsRemberer.dart';
-import '../helps.dart';
-import '../landingMap.dart';
+import '../../services/Favourites.dart';
+import 'LotsRemberer.dart';
+import 'helps.dart';
+import 'landingMap.dart';
 // import 'package:google_maps_flutter_example/lite_mode.dart';
 
 // import 'animate_camera.dart';

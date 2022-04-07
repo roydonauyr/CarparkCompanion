@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/Database/carparkDetail.dart';
-import 'package:flutter_application_2/screens/FullDetails.dart';
-import 'package:flutter_application_2/screens/landingMap.dart';
+import 'package:flutter_application_2/screens/details/FullDetails.dart';
+import 'package:flutter_application_2/screens/home/landingMap.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_application_2/main.dart' as globals;
 

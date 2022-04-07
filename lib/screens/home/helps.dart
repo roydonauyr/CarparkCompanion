@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/models/localUser.dart';
-import 'package:flutter_application_2/screens/Favourites.dart';
+import 'package:flutter_application_2/services/Favourites.dart';
 import 'package:flutter_application_2/screens/forum/NotePage.dart';
 import 'package:get/route_manager.dart';
 import 'package:provider/provider.dart';
 
-import 'authenticate/login_or_register.dart';
+import '../authenticate/login_or_register.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
