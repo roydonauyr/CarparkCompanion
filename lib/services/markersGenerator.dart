@@ -348,8 +348,9 @@ class MarkersGenerator extends StatefulWidget {
 class _MarkersGeneratorState extends State<MarkersGenerator> {
   @override
   Widget build(BuildContext context) {
-    if (globals.filterState == false) {
+    if (globals.freshStart == true) {
       globals.markersFiltered.clear();
+      globals.freshStart = false;
       int x = 0;
       for (CarparkDetail objects in globals.carparkObjects) {
         widget.generate_colored_markers(objects, context);
@@ -357,10 +358,33 @@ class _MarkersGeneratorState extends State<MarkersGenerator> {
       }
       widget.generate_point_marker();
       globals.markersFiltered = globals.markers;
+      for (Marker marker in globals.markers) {
+        globals.markersFinal.add(marker);
+      }
       print("Markers created: " + x.toString());
       print("Markers Array size: " + globals.markersFiltered.length.toString());
       return LandingMap();
+    } else if (globals.filterState == true) {
+      print("filter");
+      globals.markersFiltered.add(Marker(
+          markerId: MarkerId("point"),
+          position: globals.point,
+          icon: BitmapDescriptor.defaultMarkerWithHue(
+              BitmapDescriptor.hueMagenta),
+          infoWindow: InfoWindow(title: "Your location")));
+      return LandingMap();
     } else {
+      print("normla");
+      globals.markersFiltered.clear();
+      for (Marker marker in globals.markersFinal) {
+        globals.markersFiltered.add(marker);
+      }
+      globals.markersFiltered.add(Marker(
+          markerId: MarkerId("point"),
+          position: globals.point,
+          icon: BitmapDescriptor.defaultMarkerWithHue(
+              BitmapDescriptor.hueMagenta),
+          infoWindow: InfoWindow(title: "Your location")));
       return LandingMap();
     }
   }

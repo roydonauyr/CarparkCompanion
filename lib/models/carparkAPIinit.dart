@@ -6,7 +6,7 @@ Future<List<CarparkDetail>> initCP() async {
   final api = APIServiceCP();
   final data = await api.fetch();
 
-  for (int i = 0; i < data.length; i += 20) {
+  for (int i = 0; i < data.length; i++) {
     carparkObjects.add(CarparkDetail(
         data[i].id.toString(),
         data[i].address,

@@ -11,9 +11,10 @@ import 'package:flutter_application_2/models/carparkAPIinit.dart';
 
 Set<Circle> circles = new Set();
 Set<Marker> markers = new Set();
-bool filterState = false;
 Set<Marker> markersFiltered = new Set();
-
+Set<Marker> markersFinal = new Set();
+bool filterState = false;
+bool freshStart = true;
 List<CarparkDetail> carparkObjects = <CarparkDetail>[];
 
 bool fullDetail = false;
@@ -46,6 +47,5 @@ class MyApp extends StatelessWidget {
         home: Home(),
       ),
     );
-
   }
 }

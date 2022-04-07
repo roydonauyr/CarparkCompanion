@@ -79,10 +79,6 @@ class _LandingMap extends State<LandingMap> {
   late Position _currentPosition;
   final AuthService _auth = AuthService();
 
-  // Set<Marker> markers2 = new Set();
-  // List<carparkDetail> carparkObjects2 = <carparkDetail>[];
-
-  //Location is to obtain live location of user
   Location _location = new Location();
   late GoogleMapController _controller;
 
@@ -103,14 +99,8 @@ class _LandingMap extends State<LandingMap> {
   Widget build(BuildContext context) {
     Geolocation? geolocation;
     setSwitchesMap(Filter.GetSwitchesFilter());
-    //  List<LatLng> points = [];
-    //  LatLng point;
-    //  point = LatLng(1.348572682702342, 103.68310251054965);
 
-    //User is to check if the user is logged in
     final user = Provider.of<LocalUser?>(context);
-
-    //To make code more efficient, can create 2 classes, 1 for login, 1 for not logged in
 
     if (user == null) {
       return Scaffold(
@@ -162,11 +152,6 @@ class _LandingMap extends State<LandingMap> {
                       apiKey: 'AIzaSyAUvR8wEIPEudD_xfJ6BpGx02vKoohOn5M',
                       onSelected: (Place place) async {
                         geolocation = await place.geolocation;
-                        // mapController.animateCamera(
-                        //     CameraUpdate.newLatLng(geolocation?.coordinates));
-                        // mapController.animateCamera(
-                        // //     CameraUpdate.newLatLngBounds(geolocation?.bounds, 0));
-                        // print("Chosen location: " + geolocation.toString());
                         point = geolocation?.coordinates;
                         CameraPosition newCameraPosition = CameraPosition(
                             target: geolocation?.coordinates, zoom: 15.0);
