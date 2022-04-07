@@ -1,18 +1,9 @@
-// ignore_for_file: unnecessary_new, prefer_const_constructors
-
-import 'dart:ffi';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/Database/CoorConverter.dart';
-import 'package:flutter_application_2/Database/carparkDetail.dart';
 import 'package:flutter_application_2/main.dart' as globals;
 import 'package:flutter_application_2/models/localUser.dart';
-
-import 'package:flutter_application_2/screens/details/FullDetails.dart';
-import 'package:flutter_application_2/screens/details/HalfDetails.dart';
 import 'package:flutter_application_2/screens/filters/filter.dart';
 import 'package:flutter_application_2/screens/home/home.dart';
 import 'package:geolocator/geolocator.dart';
-
 import 'package:location/location.dart';
 import 'package:flutter_application_2/services/auth.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -21,10 +12,6 @@ import 'package:search_map_place_updated/search_map_place_updated.dart';
 
 import 'package:flutter_application_2/main.dart';
 import '../authenticate/login_or_register.dart';
-
-//for firebase
-import "package:firebase_database/firebase_database.dart";
-import 'package:firebase_core/firebase_core.dart';
 
 class LandingMap extends StatefulWidget {
   const LandingMap({Key? key}) : super(key: key);

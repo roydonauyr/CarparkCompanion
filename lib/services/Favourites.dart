@@ -10,10 +10,7 @@ List<FullDetails> myFavourites = <FullDetails>[];
 List<String> favourited = <String>[];
 
 class FavouritePage extends StatefulWidget {
-  //final Stream<int> stream;
   FavouritePage({Key? key}) : super(key: key);
-  //favouritePage(this.stream);
-
   @override
   _FavouritePageState createState() => _FavouritePageState();
 }

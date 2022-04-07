@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final carpark = carparkFromJson(jsonString);
-
 import 'dart:convert';
 
 Carpark carparkFromJson(String str) => Carpark.fromJson(json.decode(str));

@@ -1,10 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter_application_2/services/Favourites.dart' as global;
 import 'package:flutter_application_2/screens/home/home.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/localUser.dart';
