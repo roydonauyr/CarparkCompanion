@@ -32,7 +32,7 @@ class markersGenerator extends StatefulWidget {
         infoWindow: InfoWindow(
             //popup info
             title: address,
-            snippet: 'ID: ' + id.toString(),
+            snippet: 'Availability: ' + vacancy.toString(),
             onTap: () {
               showModalBottomSheet(
                   context: context,
@@ -118,11 +118,11 @@ class markersGenerator extends StatefulWidget {
     globals.markers.add(Marker(
         markerId: MarkerId(id.toString()),
         position: LatLng(lat, long),
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
         infoWindow: InfoWindow(
             //popup info
             title: address,
-            snippet: 'ID: ' + id.toString(),
+            snippet: 'Availability: ' + vacancy.toString(),
             onTap: () {
               showModalBottomSheet(
                   context: context,
@@ -212,7 +212,7 @@ class markersGenerator extends StatefulWidget {
         infoWindow: InfoWindow(
             //popup info
             title: address,
-            snippet: 'ID: ' + id.toString(),
+            snippet: 'Availability: ' + vacancy.toString(),
             onTap: () {
               showModalBottomSheet(
                   context: context,
@@ -332,6 +332,15 @@ class markersGenerator extends StatefulWidget {
     }
   }
 
+  void generate_point_marker() {
+    globals.markers.add(Marker(
+        markerId: MarkerId("point"),
+        position: globals.point,
+        icon:
+            BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueMagenta),
+        infoWindow: InfoWindow(title: "Your location")));
+  }
+
   @override
   State<markersGenerator> createState() => _markersGeneratorState();
 }
@@ -340,14 +349,16 @@ class _markersGeneratorState extends State<markersGenerator> {
   @override
   Widget build(BuildContext context) {
     if (globals.filterState == false) {
+      globals.markersFiltered.clear();
       int x = 0;
       for (carparkDetail objects in globals.carparkObjects) {
         widget.generate_colored_markers(objects, context);
         x++;
       }
-
+      widget.generate_point_marker();
       globals.markersFiltered = globals.markers;
       print("Markers created: " + x.toString());
+      print("Markers Array size: " + globals.markersFiltered.length.toString());
       return landingMap();
     } else {
       return landingMap();

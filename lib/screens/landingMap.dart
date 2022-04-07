@@ -195,7 +195,10 @@ class _landingMap extends State<landingMap> {
                             fillColor: Color.fromARGB(255, 171, 209, 239)
                                 .withOpacity(0.5),
                             radius: 1000));
-                        setState(() {});
+                        setState(() {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Home()));
+                        });
                       },
                       location: LatLng(1.348572682702342, 103.68310251054965),
                       radius: 2000),
@@ -323,7 +326,10 @@ class _landingMap extends State<landingMap> {
                             fillColor: Color.fromARGB(255, 171, 209, 239)
                                 .withOpacity(0.5),
                             radius: 1000));
-                        setState(() {});
+                        setState(() {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Home()));
+                        });
                       },
                       location: LatLng(1.348572682702342, 103.68310251054965),
                       radius: 2000),
