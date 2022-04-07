@@ -7,7 +7,7 @@ Future<List<CarparkDetail>> initCP() async {
   final data = await api.fetch();
 
   for (int i = 0; i < data.length; i += 20) {
-    carparkObjects.add(carparkDetail(
+    carparkObjects.add(CarparkDetail(
         data[i].id.toString(),
         data[i].address,
         data[i].carParkBasement,
