@@ -359,9 +359,9 @@ class _markersGeneratorState extends State<markersGenerator> {
       globals.markersFiltered = globals.markers;
       print("Markers created: " + x.toString());
       print("Markers Array size: " + globals.markersFiltered.length.toString());
-      return landingMap();
+      return LandingMap();
     } else {
-      return landingMap();
+      return LandingMap();
     }
   }
 }

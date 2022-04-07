@@ -8,7 +8,7 @@ import 'package:flutter_application_2/screens/home/landingMap.dart';
 import 'package:flutter_application_2/services/markersGenerator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class filter extends StatefulWidget {
+class Filter extends StatefulWidget {
   static Map<String, List<String>> userFilters = {};
   static late Map<String, Map<String, bool>> switchesFilter = {
     'car_park_type': {
@@ -25,11 +25,11 @@ class filter extends StatefulWidget {
   };
   @override
   State<StatefulWidget> createState() {
-    return _filterState();
+    return _FilterState();
   }
 
   static Map<String, List<String>> returnFilters() {
-    userFilters = _filterState.getFilters();
+    userFilters = _FilterState.getFilters();
     return userFilters;
   }
 
@@ -38,7 +38,7 @@ class filter extends StatefulWidget {
   }
 }
 
-class _filterState extends State<filter> {
+class _FilterState extends State<Filter> {
   static Map<String, Map<String, bool>> switches = {
     'car_park_type': {
       'SURFACE CAR PARK': false,
@@ -145,7 +145,7 @@ class _filterState extends State<filter> {
 
   @override
   Widget build(BuildContext context) {
-    setSwitchesFilter(landingMap.GetSwitchesMap());
+    setSwitchesFilter(LandingMap.GetSwitchesMap());
 
     return Scaffold(
         appBar: AppBar(
@@ -192,7 +192,7 @@ class _filterState extends State<filter> {
               ),
               onPressed: () {
                 globals.filterState = false;
-                landingMap.setSwitchesNull();
+                LandingMap.setSwitchesNull();
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => Home()));
               },

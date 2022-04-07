@@ -7,7 +7,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../services/Favourites.dart';
 import 'LotsRemberer.dart';
-import 'helps.dart';
+import 'forum.dart';
 import 'landingMap.dart';
 // import 'package:google_maps_flutter_example/lite_mode.dart';
 
@@ -57,7 +57,7 @@ class _MyBottomNavigatioBarState extends State<MyBottomNavigatioBar> {
     markersGenerator(),
     favouritePage(),
     LotsRemberer(),
-    helpPage(),
+    Forum(),
   ];
 
   void onTappedBar(int index) {

@@ -26,8 +26,8 @@ import '../authenticate/login_or_register.dart';
 import "package:firebase_database/firebase_database.dart";
 import 'package:firebase_core/firebase_core.dart';
 
-class landingMap extends StatefulWidget {
-  const landingMap({Key? key}) : super(key: key);
+class LandingMap extends StatefulWidget {
+  const LandingMap({Key? key}) : super(key: key);
   static late Map<String, Map<String, bool>> switchesMap = {
     'car_park_type': {
       'SURFACE CAR PARK': false,
@@ -59,7 +59,7 @@ class landingMap extends StatefulWidget {
   }
 
   @override
-  _landingMap createState() => _landingMap();
+  _LandingMap createState() => _LandingMap();
 
   static GetSwitchesMap() {
     return switchesMap;
@@ -69,7 +69,7 @@ class landingMap extends StatefulWidget {
   // landingMap(this.initialPosition);
 }
 
-class _landingMap extends State<landingMap> {
+class _LandingMap extends State<LandingMap> {
   static Map<String, Map<String, bool>> switches = {
     'car_park_type': {
       'SURFACE CAR PARK': false,
@@ -115,7 +115,7 @@ class _landingMap extends State<landingMap> {
   @override
   Widget build(BuildContext context) {
     Geolocation? geolocation;
-    setSwitchesMap(filter.GetSwitchesFilter());
+    setSwitchesMap(Filter.GetSwitchesFilter());
     //  List<LatLng> points = [];
     //  LatLng point;
     //  point = LatLng(1.348572682702342, 103.68310251054965);
@@ -154,7 +154,7 @@ class _landingMap extends State<landingMap> {
                   print(point.latitude.toString());
                   print(point.longitude.toString());
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => filter()));
+                      MaterialPageRoute(builder: (context) => Filter()));
                 },
                 label: const Text('Filters'),
               )
@@ -285,7 +285,7 @@ class _landingMap extends State<landingMap> {
                 ),
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => filter()));
+                      MaterialPageRoute(builder: (context) => Filter()));
                 },
                 label: const Text('Filters'),
               )
