@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/models/localUser.dart';
-import 'package:flutter_application_2/screens/Favourites.dart';
+import 'package:flutter_application_2/services/Favourites.dart';
 import 'package:flutter_application_2/screens/forum/NotePage.dart';
 import 'package:get/route_manager.dart';
 import 'package:provider/provider.dart';
 
-import 'authenticate/login_or_register.dart';
+import '../authenticate/login_or_register.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
-class helpPage extends StatefulWidget {
-  const helpPage({Key? key}) : super(key: key);
+class HelpPage extends StatefulWidget {
+  const HelpPage({Key? key}) : super(key: key);
 
   @override
-  _helpPageState createState() => _helpPageState();
+  _HelpPageState createState() => _HelpPageState();
 }
 
-class _helpPageState extends State<helpPage> {
+class _HelpPageState extends State<HelpPage> {
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   static final GlobalKey<FormState> _formKey2 = GlobalKey<FormState>();
   @override
@@ -26,14 +26,6 @@ class _helpPageState extends State<helpPage> {
     notesDescriptionMaxLenth =
         notesDescriptionMaxLines * notesDescriptionMaxLines;
   }
-
-  // @override
-  // void dispose() {
-  //   noteDescriptionController.dispose();
-  //   noteHeadingController.dispose();
-  //   noteUserController.dispose();
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -290,7 +282,7 @@ class _helpPageState extends State<helpPage> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => newComment(index),
+                  builder: (context) => NewComment(index),
                 ));
           },
         ));
@@ -466,18 +458,18 @@ Widget notesHeader() {
   );
 }
 
-class newComment extends StatefulWidget {
+class NewComment extends StatefulWidget {
   int index;
-  newComment(this.index, {Key? key});
+  NewComment(this.index, {Key? key});
 
   @override
-  _newCommentState createState() => _newCommentState(this.index);
+  _NewCommentState createState() => _NewCommentState(this.index);
 }
 
-class _newCommentState extends State<newComment> {
+class _NewCommentState extends State<NewComment> {
   int index;
 
-  _newCommentState(this.index);
+  _NewCommentState(this.index);
 
   @override
   Widget build(BuildContext context) {
@@ -527,54 +519,6 @@ class _newCommentState extends State<newComment> {
     );
   }
 }
-
-// void _editScreen(context) {
-//   showModalBottomSheet(
-//       context: context,
-//       builder: (BuildContext bc) {
-//         return Container(
-//             height: MediaQuery.of(context).size.height * .60,
-//             child: Padding(
-//               padding: const EdgeInsets.all(8.0),
-//               child: Column(
-//                 children: <Widget>[
-//                   Row(children: <Widget>[
-//                     Text("enter forum details", style: TextStyle(fontSize: 30)),
-//                     Spacer(),
-//                     IconButton(
-//                         icon: Icon(
-//                           Icons.cancel,
-//                           color: Colors.orange,
-//                           size: 25,
-//                         ),
-//                         onPressed: () {
-//                           Navigator.of(context).pop();
-//                         })
-//                   ]),
-//                   Column(
-//                     mainAxisSize: MainAxisSize.min,
-//                     crossAxisAlignment: CrossAxisAlignment.start,
-//                     children: [
-//                       const TextField(
-//                         keyboardType: TextInputType.name,
-//                         decoration: InputDecoration(labelText: 'Carpark Name'),
-//                       ),
-//                       const TextField(
-//                         keyboardType: TextInputType.number,
-//                         decoration: InputDecoration(labelText: '???'),
-//                       ),
-//                       const SizedBox(
-//                         height: 15,
-//                       ),
-//                       ElevatedButton(
-//                           onPressed: () {}, child: const Text('Submit'))
-//                     ],
-//                   ),
-//                 ],
-//               ),
-//             ));
-//       });
-// }
 
 void _editScreen(context) {
   showModalBottomSheet(

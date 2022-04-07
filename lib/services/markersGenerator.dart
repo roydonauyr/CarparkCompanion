@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/Database/carparkDetail.dart';
-import 'package:flutter_application_2/screens/FullDetails.dart';
-import 'package:flutter_application_2/screens/landingMap.dart';
+import 'package:flutter_application_2/screens/details/FullDetails.dart';
+import 'package:flutter_application_2/screens/home/landingMap.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_application_2/main.dart' as globals;
 
-class markersGenerator extends StatefulWidget {
-  const markersGenerator({Key? key}) : super(key: key);
+class MarkersGenerator extends StatefulWidget {
+  const MarkersGenerator({Key? key}) : super(key: key);
   void generate_low_marker_set(
       lat,
       long,
@@ -32,7 +32,7 @@ class markersGenerator extends StatefulWidget {
         infoWindow: InfoWindow(
             //popup info
             title: address,
-            snippet: 'ID: ' + id.toString(),
+            snippet: 'Availability: ' + vacancy.toString(),
             onTap: () {
               showModalBottomSheet(
                   context: context,
@@ -118,11 +118,11 @@ class markersGenerator extends StatefulWidget {
     globals.markers.add(Marker(
         markerId: MarkerId(id.toString()),
         position: LatLng(lat, long),
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueOrange),
         infoWindow: InfoWindow(
             //popup info
             title: address,
-            snippet: 'ID: ' + id.toString(),
+            snippet: 'Availability: ' + vacancy.toString(),
             onTap: () {
               showModalBottomSheet(
                   context: context,
@@ -212,7 +212,7 @@ class markersGenerator extends StatefulWidget {
         infoWindow: InfoWindow(
             //popup info
             title: address,
-            snippet: 'ID: ' + id.toString(),
+            snippet: 'Availability: ' + vacancy.toString(),
             onTap: () {
               showModalBottomSheet(
                   context: context,
@@ -277,7 +277,7 @@ class markersGenerator extends StatefulWidget {
             })));
   }
 
-  void generate_colored_markers(carparkDetail objects, BuildContext context) {
+  void generate_colored_markers(CarparkDetail objects, BuildContext context) {
     if (objects.vacancy >= 0 && objects.vacancy < 33) {
       generate_low_marker_set(
           objects.lat,
@@ -332,25 +332,36 @@ class markersGenerator extends StatefulWidget {
     }
   }
 
+  void generate_point_marker() {
+    globals.markers.add(Marker(
+        markerId: MarkerId("point"),
+        position: globals.point,
+        icon:
+            BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueMagenta),
+        infoWindow: InfoWindow(title: "Your location")));
+  }
+
   @override
-  State<markersGenerator> createState() => _markersGeneratorState();
+  State<MarkersGenerator> createState() => _MarkersGeneratorState();
 }
 
-class _markersGeneratorState extends State<markersGenerator> {
+class _MarkersGeneratorState extends State<MarkersGenerator> {
   @override
   Widget build(BuildContext context) {
     if (globals.filterState == false) {
+      globals.markersFiltered.clear();
       int x = 0;
-      for (carparkDetail objects in globals.carparkObjects) {
+      for (CarparkDetail objects in globals.carparkObjects) {
         widget.generate_colored_markers(objects, context);
         x++;
       }
-
+      widget.generate_point_marker();
       globals.markersFiltered = globals.markers;
       print("Markers created: " + x.toString());
-      return landingMap();
+      print("Markers Array size: " + globals.markersFiltered.length.toString());
+      return LandingMap();
     } else {
-      return landingMap();
+      return LandingMap();
     }
   }
 }

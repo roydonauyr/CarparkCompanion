@@ -1,7 +1,7 @@
 import 'dart:math';
 
 // ignore: camel_case_types
-class coorConverter {
+class CoorConverter {
   // Ref: http://www.linz.govt.nz/geodetic/conversion-coordinates/projection-conversions/transverse-mercator-preliminary-computations/index.aspx
   //Attributes:
   double a = 6378137;
@@ -13,43 +13,43 @@ class coorConverter {
   double k = 1;
 
   //To initialise
-  late double b;
-  late double e2;
-  late double e4;
-  late double e6;
-  late double A0;
-  late double A2;
-  late double A4;
-  late double A6;
+  late double? b;
+  late double? e2;
+  late double? e4;
+  late double? e6;
+  late double? A0;
+  late double? A2;
+  late double? A4;
+  late double? A6;
 
   coorConverter() {
     b = a * (1 - f);
     e2 = (2 * f) - (f * f);
-    e4 = e2 * e2;
-    e6 = e4 * e2;
-    A0 = 1 - (e2 / 4) - (3 * e4 / 64) - (5 * e6 / 256);
-    A2 = (3.0 / 8.0) * (e2 + (e4 / 4) + (15 * e6 / 128));
-    A4 = (15.0 / 256.0) * (e4 + (3 * e6 / 4));
-    A6 = 35 * e6 / 3072;
+    e4 = e2! * e2!;
+    e6 = e4! * e2!;
+    A0 = 1 - (e2! / 4) - (3 * e4! / 64) - (5 * e6! / 256);
+    A2 = (3.0 / 8.0) * (e2! + (e4! / 4) + (15 * e6! / 128));
+    A4 = (15.0 / 256.0) * (e4! + (3 * e6! / 4));
+    A6 = 35 * e6! / 3072;
   }
 
   calcM(lat) {
     double latR = lat * pi / 180;
     return a *
-        ((A0 * latR) -
-            (A2 * sin(2 * latR)) +
-            (A4 * sin(4 * latR)) -
-            (A6 * sin(6 * latR)));
+        ((A0! * latR) -
+            (A2! * sin(2 * latR)) +
+            (A4! * sin(4 * latR)) -
+            (A6! * sin(6 * latR)));
   }
 
   calcRho(double sin2Lat) {
-    double num = a * (1 - e2);
-    var denom = pow(1 - e2 * sin2Lat, 3.0 / 2.0);
+    double num = a * (1 - e2!);
+    var denom = pow(1 - e2! * sin2Lat, 3.0 / 2.0);
     return num / denom;
   }
 
   calcV(sin2Lat) {
-    var poly = 1 - e2 * sin2Lat;
+    var poly = 1 - e2! * sin2Lat;
     return a / sqrt(poly);
   }
 
@@ -57,7 +57,7 @@ class coorConverter {
     var Nprime = N - oN;
     var Mo = calcM(oLat);
     var Mprime = Mo + (Nprime / k);
-    var n = (a - b) / (a + b);
+    var n = (a - b!) / (a + b!);
     var n2 = n * n;
     var n3 = n2 * n;
     var n4 = n2 * n2;

@@ -1,18 +1,8 @@
-// ignore_for_file: unnecessary_new, prefer_const_constructors
-
-import 'dart:ffi';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/Database/CoorConverter.dart';
-import 'package:flutter_application_2/Database/carparkDetail.dart';
 import 'package:flutter_application_2/main.dart' as globals;
 import 'package:flutter_application_2/models/localUser.dart';
-
-import 'package:flutter_application_2/screens/FullDetails.dart';
-import 'package:flutter_application_2/screens/HalfDetails.dart';
-import 'package:flutter_application_2/screens/filter.dart';
+import 'package:flutter_application_2/screens/Filters/filter.dart';
 import 'package:flutter_application_2/screens/home/home.dart';
-import 'package:geolocator/geolocator.dart';
-
 import 'package:location/location.dart';
 import 'package:flutter_application_2/services/auth.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -20,14 +10,10 @@ import 'package:provider/provider.dart';
 import 'package:search_map_place_updated/search_map_place_updated.dart';
 
 import 'package:flutter_application_2/main.dart';
-import 'authenticate/login_or_register.dart';
+import '../authenticate/login_or_register.dart';
 
-//for firebase
-import "package:firebase_database/firebase_database.dart";
-import 'package:firebase_core/firebase_core.dart';
-
-class landingMap extends StatefulWidget {
-  const landingMap({Key? key}) : super(key: key);
+class LandingMap extends StatefulWidget {
+  const LandingMap({Key? key}) : super(key: key);
   static late Map<String, Map<String, bool>> switchesMap = {
     'car_park_type': {
       'SURFACE CAR PARK': false,
@@ -59,7 +45,7 @@ class landingMap extends StatefulWidget {
   }
 
   @override
-  _landingMap createState() => _landingMap();
+  _LandingMap createState() => _LandingMap();
 
   static GetSwitchesMap() {
     return switchesMap;
@@ -69,7 +55,7 @@ class landingMap extends StatefulWidget {
   // landingMap(this.initialPosition);
 }
 
-class _landingMap extends State<landingMap> {
+class _LandingMap extends State<LandingMap> {
   static Map<String, Map<String, bool>> switches = {
     'car_park_type': {
       'SURFACE CAR PARK': false,
@@ -89,7 +75,6 @@ class _landingMap extends State<landingMap> {
   }
 
   int id = 0;
-  late Position _currentPosition;
   final AuthService _auth = AuthService();
 
   // Set<Marker> markers2 = new Set();
@@ -115,7 +100,7 @@ class _landingMap extends State<landingMap> {
   @override
   Widget build(BuildContext context) {
     Geolocation? geolocation;
-    setSwitchesMap(filter.GetSwitchesFilter());
+    setSwitchesMap(Filter.GetSwitchesFilter());
     //  List<LatLng> points = [];
     //  LatLng point;
     //  point = LatLng(1.348572682702342, 103.68310251054965);
@@ -124,7 +109,6 @@ class _landingMap extends State<landingMap> {
     final user = Provider.of<LocalUser?>(context);
 
     //To make code more efficient, can create 2 classes, 1 for login, 1 for not logged in
-
     if (user == null) {
       return Scaffold(
           appBar: AppBar(
@@ -154,7 +138,7 @@ class _landingMap extends State<landingMap> {
                   print(point.latitude.toString());
                   print(point.longitude.toString());
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => filter()));
+                      MaterialPageRoute(builder: (context) => Filter()));
                 },
                 label: const Text('Filters'),
               )
@@ -180,7 +164,8 @@ class _landingMap extends State<landingMap> {
                         // mapController.animateCamera(
                         // //     CameraUpdate.newLatLngBounds(geolocation?.bounds, 0));
                         // print("Chosen location: " + geolocation.toString());
-                        point = geolocation?.coordinates;
+
+                        globals.point = geolocation?.coordinates;
                         CameraPosition newCameraPosition = CameraPosition(
                             target: geolocation?.coordinates, zoom: 15.0);
                         mapController.animateCamera(
@@ -195,7 +180,12 @@ class _landingMap extends State<landingMap> {
                             fillColor: Color.fromARGB(255, 171, 209, 239)
                                 .withOpacity(0.5),
                             radius: 1000));
-                        setState(() {});
+                        setState(() {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Home()));
+                        });
+                        print("Markers after finding location: " +
+                            globals.markersFiltered.length.toString());
                       },
                       location: LatLng(1.348572682702342, 103.68310251054965),
                       radius: 2000),
@@ -243,8 +233,6 @@ class _landingMap extends State<landingMap> {
                               .withOpacity(0.5),
                           radius: 1000));
                       point = LatLng(1.348572682702342, 103.68310251054965);
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Home()));
                     },
                     fillColor: Color.fromARGB(255, 20, 27, 66),
                     elevation: 2.0,
@@ -282,7 +270,7 @@ class _landingMap extends State<landingMap> {
                 ),
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => filter()));
+                      MaterialPageRoute(builder: (context) => Filter()));
                 },
                 label: const Text('Filters'),
               )
@@ -323,7 +311,10 @@ class _landingMap extends State<landingMap> {
                             fillColor: Color.fromARGB(255, 171, 209, 239)
                                 .withOpacity(0.5),
                             radius: 1000));
-                        setState(() {});
+                        setState(() {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Home()));
+                        });
                       },
                       location: LatLng(1.348572682702342, 103.68310251054965),
                       radius: 2000),

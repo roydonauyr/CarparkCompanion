@@ -1,14 +1,11 @@
 import 'dart:math';
 
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/Database/CoorConverter.dart';
 import 'package:flutter_application_2/main.dart';
-import 'package:flutter_application_2/screens/landingMap.dart' as globals;
-import 'package:flutter_application_2/screens/HalfDetails.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_application_2/screens/home/landingMap.dart' as globals;
 
-class carparkDetail extends StatelessWidget {
+class CarparkDetail extends StatelessWidget {
   //Define attributes
   late String id;
   late String address;
@@ -26,9 +23,9 @@ class carparkDetail extends StatelessWidget {
   late int vacancy;
 
   //Converting xy cordinates to latlong
-  coorConverter coorTest = coorConverter();
+  CoorConverter coorTest = CoorConverter();
 
-  carparkDetail(
+  CarparkDetail(
     String id,
     String address,
     String carpark_basement,
@@ -54,14 +51,20 @@ class carparkDetail extends StatelessWidget {
     this.night_parking = night_parking;
     this.short_term_parking = short_term_parking;
     this.type_of_parking_system = type_of_parking_system;
+    print("error here" + id.toString());
     this.lat = coorTest.computeLatLon(y_cord, x_cord)[0];
+    // print("convert lat: " + lat.toString());
     this.long = coorTest.computeLatLon(y_cord, x_cord)[1];
+    // print("convert long: " + long.toString());
+
+    // this.lat = x_cord;
+    // this.long = y_cord;
     this.vacancy = Random().nextInt(100);
     // generate_marker_set(lat, long, address, _id, vacancy);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text("DF"));
+    return Container(child: Text(""));
   }
 }

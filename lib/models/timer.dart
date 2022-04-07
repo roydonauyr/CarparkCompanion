@@ -1,22 +1,18 @@
 import 'dart:async';
-//import 'package:async/async.dart';
 import 'package:flutter_application_2/services/APIs.dart';
 import 'package:flutter_application_2/Database/carparkDetail.dart';
 
-Timer refreshLTA(List<carparkDetail> carparkObjects) {
+Timer refreshLTA(List<CarparkDetail> carparkObjects) {
   final APItimer = Timer.periodic(
     const Duration(seconds: 60),
     (timer) async {
       updateLTA(carparkObjects);
-      // print(data.length);
-      // print(data[50].carParkId);
-      // print(data[50].availableLots);
     },
   );
   return APItimer;
 }
 
-Timer refreshDG(List<carparkDetail> carparkObjects) {
+Timer refreshDG(List<CarparkDetail> carparkObjects) {
   final APItimer = Timer.periodic(
     const Duration(seconds: 1000),
     (timer) async {
@@ -36,7 +32,6 @@ void updateLTA(carparkObjects) async {
     String id = carparkObjects[i].carpark_no;
     for (int d = 0; d < data.length; d += 10) {
       if (data[d].carParkId == id) {
-        print("HELLO I FOUND CARPARK ID: " + id);
         carparkObjects[i].vacancy = data[d].availableLots;
         break;
       }
@@ -51,13 +46,9 @@ void updateDG(carparkObjects) async {
     String id = carparkObjects[i].carpark_no;
     for (int d = 0; d < data.length; d++) {
       if (data[d].carparkNumber == id) {
-        // print("HELLO I FOUND CARPARK ID: " + id);
         carparkObjects[i].vacancy = data[d].carparkInfo[0].lotsAvailable;
         break;
       }
     }
   }
 }
-
-// to stop timer:
-// use APItimer.cancel();

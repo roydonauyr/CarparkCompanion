@@ -1,30 +1,19 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/Database/CoorConverter.dart';
 import 'package:flutter_application_2/Database/carparkDetail.dart';
 import 'package:flutter_application_2/screens/home/home.dart';
 import 'package:flutter_application_2/services/auth.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'models/localUser.dart';
-
-import 'package:flutter_application_2/services/APIs.dart';
 import 'package:flutter_application_2/models/timer.dart';
-
-// import 'dart:async';
-
 import 'package:flutter_application_2/models/carparkAPIinit.dart';
-
-import 'package:flutter_application_2/screens/filter.dart';
 
 Set<Circle> circles = new Set();
 Set<Marker> markers = new Set();
 bool filterState = false;
 Set<Marker> markersFiltered = new Set();
-
-List<carparkDetail> carparkObjects = <carparkDetail>[];
-
+List<CarparkDetail> carparkObjects = <CarparkDetail>[];
 bool fullDetail = false;
 LatLng point = LatLng(1.348572682702342, 103.68310251054965);
 
@@ -32,43 +21,12 @@ void setMarkers(Set<Marker> marked) {
   markers = marked;
 }
 
-//Testing git push
 void main() async {
-  //APItimer;
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // await initCarparkObjects();
-  // initCarparkObjects();
-  // print(carparkObjects.length);
-
   carparkObjects = await initCP();
-
   updateDG(carparkObjects);
-
   final APItimer = refreshDG(carparkObjects);
-
-  // var data = await api.fetch();
-
-  // print(data.length);
-
-  // print(data[2179].carParkNo);
-
-  // var data = await api.getCarparks(0);
-  // var data2 = await api2.DGgetCPA();
-
-  // print(data.result.records.length);
-
-  // print(data2.items[0].carparkData.length);
-
-  // print(data2.items[0].carparkData[99].carparkNumber);
-  // print(data2.items[0].carparkData[99].carparkInfo[0].lotsAvailable);
-
-  // print(data.result.records[99].carParkNo);
-
-  //final APItimer = refresh(carparkObjects);
-
-  //await Future.delayed(Duration(seconds: 5));
-
   runApp(MyApp());
 }
 
@@ -85,71 +43,5 @@ class MyApp extends StatelessWidget {
         home: Home(),
       ),
     );
-
-    // var myBottomNavigatioBar = const MyBottomNavigatioBar();
-    // return MaterialApp
-    // (
-    //   home: myBottomNavigatioBar,
-    // );
   }
-}
-
-Future<void> initCarparkObjects() async {
-  coorConverter coorTest = coorConverter();
-
-  int x = 0;
-
-
-  for (int i = 0; i < 2000; i += 4) {
-
-    String path = i.toString();
-
-    DatabaseReference object = FirebaseDatabase.instance.ref(path + "/details");
-
-    DatabaseEvent object_event = await object.once();
-    String object_string = object_event.snapshot.value.toString();
-    final splitted = object_string.split("_");
-
-    String _id = splitted[0];
-    String _carpark_no = splitted[1];
-    String _address = splitted[2];
-    String _x_coord = splitted[3];
-    String _y_coord = splitted[4];
-    String _carpark_type = splitted[5];
-    String _type_of_parking_system = splitted[6];
-    String _short_term_parking = splitted[7];
-    String _free_parking = splitted[8];
-    String _night_parking = splitted[9];
-    String _carpark_decks = splitted[10];
-    String _gantry_height = (splitted[11]);
-    String _carpark_basement = (splitted[12]);
-    double x_coord_double = double.parse(_x_coord);
-    double y_coord_double = double.parse(_y_coord);
-
-    print(splitted);
-
-    carparkObjects.add(carparkDetail(
-        _id,
-        _address,
-        _carpark_basement,
-        _carpark_decks,
-        _carpark_no,
-        _carpark_type,
-        _free_parking,
-        _gantry_height,
-        _night_parking,
-        _short_term_parking,
-        _type_of_parking_system,
-        x_coord_double,
-        y_coord_double));
-  }
-
-  //Initialise the circle
-  // circles.add(Circle(
-  //     circleId: CircleId("1"),
-  //     center: LatLng(1.348572682702342, 103.68310251054965),
-  //     strokeWidth: 2,
-  //     strokeColor: Color.fromARGB(255, 171, 209, 239).withOpacity(0.5),
-  //     fillColor: Color.fromARGB(255, 171, 209, 239).withOpacity(0.5),
-  //     radius: 1000));
 }
