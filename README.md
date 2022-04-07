@@ -3,8 +3,8 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+![alt text](https://github.com/bbobohang/CarparkCompanion/blob/main/assets/logo.png)
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 Flutter application build for CZ2006 Software Engineering course in NTU
 
