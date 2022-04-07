@@ -14,7 +14,7 @@ Timer refreshLTA(List<CarparkDetail> carparkObjects) {
 
 Timer refreshDG(List<CarparkDetail> carparkObjects) {
   final APItimer = Timer.periodic(
-    const Duration(seconds: 1000),
+    const Duration(seconds: 60),
     (timer) async {
       updateDG(carparkObjects);
     },
@@ -24,10 +24,10 @@ Timer refreshDG(List<CarparkDetail> carparkObjects) {
 
 void updateLTA(carparkObjects) async {
   final api = APIServiceLTA();
-  var data = await api.fetch();
+  final data = await api.fetch();
   for (int i = 0; i < carparkObjects.length; i++) {
     String id = carparkObjects[i].carpark_no;
-    for (int d = 0; d < data.length; d += 10) {
+    for (int d = 0; d < data.length; d++) {
       if (data[d].carParkId == id) {
         carparkObjects[i].vacancy = data[d].availableLots;
         break;
@@ -38,8 +38,10 @@ void updateLTA(carparkObjects) async {
 
 void updateDG(carparkObjects) async {
   final api = APIServiceDG();
-  var data = await api.fetch();
-  for (int i = 0; i < carparkObjects.length; i += 10) {
+
+  final data = await api.fetch();
+  for (int i = 0; i < carparkObjects.length; i++) {
+
     String id = carparkObjects[i].carpark_no;
     for (int d = 0; d < data.length; d++) {
       if (data[d].carparkNumber == id) {
