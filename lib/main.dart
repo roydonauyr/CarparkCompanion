@@ -99,9 +99,7 @@ Future<void> initCarparkObjects() async {
 
   int x = 0;
 
-
   for (int i = 0; i < 2000; i += 4) {
-
     String path = i.toString();
 
     DatabaseReference object = FirebaseDatabase.instance.ref(path + "/details");

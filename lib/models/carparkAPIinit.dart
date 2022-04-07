@@ -4,36 +4,23 @@ import 'package:flutter_application_2/services/APIs.dart';
 Future<List<carparkDetail>> initCP() async {
   List<carparkDetail> carparkObjects = <carparkDetail>[];
   final api = APIServiceCP();
-  var data = await api.fetch();
+  final data = await api.fetch();
 
-  for (int i = 0; i < data.length; i++) {
-    String id = data[i].id.toString();
-    String address = data[i].address;
-    String carpark_basement = data[i].carParkBasement;
-    String carpark_decks = data[i].carParkDecks;
-    String carpark_no = data[i].carParkNo;
-    String carpark_type = data[i].carParkType;
-    String free_parking = data[i].freeParking;
-    String gantry_height = data[i].gantryHeight;
-    String night_parking = data[i].nightParking;
-    String short_term_parking = data[i].shortTermParking;
-    String type_of_parking_system = data[i].typeOfParkingSystem;
-    double x_cord = data[i].xCoord;
-    double y_cord = data[i].yCoord;
+  for (int i = 0; i < data.length; i += 20) {
     carparkObjects.add(carparkDetail(
-        id,
-        address,
-        carpark_basement,
-        carpark_decks,
-        carpark_no,
-        carpark_type,
-        free_parking,
-        gantry_height,
-        night_parking,
-        short_term_parking,
-        type_of_parking_system,
-        x_cord,
-        y_cord));
+        data[i].id.toString(),
+        data[i].address,
+        data[i].carParkBasement,
+        data[i].carParkDecks,
+        data[i].carParkNo,
+        data[i].carParkType,
+        data[i].freeParking,
+        data[i].gantryHeight,
+        data[i].nightParking,
+        data[i].shortTermParking,
+        data[i].typeOfParkingSystem,
+        data[i].xCoord,
+        data[i].yCoord));
   }
 
   return carparkObjects;
