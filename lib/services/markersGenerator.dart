@@ -5,8 +5,8 @@ import 'package:flutter_application_2/screens/home/landingMap.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_application_2/main.dart' as globals;
 
-class markersGenerator extends StatefulWidget {
-  const markersGenerator({Key? key}) : super(key: key);
+class MarkersGenerator extends StatefulWidget {
+  const MarkersGenerator({Key? key}) : super(key: key);
   void generate_low_marker_set(
       lat,
       long,
@@ -342,10 +342,10 @@ class markersGenerator extends StatefulWidget {
   }
 
   @override
-  State<markersGenerator> createState() => _markersGeneratorState();
+  State<MarkersGenerator> createState() => _MarkersGeneratorState();
 }
 
-class _markersGeneratorState extends State<markersGenerator> {
+class _MarkersGeneratorState extends State<MarkersGenerator> {
   @override
   Widget build(BuildContext context) {
     if (globals.filterState == false) {

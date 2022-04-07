@@ -6,7 +6,7 @@ import 'package:flutter_application_2/services/markersGenerator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../services/Favourites.dart';
-import 'LotsRemberer.dart';
+import 'lotsRemberer.dart';
 import 'forum.dart';
 import 'landingMap.dart';
 // import 'package:google_maps_flutter_example/lite_mode.dart';
@@ -54,8 +54,8 @@ class MyBottomNavigatioBar extends StatefulWidget {
 class _MyBottomNavigatioBarState extends State<MyBottomNavigatioBar> {
   int _currentIndex = 0;
   final List<Widget> children = [
-    markersGenerator(),
-    favouritePage(),
+    MarkersGenerator(),
+    FavouritePage(),
     LotsRemberer(),
     Forum(),
   ];

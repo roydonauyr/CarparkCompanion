@@ -130,7 +130,7 @@ class _FullDetailsState extends State<FullDetails> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => global.favouritePage()));
+                                builder: (context) => global.FavouritePage()));
                       });
                     } else {
                       setState(() {
