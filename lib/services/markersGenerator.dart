@@ -277,7 +277,7 @@ class markersGenerator extends StatefulWidget {
             })));
   }
 
-  void generate_colored_markers(carparkDetail objects, BuildContext context) {
+  void generate_colored_markers(CarparkDetail objects, BuildContext context) {
     if (objects.vacancy >= 0 && objects.vacancy < 33) {
       generate_low_marker_set(
           objects.lat,
@@ -351,7 +351,7 @@ class _markersGeneratorState extends State<markersGenerator> {
     if (globals.filterState == false) {
       globals.markersFiltered.clear();
       int x = 0;
-      for (carparkDetail objects in globals.carparkObjects) {
+      for (CarparkDetail objects in globals.carparkObjects) {
         widget.generate_colored_markers(objects, context);
         x++;
       }

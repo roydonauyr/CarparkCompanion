@@ -6,7 +6,7 @@ import 'package:flutter_application_2/Database/CoorConverter.dart';
 import 'package:flutter_application_2/main.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class carparkDetail extends StatelessWidget {
+class CarparkDetail extends StatelessWidget {
   //Define attributes
   late String id;
   late String address;
@@ -24,9 +24,9 @@ class carparkDetail extends StatelessWidget {
   late int vacancy;
 
   //Converting xy cordinates to latlong
-  coorConverter coorTest = coorConverter();
+  CoorConverter coorTest = CoorConverter();
 
-  carparkDetail(
+  CarparkDetail(
     String id,
     String address,
     String carpark_basement,

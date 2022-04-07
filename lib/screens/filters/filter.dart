@@ -94,10 +94,10 @@ class _filterState extends State<filter> {
     return copy;
   }
 
-  static List<carparkDetail> filterExecute(
-      Map<String, List<String>> filters, List<carparkDetail> carparks) {
-    List<carparkDetail> filtered1 = [];
-    List<carparkDetail> filtered2 = carparks;
+  static List<CarparkDetail> filterExecute(
+      Map<String, List<String>> filters, List<CarparkDetail> carparks) {
+    List<CarparkDetail> filtered1 = [];
+    List<CarparkDetail> filtered2 = carparks;
 
     for (int i = 0; i < filters.length; i++) {
       String key = filters.keys.elementAt(i); //Carpark Type , Parking
@@ -108,7 +108,7 @@ class _filterState extends State<filter> {
         String name = value.elementAt(j); //Open OR Multi OR Basement
 
         for (int z = 0; z < filtered2.length; z++) {
-          carparkDetail car = filtered2.elementAt(z); // 1 carpark detail object
+          CarparkDetail car = filtered2.elementAt(z); // 1 carpark detail object
 
           if (key == "car_park_type" && name == car.carpark_type) {
             filtered1.add(car);
@@ -173,10 +173,10 @@ class _filterState extends State<filter> {
                 globals.filterState = true;
                 globals.markersFiltered.clear();
                 Map<String, List<String>> filters2 = getFilters();
-                List<carparkDetail> cars = globals.carparkObjects;
-                List<carparkDetail> filtered = filterExecute(filters2, cars);
+                List<CarparkDetail> cars = globals.carparkObjects;
+                List<CarparkDetail> filtered = filterExecute(filters2, cars);
 
-                for (carparkDetail objects in filtered) {
+                for (CarparkDetail objects in filtered) {
                   markersGenerator().generate_colored_markers(objects, context);
                 }
 

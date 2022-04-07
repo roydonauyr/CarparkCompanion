@@ -1,7 +1,7 @@
 import 'dart:math';
 
 // ignore: camel_case_types
-class coorConverter {
+class CoorConverter {
   // Ref: http://www.linz.govt.nz/geodetic/conversion-coordinates/projection-conversions/transverse-mercator-preliminary-computations/index.aspx
   //Attributes:
   double a = 6378137;
@@ -22,7 +22,7 @@ class coorConverter {
   late double A4;
   late double A6;
 
-  coorConverter() {
+  CoorConverter() {
     b = a * (1 - f);
     e2 = (2 * f) - (f * f);
     e4 = e2 * e2;

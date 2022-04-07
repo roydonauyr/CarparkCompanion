@@ -1,8 +1,8 @@
 import 'package:flutter_application_2/Database/carparkDetail.dart';
 import 'package:flutter_application_2/services/APIs.dart';
 
-Future<List<carparkDetail>> initCP() async {
-  List<carparkDetail> carparkObjects = <carparkDetail>[];
+Future<List<CarparkDetail>> initCP() async {
+  List<CarparkDetail> carparkObjects = <CarparkDetail>[];
   final api = APIServiceCP();
   var data = await api.fetch();
 
@@ -20,7 +20,7 @@ Future<List<carparkDetail>> initCP() async {
     String type_of_parking_system = data[i].typeOfParkingSystem;
     double x_cord = data[i].xCoord;
     double y_cord = data[i].yCoord;
-    carparkObjects.add(carparkDetail(
+    carparkObjects.add(CarparkDetail(
         id,
         address,
         carpark_basement,

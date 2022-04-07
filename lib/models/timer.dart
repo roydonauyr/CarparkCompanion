@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_application_2/services/APIs.dart';
 import 'package:flutter_application_2/Database/carparkDetail.dart';
 
-Timer refreshLTA(List<carparkDetail> carparkObjects) {
+Timer refreshLTA(List<CarparkDetail> carparkObjects) {
   final APItimer = Timer.periodic(
     const Duration(seconds: 60),
     (timer) async {
@@ -16,7 +16,7 @@ Timer refreshLTA(List<carparkDetail> carparkObjects) {
   return APItimer;
 }
 
-Timer refreshDG(List<carparkDetail> carparkObjects) {
+Timer refreshDG(List<CarparkDetail> carparkObjects) {
   final APItimer = Timer.periodic(
     const Duration(seconds: 1000),
     (timer) async {
