@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/screens/FullDetails.dart';
+import 'package:flutter_application_2/screens/details/FullDetails.dart';
 import 'package:provider/provider.dart';
 
 import '../models/localUser.dart';
-import 'authenticate/login_or_register.dart';
-import 'home/home.dart';
+import '../screens/authenticate/login_or_register.dart';
+import '../screens/home/home.dart';
 
 List<FullDetails> myFavourites = <FullDetails>[];
 List<String> favourited = <String>[];
 
-class favouritePage extends StatefulWidget {
+class FavouritePage extends StatefulWidget {
   //final Stream<int> stream;
-  favouritePage({Key? key}) : super(key: key);
+  FavouritePage({Key? key}) : super(key: key);
   //favouritePage(this.stream);
 
   @override
-  _favouritePageState createState() => _favouritePageState();
+  _FavouritePageState createState() => _FavouritePageState();
 }
 
-class _favouritePageState extends State<favouritePage> {
+class _FavouritePageState extends State<FavouritePage> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<LocalUser?>(context);

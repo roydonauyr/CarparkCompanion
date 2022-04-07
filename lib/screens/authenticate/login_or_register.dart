@@ -1,5 +1,5 @@
 import 'package:flutter_application_2/models/localUser.dart';
-import 'package:flutter_application_2/screens/wrapper.dart';
+import 'package:flutter_application_2/services/wrapper.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_application_2/services/auth.dart';
@@ -20,4 +20,3 @@ class LoginOrRegsiter extends StatelessWidget {
     );
   }
 }
-

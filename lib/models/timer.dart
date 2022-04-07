@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_application_2/services/APIs.dart';
 import 'package:flutter_application_2/Database/carparkDetail.dart';
 
-Timer refreshLTA(List<carparkDetail> carparkObjects) {
+Timer refreshLTA(List<CarparkDetail> carparkObjects) {
   final APItimer = Timer.periodic(
     const Duration(seconds: 60),
     (timer) async {
@@ -16,7 +16,7 @@ Timer refreshLTA(List<carparkDetail> carparkObjects) {
   return APItimer;
 }
 
-Timer refreshDG(List<carparkDetail> carparkObjects) {
+Timer refreshDG(List<CarparkDetail> carparkObjects) {
   final APItimer = Timer.periodic(
     const Duration(seconds: 60),
     (timer) async {
@@ -46,12 +46,14 @@ void updateLTA(carparkObjects) async {
 
 void updateDG(carparkObjects) async {
   final api = APIServiceDG();
+
   final data = await api.fetch();
   for (int i = 0; i < carparkObjects.length; i++) {
+
     String id = carparkObjects[i].carpark_no;
-    for (int d = 0; d < data.length; d) {
+    for (int d = 0; d < data.length; d++) {
       if (data[d].carparkNumber == id) {
-        print("HELLO I FOUND CARPARK ID: " + id);
+        // print("HELLO I FOUND CARPARK ID: " + id);
         carparkObjects[i].vacancy = data[d].carparkInfo[0].lotsAvailable;
         break;
       }

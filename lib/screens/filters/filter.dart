@@ -4,11 +4,11 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_application_2/Database/carparkDetail.dart';
 import 'package:flutter_application_2/main.dart' as globals;
 import 'package:flutter_application_2/screens/home/home.dart';
-import 'package:flutter_application_2/screens/landingMap.dart';
+import 'package:flutter_application_2/screens/home/landingMap.dart';
 import 'package:flutter_application_2/services/markersGenerator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class filter extends StatefulWidget {
+class Filter extends StatefulWidget {
   static Map<String, List<String>> userFilters = {};
   static late Map<String, Map<String, bool>> switchesFilter = {
     'car_park_type': {
@@ -25,11 +25,11 @@ class filter extends StatefulWidget {
   };
   @override
   State<StatefulWidget> createState() {
-    return _filterState();
+    return _FilterState();
   }
 
   static Map<String, List<String>> returnFilters() {
-    userFilters = _filterState.getFilters();
+    userFilters = _FilterState.getFilters();
     return userFilters;
   }
 
@@ -38,7 +38,7 @@ class filter extends StatefulWidget {
   }
 }
 
-class _filterState extends State<filter> {
+class _FilterState extends State<Filter> {
   static Map<String, Map<String, bool>> switches = {
     'car_park_type': {
       'SURFACE CAR PARK': false,
@@ -94,10 +94,10 @@ class _filterState extends State<filter> {
     return copy;
   }
 
-  static List<carparkDetail> filterExecute(
-      Map<String, List<String>> filters, List<carparkDetail> carparks) {
-    List<carparkDetail> filtered1 = [];
-    List<carparkDetail> filtered2 = carparks;
+  static List<CarparkDetail> filterExecute(
+      Map<String, List<String>> filters, List<CarparkDetail> carparks) {
+    List<CarparkDetail> filtered1 = [];
+    List<CarparkDetail> filtered2 = carparks;
 
     for (int i = 0; i < filters.length; i++) {
       String key = filters.keys.elementAt(i); //Carpark Type , Parking
@@ -108,7 +108,7 @@ class _filterState extends State<filter> {
         String name = value.elementAt(j); //Open OR Multi OR Basement
 
         for (int z = 0; z < filtered2.length; z++) {
-          carparkDetail car = filtered2.elementAt(z); // 1 carpark detail object
+          CarparkDetail car = filtered2.elementAt(z); // 1 carpark detail object
 
           if (key == "car_park_type" && name == car.carpark_type) {
             filtered1.add(car);
@@ -145,7 +145,7 @@ class _filterState extends State<filter> {
 
   @override
   Widget build(BuildContext context) {
-    setSwitchesFilter(landingMap.GetSwitchesMap());
+    setSwitchesFilter(LandingMap.GetSwitchesMap());
 
     return Scaffold(
         appBar: AppBar(
@@ -173,11 +173,11 @@ class _filterState extends State<filter> {
                 globals.filterState = true;
                 globals.markersFiltered.clear();
                 Map<String, List<String>> filters2 = getFilters();
-                List<carparkDetail> cars = globals.carparkObjects;
-                List<carparkDetail> filtered = filterExecute(filters2, cars);
+                List<CarparkDetail> cars = globals.carparkObjects;
+                List<CarparkDetail> filtered = filterExecute(filters2, cars);
 
-                for (carparkDetail objects in filtered) {
-                  markersGenerator().generate_colored_markers(objects, context);
+                for (CarparkDetail objects in filtered) {
+                  MarkersGenerator().generate_colored_markers(objects, context);
                 }
 
                 Navigator.push(
@@ -192,7 +192,7 @@ class _filterState extends State<filter> {
               ),
               onPressed: () {
                 globals.filterState = false;
-                landingMap.setSwitchesNull();
+                LandingMap.setSwitchesNull();
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => Home()));
               },

@@ -7,9 +7,9 @@ import 'package:flutter_application_2/Database/carparkDetail.dart';
 import 'package:flutter_application_2/main.dart' as globals;
 import 'package:flutter_application_2/models/localUser.dart';
 
-import 'package:flutter_application_2/screens/FullDetails.dart';
-import 'package:flutter_application_2/screens/HalfDetails.dart';
-import 'package:flutter_application_2/screens/filter.dart';
+import 'package:flutter_application_2/screens/details/FullDetails.dart';
+import 'package:flutter_application_2/screens/details/HalfDetails.dart';
+import 'package:flutter_application_2/screens/filters/filter.dart';
 import 'package:flutter_application_2/screens/home/home.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -20,14 +20,14 @@ import 'package:provider/provider.dart';
 import 'package:search_map_place_updated/search_map_place_updated.dart';
 
 import 'package:flutter_application_2/main.dart';
-import 'authenticate/login_or_register.dart';
+import '../authenticate/login_or_register.dart';
 
 //for firebase
 import "package:firebase_database/firebase_database.dart";
 import 'package:firebase_core/firebase_core.dart';
 
-class landingMap extends StatefulWidget {
-  const landingMap({Key? key}) : super(key: key);
+class LandingMap extends StatefulWidget {
+  const LandingMap({Key? key}) : super(key: key);
   static late Map<String, Map<String, bool>> switchesMap = {
     'car_park_type': {
       'SURFACE CAR PARK': false,
@@ -59,7 +59,7 @@ class landingMap extends StatefulWidget {
   }
 
   @override
-  _landingMap createState() => _landingMap();
+  _LandingMap createState() => _LandingMap();
 
   static GetSwitchesMap() {
     return switchesMap;
@@ -69,7 +69,7 @@ class landingMap extends StatefulWidget {
   // landingMap(this.initialPosition);
 }
 
-class _landingMap extends State<landingMap> {
+class _LandingMap extends State<LandingMap> {
   static Map<String, Map<String, bool>> switches = {
     'car_park_type': {
       'SURFACE CAR PARK': false,
@@ -115,7 +115,7 @@ class _landingMap extends State<landingMap> {
   @override
   Widget build(BuildContext context) {
     Geolocation? geolocation;
-    setSwitchesMap(filter.GetSwitchesFilter());
+    setSwitchesMap(Filter.GetSwitchesFilter());
     //  List<LatLng> points = [];
     //  LatLng point;
     //  point = LatLng(1.348572682702342, 103.68310251054965);
@@ -154,7 +154,7 @@ class _landingMap extends State<landingMap> {
                   print(point.latitude.toString());
                   print(point.longitude.toString());
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => filter()));
+                      MaterialPageRoute(builder: (context) => Filter()));
                 },
                 label: const Text('Filters'),
               )
@@ -195,7 +195,10 @@ class _landingMap extends State<landingMap> {
                             fillColor: Color.fromARGB(255, 171, 209, 239)
                                 .withOpacity(0.5),
                             radius: 1000));
-                        setState(() {});
+                        setState(() {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Home()));
+                        });
                       },
                       location: LatLng(1.348572682702342, 103.68310251054965),
                       radius: 2000),
@@ -282,7 +285,7 @@ class _landingMap extends State<landingMap> {
                 ),
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => filter()));
+                      MaterialPageRoute(builder: (context) => Filter()));
                 },
                 label: const Text('Filters'),
               )
@@ -323,7 +326,10 @@ class _landingMap extends State<landingMap> {
                             fillColor: Color.fromARGB(255, 171, 209, 239)
                                 .withOpacity(0.5),
                             radius: 1000));
-                        setState(() {});
+                        setState(() {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Home()));
+                        });
                       },
                       location: LatLng(1.348572682702342, 103.68310251054965),
                       radius: 2000),

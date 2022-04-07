@@ -1,16 +1,60 @@
-# Carpark Companion
+<div id="top"></div>
 
-A new Flutter project.
 
+<!-- ABOUT THE PROJECT -->
+## About The Project
+<img src="https://github.com/bbobohang/CarparkCompanion/blob/main/assets/logo.png" width="200" height="400">
+
+Flutter application build for CZ2006 Software Engineering course in NTU
+
+Carpark Companion is an application which aims to help users find the suitable carparks based on their needs.
+
+Unique features of the application:
+* Provides live update about the availability of carparks
+* Allows user to filter carpark types based on their needs
+* Provides users with a Lot Rememberer function to help forgetful users remember where they parked their vehicle
+* Forum for discussions about carparks
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+### Built With
+
+This section contains the dependecies that are being used in this project
+
+* [google_map_flutter](https://pub.dev/packages/google_maps_flutter)
+* [geolocator](https://pub.dev/packages/geolocator)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+<!-- GETTING STARTED -->
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Clone the repo into local device
 
-A few resources to get you started if this is your first Flutter project:
+### Prerequisites
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+In order to lauch the applications, these are the things that are needed to be installed
+* Android Studio
+* Flutter
+* VSC
+ 
+<!-- USAGE EXAMPLES -->
+## Usage
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Below are some screenshots of the working prototype
+
+
+<!-- CONTACT -->
+## Contact
+
+Low Lee Hang- [@bbobohang](https://github.com/bbobohang?tab=repositories) - bbobohang@gmail.com
+
+Project Link: [https://github.com/bbobohang/CarparkCompanion](https://github.com/bbobohang/CarparkCompanion)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+

@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/models/localUser.dart';
-import 'package:flutter_application_2/screens/Favourites.dart';
+import 'package:flutter_application_2/services/Favourites.dart';
 import 'package:flutter_application_2/screens/forum/NotePage.dart';
 import 'package:get/route_manager.dart';
 import 'package:provider/provider.dart';
 
-import 'authenticate/login_or_register.dart';
+import '../authenticate/login_or_register.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
-class helpPage extends StatefulWidget {
-  const helpPage({Key? key}) : super(key: key);
+class Forum extends StatefulWidget {
+  const Forum({Key? key}) : super(key: key);
 
   @override
-  _helpPageState createState() => _helpPageState();
+  _ForumState createState() => _ForumState();
 }
 
-class _helpPageState extends State<helpPage> {
+class _ForumState extends State<Forum> {
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   static final GlobalKey<FormState> _formKey2 = GlobalKey<FormState>();
   @override
