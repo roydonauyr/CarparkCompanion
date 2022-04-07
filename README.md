@@ -3,7 +3,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-![alt text](https://github.com/bbobohang/CarparkCompanion/blob/main/assets/logo.png)
+![alt text](https://github.com/bbobohang/CarparkCompanion/blob/main/assets/logo.png = 250x250)
 
 
 Flutter application build for CZ2006 Software Engineering course in NTU
