@@ -6,7 +6,7 @@ import 'package:flutter_application_2/services/markersGenerator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../services/Favourites.dart';
-import 'lotsRemberer.dart';
+import 'lotsRememberer.dart';
 import 'forum.dart';
 import 'landingMap.dart';
 // import 'package:google_maps_flutter_example/lite_mode.dart';
@@ -56,7 +56,7 @@ class _MyBottomNavigatioBarState extends State<MyBottomNavigatioBar> {
   final List<Widget> children = [
     MarkersGenerator(),
     FavouritePage(),
-    LotsRemberer(),
+    LotsRememberer(),
     Forum(),
   ];
 

@@ -7,14 +7,14 @@ import 'package:flutter_application_2/main.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:simple_timer/simple_timer.dart';
 
-class LotsRemberer extends StatefulWidget {
-  const LotsRemberer({Key? key}) : super(key: key);
+class LotsRememberer extends StatefulWidget {
+  const LotsRememberer({Key? key}) : super(key: key);
 
   @override
   _LotsRembererState createState() => _LotsRembererState();
 }
 
-class _LotsRembererState extends State<LotsRemberer> {
+class _LotsRembererState extends State<LotsRememberer> {
   TextEditingController _textFieldController = TextEditingController();
 
   //Firebase linking
