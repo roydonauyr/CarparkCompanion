@@ -404,17 +404,17 @@ class _MarkersGeneratorState extends State<MarkersGenerator> {
     if (globals.freshStart == true) {
       globals.markersFiltered.clear();
       globals.freshStart = false;
-      int x = 0;
-      for (CarparkDetail objects in globals.carparkObjects) {
-        widget.generate_colored_markers(objects, context);
-        x++;
-      }
+      // int x = 0;
+      // for (CarparkDetail objects in globals.carparkObjects) {
+      //   widget.generate_colored_markers(objects, context);
+      //   x++;
+      // }
       //widget.generate_point_marker();
       //globals.markersFiltered = globals.markers;
       // for (Marker marker in globals.markers) {
       //   globals.markersFinal.add(marker);
       // }
-      //globals.markers.clear();
+      globals.markers.clear();
       // print("markersfinal set : " + globals.markersFinal.toString());
       // print("Markers created: " + x.toString());
       // print("Markers Array size: " + globals.markersFinal.length.toString());
@@ -427,14 +427,15 @@ class _MarkersGeneratorState extends State<MarkersGenerator> {
       //     icon: BitmapDescriptor.defaultMarkerWithHue(
       //         BitmapDescriptor.hueMagenta),
       //     infoWindow: InfoWindow(title: "Your location")));
-      globals.filterState == false;
+      globals.filterState = false;
       return LandingMap();
     } else if (globals.distState == true) {
       globals.markers.clear();
-      globals.markersFiltered.clear();
+      //globals.markersFiltered.clear();
       for (CarparkDetail carpark in globals.filteredCarparkObjects) {
         widget.generate_colored_markers(carpark, context);
       }
+      globals.markersFiltered = globals.markers;
       globals.distState = false;
       print("filter-distance");
       return LandingMap();
