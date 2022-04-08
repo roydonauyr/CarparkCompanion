@@ -2,17 +2,17 @@ import 'dart:async';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-class LotsRemberer extends StatefulWidget {
+class LotsRememberer extends StatefulWidget {
 
   String carparkName;
   
-  LotsRemberer(this.carparkName, {Key? key}) : super(key: key);
+  LotsRememberer(this.carparkName, {Key? key}) : super(key: key);
 
   @override
-  _LotsRembererState createState() => _LotsRembererState();
+  _LotsRemembererState createState() => _LotsRemembererState();
 }
 
-class _LotsRembererState extends State<LotsRemberer> {
+class _LotsRemembererState extends State<LotsRememberer> {
   TextEditingController _textFieldController = TextEditingController();
   // String carparkName;
   // _LotsRembererState(this.carparkName);
@@ -89,7 +89,6 @@ class _LotsRembererState extends State<LotsRemberer> {
               ElevatedButton(
                 child: Text('OK'),
                 onPressed: () {
-                  print(valueText);
                   _startTimer();
                   remembered = true;
                   setState(() {
