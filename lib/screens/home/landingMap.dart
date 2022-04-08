@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/main.dart' as globals;
 import 'package:flutter_application_2/models/localUser.dart';
@@ -12,6 +14,10 @@ import 'package:search_map_place_updated/search_map_place_updated.dart';
 
 import 'package:flutter_application_2/main.dart';
 import '../authenticate/login_or_register.dart';
+
+import 'package:syncfusion_flutter_sliders/sliders.dart';
+
+double _value = 1000;
 
 class LandingMap extends StatefulWidget {
   const LandingMap({Key? key}) : super(key: key);
@@ -179,6 +185,12 @@ class _LandingMap extends State<LandingMap> {
                     child: SizedBox(
                       height: 490.0,
                       child: GoogleMap(
+                        gestureRecognizers:
+                            <Factory<OneSequenceGestureRecognizer>>[
+                          new Factory<OneSequenceGestureRecognizer>(
+                            () => new EagerGestureRecognizer(),
+                          ),
+                        ].toSet(),
                         zoomControlsEnabled: true,
                         zoomGesturesEnabled: true,
                         onMapCreated:
@@ -200,6 +212,23 @@ class _LandingMap extends State<LandingMap> {
                     ),
                   ),
                 ],
+              ),
+              Container(
+                alignment: Alignment.bottomRight,
+                child: SfSlider.vertical(
+                    min: 0.0,
+                    max: 1000.0,
+                    value: _value,
+                    interval: 20,
+                    showTicks: false,
+                    showLabels: false,
+                    enableTooltip: true,
+                    minorTicksPerInterval: 100,
+                    onChanged: (dynamic value) {
+                      setState(() {
+                        _value = value;
+                      });
+                    }),
               ),
               Container(
                   alignment: Alignment.bottomLeft,
@@ -230,7 +259,7 @@ class _LandingMap extends State<LandingMap> {
                       color: Colors.white,
                     ),
                     padding: EdgeInsets.all(0),
-                  ))
+                  )),
             ],
           ))));
     } else {
@@ -310,6 +339,12 @@ class _LandingMap extends State<LandingMap> {
                     child: SizedBox(
                       height: 490.0,
                       child: GoogleMap(
+                        gestureRecognizers:
+                            <Factory<OneSequenceGestureRecognizer>>[
+                          new Factory<OneSequenceGestureRecognizer>(
+                            () => new EagerGestureRecognizer(),
+                          ),
+                        ].toSet(),
                         onMapCreated:
                             (GoogleMapController googleMapController) {
                           setState(() {
