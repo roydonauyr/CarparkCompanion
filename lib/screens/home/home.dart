@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/services/markersGenerator.dart';
 import '../../services/Favourites.dart';
+
 //import 'lotsRemberer.dart';
-import 'package:flutter_application_2/screens/home/LotsRememberer.dart';
+import 'package:flutter_application_2/screens/lotRemember/LotsRememberer.dart';
 import 'forum.dart';
 
 class Home extends StatefulWidget {
