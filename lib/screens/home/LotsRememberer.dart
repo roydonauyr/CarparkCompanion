@@ -1,21 +1,24 @@
 import 'dart:async';
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/Database/carparkDetail.dart';
-import 'package:flutter_application_2/main.dart';
-import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
-import 'package:simple_timer/simple_timer.dart';
 
 class LotsRememberer extends StatefulWidget {
-  const LotsRememberer({Key? key}) : super(key: key);
+
+  String carparkName;
+  
+  LotsRememberer(this.carparkName, {Key? key}) : super(key: key);
+
 
   @override
-  _LotsRembererState createState() => _LotsRembererState();
+  _LotsRemembererState createState() => _LotsRemembererState();
 }
 
-class _LotsRembererState extends State<LotsRememberer> {
+
+class _LotsRemembererState extends State<LotsRememberer> {
+
   TextEditingController _textFieldController = TextEditingController();
+  // String carparkName;
+  // _LotsRembererState(this.carparkName);
 
   //Firebase linking
   FirebaseDatabase database = FirebaseDatabase.instance;
@@ -24,13 +27,13 @@ class _LotsRembererState extends State<LotsRememberer> {
   String codeDialog = "";
   String codeDialog2 = "";
   int codeDialog3 = 0;
-  String valueText = "";
+  late String valueText = widget.carparkName;
   String numText = "";
   int timeText = 0;
   bool remembered = false;
   late Timer _timer;
 
-  Future<void> _displayTextInputDialog(BuildContext context) async {
+  Future<void> displayTextInputDialog(BuildContext context) async {
     return showDialog(
         context: context,
         builder: (context) {
@@ -42,12 +45,12 @@ class _LotsRembererState extends State<LotsRememberer> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   TextField(
+                    controller: TextEditingController(text: valueText),
                     onChanged: (value) {
                       setState(() {
                         valueText = value;
                       });
                     },
-                    controller: _textFieldController,
                     decoration: InputDecoration(hintText: "Carpark Name"),
                   ),
                   TextField(
@@ -187,7 +190,7 @@ class _LotsRembererState extends State<LotsRememberer> {
                       alignment: Alignment.bottomCenter,
                       child: ElevatedButton(
                         onPressed: () async {
-                          _displayTextInputDialog(context);
+                          displayTextInputDialog(context);
                           // carparkDetail().x_cordinate_call();
                         },
                         style: ElevatedButton.styleFrom(

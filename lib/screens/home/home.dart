@@ -1,31 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/services/auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_application_2/services/markersGenerator.dart';
-
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-
 import '../../services/Favourites.dart';
-import 'lotsRememberer.dart';
-import 'forum.dart';
-import 'landingMap.dart';
-// import 'package:google_maps_flutter_example/lite_mode.dart';
 
-// import 'animate_camera.dart';
-// import 'map_click.dart';
-// import 'map_coordinates.dart';
-// import 'map_ui.dart';
-// import 'marker_icons.dart';
-// import 'move_camera.dart';
-// import 'padding.dart';
-// import 'page.dart';
-// import 'place_circle.dart';
-// import 'place_marker.dart';
-// import 'place_polygon.dart';
-// import 'place_polyline.dart';
-// import 'scrolling_map.dart';
-// import 'snapshot.dart';
-// import 'tile_overlay.dart';
+//import 'lotsRemberer.dart';
+import 'package:flutter_application_2/screens/home/LotsRememberer.dart';
+import 'forum.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -56,7 +35,9 @@ class _MyBottomNavigatioBarState extends State<MyBottomNavigatioBar> {
   final List<Widget> children = [
     MarkersGenerator(),
     FavouritePage(),
-    LotsRememberer(),
+
+    LotsRememberer(" "),
+
     Forum(),
   ];
 

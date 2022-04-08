@@ -1,10 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter_application_2/services/Favourites.dart' as global;
 import 'package:flutter_application_2/screens/home/home.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/localUser.dart';
@@ -193,7 +190,23 @@ class _FullDetailsState extends State<FullDetails> {
                               widget._type_of_parking_system +
                               '\n',
                           textAlign: TextAlign.justify,
-                          style: TextStyle(fontSize: 15.0))))
+                          style: TextStyle(fontSize: 15.0)))),
+              SizedBox(height: 20.0),
+              ElevatedButton(style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 20, 27, 66),
+                  minimumSize: Size(25, 50),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(32.0)),
+                ),
+                child: Text("Lot Rememberer",
+                    style: TextStyle(fontSize: 20.0)),
+                onPressed: () {
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => _displayTextInputDialog()));
+                })
+
             ],
             shrinkWrap: true,
           ));
@@ -251,7 +264,23 @@ class _FullDetailsState extends State<FullDetails> {
                               widget._type_of_parking_system +
                               '\n',
                           textAlign: TextAlign.justify,
-                          style: TextStyle(fontSize: 15.0))))
+                          style: TextStyle(fontSize: 15.0)))),
+                            SizedBox(height: 20.0),
+              ElevatedButton(style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 20, 27, 66),
+                  minimumSize: Size(25, 50),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(32.0)),
+                ),
+                child: Text("Lot Rememberer",
+                    style: TextStyle(fontSize: 20.0)),
+                onPressed: () {
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => _displayTextInputDialog()));
+                })
+
             ],
             shrinkWrap: true,
           ));

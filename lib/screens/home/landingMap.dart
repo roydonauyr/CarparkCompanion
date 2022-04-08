@@ -1,18 +1,9 @@
-// ignore_for_file: unnecessary_new, prefer_const_constructors
-
-import 'dart:ffi';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/Database/CoorConverter.dart';
-import 'package:flutter_application_2/Database/carparkDetail.dart';
 import 'package:flutter_application_2/main.dart' as globals;
 import 'package:flutter_application_2/models/localUser.dart';
-
-import 'package:flutter_application_2/screens/details/FullDetails.dart';
-import 'package:flutter_application_2/screens/details/HalfDetails.dart';
 import 'package:flutter_application_2/screens/filters/filter.dart';
 import 'package:flutter_application_2/screens/home/home.dart';
 import 'package:geolocator/geolocator.dart';
-
 import 'package:location/location.dart';
 import 'package:flutter_application_2/services/auth.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -21,10 +12,6 @@ import 'package:search_map_place_updated/search_map_place_updated.dart';
 
 import 'package:flutter_application_2/main.dart';
 import '../authenticate/login_or_register.dart';
-
-//for firebase
-import "package:firebase_database/firebase_database.dart";
-import 'package:firebase_core/firebase_core.dart';
 
 class LandingMap extends StatefulWidget {
   const LandingMap({Key? key}) : super(key: key);
@@ -92,10 +79,6 @@ class _LandingMap extends State<LandingMap> {
   late Position _currentPosition;
   final AuthService _auth = AuthService();
 
-  // Set<Marker> markers2 = new Set();
-  // List<carparkDetail> carparkObjects2 = <carparkDetail>[];
-
-  //Location is to obtain live location of user
   Location _location = new Location();
   late GoogleMapController _controller;
 
@@ -116,14 +99,8 @@ class _LandingMap extends State<LandingMap> {
   Widget build(BuildContext context) {
     Geolocation? geolocation;
     setSwitchesMap(Filter.GetSwitchesFilter());
-    //  List<LatLng> points = [];
-    //  LatLng point;
-    //  point = LatLng(1.348572682702342, 103.68310251054965);
 
-    //User is to check if the user is logged in
     final user = Provider.of<LocalUser?>(context);
-
-    //To make code more efficient, can create 2 classes, 1 for login, 1 for not logged in
 
     if (user == null) {
       return Scaffold(
@@ -175,11 +152,6 @@ class _LandingMap extends State<LandingMap> {
                       apiKey: 'AIzaSyAUvR8wEIPEudD_xfJ6BpGx02vKoohOn5M',
                       onSelected: (Place place) async {
                         geolocation = await place.geolocation;
-                        // mapController.animateCamera(
-                        //     CameraUpdate.newLatLng(geolocation?.coordinates));
-                        // mapController.animateCamera(
-                        // //     CameraUpdate.newLatLngBounds(geolocation?.bounds, 0));
-                        // print("Chosen location: " + geolocation.toString());
                         point = geolocation?.coordinates;
                         CameraPosition newCameraPosition = CameraPosition(
                             target: geolocation?.coordinates, zoom: 15.0);

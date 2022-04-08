@@ -1,7 +1,3 @@
-//import 'dart:developer';
-
-//import 'dart:io';
-
 import 'package:http/http.dart' as http;
 import 'package:flutter_application_2/models/constants.dart';
 import 'package:flutter_application_2/models/carpark.dart';
@@ -38,14 +34,11 @@ class APIServiceLTA {
       if (response.statusCode == 200) {
         LTACarparkAvailability cpa =
             ltaCarparkAvailabilityFromJson(response.body);
-        //print("Everything worked fine");
         return cpa;
       } else {
-        //print("why so noob tho");
         return LTACarparkAvailability(odataMetadata: "NOT 200", value: []);
       }
     } catch (e) {
-      //print("Error occured");
       print(e);
       return LTACarparkAvailability(odataMetadata: "ERROR", value: []);
     }

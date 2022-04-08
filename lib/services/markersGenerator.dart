@@ -4,9 +4,11 @@ import 'package:flutter_application_2/screens/details/FullDetails.dart';
 import 'package:flutter_application_2/screens/home/landingMap.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_application_2/main.dart' as globals;
+import 'package:flutter_application_2/screens/home/LotsRememberer.dart';
 
 class MarkersGenerator extends StatefulWidget {
-  const MarkersGenerator({Key? key}) : super(key: key);
+  MarkersGenerator({Key? key}) : super(key: key);
+
   void generate_low_marker_set(
       lat,
       long,
@@ -90,7 +92,22 @@ class MarkersGenerator extends StatefulWidget {
                                           long,
                                         )));
                           },
-                        )
+                        ),
+                        SizedBox(height: 20.0),
+                        ElevatedButton(style: ElevatedButton.styleFrom(
+                            primary: Color.fromARGB(255, 20, 27, 66),
+                            minimumSize: Size(25, 50),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(32.0)),
+                          ),
+                          child: Text("Lot Rememberer",
+                              style: TextStyle(fontSize: 20.0)),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LotsRememberer(address.toString())));
+                          })
                       ],
                     );
                   });
@@ -180,7 +197,22 @@ class MarkersGenerator extends StatefulWidget {
                                           long,
                                         )));
                           },
-                        )
+                        ),
+                        SizedBox(height: 20.0),
+                        ElevatedButton(style: ElevatedButton.styleFrom(
+                            primary: Color.fromARGB(255, 20, 27, 66),
+                            minimumSize: Size(25, 50),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(32.0)),
+                          ),
+                          child: Text("Lot Rememberer",
+                              style: TextStyle(fontSize: 20.0)),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LotsRememberer(address.toString())));
+                          })
                       ],
                     );
                   });
@@ -270,7 +302,22 @@ class MarkersGenerator extends StatefulWidget {
                                           long,
                                         )));
                           },
-                        )
+                        ),
+                        SizedBox(height: 20.0),
+                        ElevatedButton(style: ElevatedButton.styleFrom(
+                            primary: Color.fromARGB(255, 20, 27, 66),
+                            minimumSize: Size(25, 50),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(32.0)),
+                          ),
+                          child: Text("Lot Rememberer",
+                              style: TextStyle(fontSize: 20.0)),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LotsRememberer(address.toString())));
+                          })
                       ],
                     );
                   });
@@ -348,8 +395,9 @@ class MarkersGenerator extends StatefulWidget {
 class _MarkersGeneratorState extends State<MarkersGenerator> {
   @override
   Widget build(BuildContext context) {
-    if (globals.filterState == false) {
+    if (globals.freshStart == true) {
       globals.markersFiltered.clear();
+      globals.freshStart = false;
       int x = 0;
       for (CarparkDetail objects in globals.carparkObjects) {
         widget.generate_colored_markers(objects, context);
@@ -357,10 +405,33 @@ class _MarkersGeneratorState extends State<MarkersGenerator> {
       }
       widget.generate_point_marker();
       globals.markersFiltered = globals.markers;
+      for (Marker marker in globals.markers) {
+        globals.markersFinal.add(marker);
+      }
       print("Markers created: " + x.toString());
       print("Markers Array size: " + globals.markersFiltered.length.toString());
       return LandingMap();
+    } else if (globals.filterState == true) {
+      print("filter");
+      globals.markersFiltered.add(Marker(
+          markerId: MarkerId("point"),
+          position: globals.point,
+          icon: BitmapDescriptor.defaultMarkerWithHue(
+              BitmapDescriptor.hueMagenta),
+          infoWindow: InfoWindow(title: "Your location")));
+      return LandingMap();
     } else {
+      print("normla");
+      globals.markersFiltered.clear();
+      for (Marker marker in globals.markersFinal) {
+        globals.markersFiltered.add(marker);
+      }
+      globals.markersFiltered.add(Marker(
+          markerId: MarkerId("point"),
+          position: globals.point,
+          icon: BitmapDescriptor.defaultMarkerWithHue(
+              BitmapDescriptor.hueMagenta),
+          infoWindow: InfoWindow(title: "Your location")));
       return LandingMap();
     }
   }
