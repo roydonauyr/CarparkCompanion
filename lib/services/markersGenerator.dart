@@ -409,35 +409,48 @@ class _MarkersGeneratorState extends State<MarkersGenerator> {
         widget.generate_colored_markers(objects, context);
         x++;
       }
-      widget.generate_point_marker();
-      globals.markersFiltered = globals.markers;
-      for (Marker marker in globals.markers) {
-        globals.markersFinal.add(marker);
-      }
-      print("Markers created: " + x.toString());
-      print("Markers Array size: " + globals.markersFiltered.length.toString());
+      //widget.generate_point_marker();
+      //globals.markersFiltered = globals.markers;
+      // for (Marker marker in globals.markers) {
+      //   globals.markersFinal.add(marker);
+      // }
+      //globals.markers.clear();
+      // print("markersfinal set : " + globals.markersFinal.toString());
+      // print("Markers created: " + x.toString());
+      // print("Markers Array size: " + globals.markersFinal.length.toString());
       return LandingMap();
     } else if (globals.filterState == true) {
       print("filter");
-      globals.markersFiltered.add(Marker(
-          markerId: MarkerId("point"),
-          position: globals.point,
-          icon: BitmapDescriptor.defaultMarkerWithHue(
-              BitmapDescriptor.hueMagenta),
-          infoWindow: InfoWindow(title: "Your location")));
+      // globals.markersFiltered.add(Marker(
+      //     markerId: MarkerId("point"),
+      //     position: globals.point,
+      //     icon: BitmapDescriptor.defaultMarkerWithHue(
+      //         BitmapDescriptor.hueMagenta),
+      //     infoWindow: InfoWindow(title: "Your location")));
+      globals.filterState == false;
+      return LandingMap();
+    } else if (globals.distState == true) {
+      globals.markers.clear();
+      globals.markersFiltered.clear();
+      for (CarparkDetail carpark in globals.filteredCarparkObjects) {
+        widget.generate_colored_markers(carpark, context);
+      }
+      globals.distState = false;
+      print("filter-distance");
       return LandingMap();
     } else {
-      print("normla");
+      print("normal");
+      globals.markers.clear();
       globals.markersFiltered.clear();
-      for (Marker marker in globals.markersFinal) {
-        globals.markersFiltered.add(marker);
-      }
-      globals.markersFiltered.add(Marker(
-          markerId: MarkerId("point"),
-          position: globals.point,
-          icon: BitmapDescriptor.defaultMarkerWithHue(
-              BitmapDescriptor.hueMagenta),
-          infoWindow: InfoWindow(title: "Your location")));
+      // for (Marker marker in globals.markersFinal) {
+      //   globals.markersFiltered.add(marker);
+      // }
+      // globals.markersFiltered.add(Marker(
+      //     markerId: MarkerId("point"),
+      //     position: globals.point,
+      //     icon: BitmapDescriptor.defaultMarkerWithHue(
+      //         BitmapDescriptor.hueMagenta),
+      //     infoWindow: InfoWindow(title: "Your location")));
       return LandingMap();
     }
   }

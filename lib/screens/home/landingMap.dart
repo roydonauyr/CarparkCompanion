@@ -1,9 +1,15 @@
+import 'dart:convert';
+import 'dart:math';
+
+import 'package:flutter_application_2/screens/filters/filterdistance.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/main.dart' as globals;
 import 'package:flutter_application_2/models/localUser.dart';
 import 'package:flutter_application_2/screens/filters/filter.dart';
+import 'package:flutter_application_2/screens/filters/filterdistance.dart';
 import 'package:flutter_application_2/screens/home/home.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:location/location.dart';
@@ -18,6 +24,11 @@ import '../authenticate/login_or_register.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 double _value = 1000;
+late LatLng lastMapPosition;
+
+double get_value() {
+  return _value;
+}
 
 class LandingMap extends StatefulWidget {
   const LandingMap({Key? key}) : super(key: key);
@@ -172,7 +183,7 @@ class _LandingMap extends State<LandingMap> {
                                 .withOpacity(0.5),
                             fillColor: Color.fromARGB(255, 171, 209, 239)
                                 .withOpacity(0.5),
-                            radius: 1000));
+                            radius: _value));
                         setState(() {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) => Home()));
@@ -185,6 +196,7 @@ class _LandingMap extends State<LandingMap> {
                     child: SizedBox(
                       height: 490.0,
                       child: GoogleMap(
+                        onCameraMove: _onCameraMove,
                         gestureRecognizers:
                             <Factory<OneSequenceGestureRecognizer>>[
                           new Factory<OneSequenceGestureRecognizer>(
@@ -213,22 +225,30 @@ class _LandingMap extends State<LandingMap> {
                   ),
                 ],
               ),
-              Container(
-                alignment: Alignment.bottomRight,
-                child: SfSlider.vertical(
-                    min: 0.0,
-                    max: 1000.0,
-                    value: _value,
-                    interval: 20,
-                    showTicks: false,
-                    showLabels: false,
-                    enableTooltip: true,
-                    minorTicksPerInterval: 100,
-                    onChanged: (dynamic value) {
-                      setState(() {
-                        _value = value;
-                      });
-                    }),
+              Positioned(
+                bottom: 150,
+                right: -20,
+                child: Container(
+                  alignment: Alignment.bottomRight,
+                  width: 100,
+                  height: 300,
+                  child: SfSlider.vertical(
+                      min: 500.0,
+                      max: 1500.0,
+                      value: _value,
+                      interval: 20,
+                      showTicks: false,
+                      showLabels: false,
+                      enableTooltip: true,
+                      minorTicksPerInterval: 100,
+                      onChanged: (dynamic value) {
+                        setState(() {
+                          _value = value;
+                          print("slider: " + _value.toString());
+                        });
+                      }),
+                  //padding: const EdgeInsets.fromLTRB(380, 200, 200, 100)
+                ),
               ),
               Container(
                   alignment: Alignment.bottomLeft,
@@ -236,17 +256,20 @@ class _LandingMap extends State<LandingMap> {
                   width: 40,
                   child: RawMaterialButton(
                     onPressed: () {
+                      globals.distState = true;
+                      globals.filteredCarparkObjects = filterDistance(
+                          globals.carparkObjects, lastMapPosition, _value);
                       globals.circles.clear();
                       globals.circles.add(Circle(
                           circleId: CircleId("1"),
-                          center: LatLng(1.348572682702342, 103.68310251054965),
+                          center: lastMapPosition,
                           strokeWidth: 2,
                           strokeColor: Color.fromARGB(255, 171, 209, 239)
                               .withOpacity(0.5),
                           fillColor: Color.fromARGB(255, 171, 209, 239)
                               .withOpacity(0.5),
-                          radius: 1000));
-                      point = LatLng(1.348572682702342, 103.68310251054965);
+                          radius: _value));
+                      point = lastMapPosition;
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Home()));
                     },
@@ -326,7 +349,7 @@ class _LandingMap extends State<LandingMap> {
                                 .withOpacity(0.5),
                             fillColor: Color.fromARGB(255, 171, 209, 239)
                                 .withOpacity(0.5),
-                            radius: 1000));
+                            radius: _value));
                         setState(() {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) => Home()));
@@ -339,6 +362,7 @@ class _LandingMap extends State<LandingMap> {
                     child: SizedBox(
                       height: 490.0,
                       child: GoogleMap(
+                        onCameraMove: _onCameraMove,
                         gestureRecognizers:
                             <Factory<OneSequenceGestureRecognizer>>[
                           new Factory<OneSequenceGestureRecognizer>(
@@ -365,23 +389,51 @@ class _LandingMap extends State<LandingMap> {
                   ),
                 ],
               ),
+              Positioned(
+                bottom: 150,
+                right: -20,
+                child: Container(
+                  alignment: Alignment.bottomRight,
+                  width: 100,
+                  height: 300,
+                  child: SfSlider.vertical(
+                      min: 500.0,
+                      max: 1500.0,
+                      value: _value,
+                      interval: 20,
+                      showTicks: false,
+                      showLabels: false,
+                      enableTooltip: true,
+                      minorTicksPerInterval: 100,
+                      onChanged: (dynamic value) {
+                        setState(() {
+                          _value = value;
+                          print("slider: " + _value.toString());
+                        });
+                      }),
+                  //padding: const EdgeInsets.fromLTRB(380, 200, 200, 100)
+                ),
+              ),
               Container(
                   alignment: Alignment.bottomLeft,
                   height: 550,
                   width: 40,
                   child: RawMaterialButton(
                     onPressed: () {
+                      globals.distState = true;
+                      globals.filteredCarparkObjects = filterDistance(
+                          globals.carparkObjects, lastMapPosition, _value);
                       globals.circles.clear();
                       globals.circles.add(Circle(
                           circleId: CircleId("1"),
-                          center: LatLng(1.348572682702342, 103.68310251054965),
+                          center: lastMapPosition,
                           strokeWidth: 2,
                           strokeColor: Color.fromARGB(255, 171, 209, 239)
                               .withOpacity(0.5),
                           fillColor: Color.fromARGB(255, 171, 209, 239)
                               .withOpacity(0.5),
-                          radius: 1000));
-                      point = LatLng(1.348572682702342, 103.68310251054965);
+                          radius: _value));
+                      point = lastMapPosition;
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Home()));
                     },
@@ -399,4 +451,9 @@ class _LandingMap extends State<LandingMap> {
           ))));
     }
   }
+}
+
+void _onCameraMove(CameraPosition position) {
+  lastMapPosition = position.target;
+  print("Camera Position: " + lastMapPosition.toString());
 }

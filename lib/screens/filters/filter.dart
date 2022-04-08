@@ -174,6 +174,8 @@ class _FilterState extends State<Filter> {
                 List<CarparkDetail> cars = globals.carparkObjects;
                 List<CarparkDetail> filtered = filterExecute(filters2, cars);
 
+                globals.markers.clear();
+
                 for (CarparkDetail objects in filtered) {
                   MarkersGenerator().generate_colored_markers(objects, context);
                 }
