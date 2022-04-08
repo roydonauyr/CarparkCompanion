@@ -4,7 +4,7 @@ import 'package:flutter_application_2/screens/details/FullDetails.dart';
 import 'package:flutter_application_2/screens/home/landingMap.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_application_2/main.dart' as globals;
-import 'package:flutter_application_2/screens/home/LotsRemberer.dart';
+import 'package:flutter_application_2/screens/home/LotsRememberer.dart';
 
 class MarkersGenerator extends StatefulWidget {
   MarkersGenerator({Key? key}) : super(key: key);
@@ -106,7 +106,7 @@ class MarkersGenerator extends StatefulWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => LotsRemberer(address.toString())));
+                                    builder: (context) => LotsRememberer(address.toString())));
                           })
                       ],
                     );
@@ -211,7 +211,7 @@ class MarkersGenerator extends StatefulWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => LotsRemberer(address.toString())));
+                                    builder: (context) => LotsRememberer(address.toString())));
                           })
                       ],
                     );
@@ -316,7 +316,7 @@ class MarkersGenerator extends StatefulWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => LotsRemberer(address.toString())));
+                                    builder: (context) => LotsRememberer(address.toString())));
                           })
                       ],
                     );
