@@ -24,7 +24,7 @@ import '../authenticate/login_or_register.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 double _value = 1000;
-late LatLng lastMapPosition;
+var lastMapPosition = globals.point;
 
 double get_value() {
   return _value;
@@ -259,8 +259,13 @@ class _LandingMap extends State<LandingMap> {
                     child: RawMaterialButton(
                       onPressed: () {
                         globals.distState = true;
-                        globals.filteredCarparkObjects = filterDistance(
-                            globals.carparkObjects, lastMapPosition, _value);
+                        if (globals.filterState == true){
+                            globals.filteredCarparkObjects = filterDistance(globals.filteredCarparkObjectsSaved, lastMapPosition, _value);
+                          }
+                          else {
+                            globals.filteredCarparkObjects = filterDistance(
+                              globals.carparkObjects, lastMapPosition, _value);
+                          }
                         globals.circles.clear();
                         globals.circles.add(Circle(
                             circleId: CircleId("1"),
@@ -430,8 +435,14 @@ class _LandingMap extends State<LandingMap> {
                       child: RawMaterialButton(
                         onPressed: () {
                           globals.distState = true;
-                          globals.filteredCarparkObjects = filterDistance(
+                          if (globals.filterState == true){
+                            globals.filteredCarparkObjects = filterDistance(globals.filteredCarparkObjectsSaved, lastMapPosition, _value);
+                          }
+                          else {
+                            globals.filteredCarparkObjects = filterDistance(
                               globals.carparkObjects, lastMapPosition, _value);
+                          }
+                          
                           globals.circles.clear();
                           globals.circles.add(Circle(
                               circleId: CircleId("1"),

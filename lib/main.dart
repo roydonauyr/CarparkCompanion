@@ -18,7 +18,8 @@ bool filterState = false;
 bool freshStart = true;
 bool distState = false;
 List<CarparkDetail> carparkObjects = <CarparkDetail>[];
-List<CarparkDetail> filteredCarparkObjects = <CarparkDetail>[];
+List<CarparkDetail> filteredCarparkObjects = <CarparkDetail>[]; // this is for showing
+List<CarparkDetail> filteredCarparkObjectsSaved = <CarparkDetail>[]; // this saves what filter did
 
 bool fullDetail = false;
 LatLng point = LatLng(1.348572682702342, 103.68310251054965);

@@ -419,17 +419,8 @@ class _MarkersGeneratorState extends State<MarkersGenerator> {
       // print("Markers created: " + x.toString());
       // print("Markers Array size: " + globals.markersFinal.length.toString());
       return LandingMap();
-    } else if (globals.filterState == true) {
-      print("filter");
-      // globals.markersFiltered.add(Marker(
-      //     markerId: MarkerId("point"),
-      //     position: globals.point,
-      //     icon: BitmapDescriptor.defaultMarkerWithHue(
-      //         BitmapDescriptor.hueMagenta),
-      //     infoWindow: InfoWindow(title: "Your location")));
-      globals.filterState = false;
-      return LandingMap();
-    } else if (globals.distState == true) {
+    }
+    else if (globals.distState == true) {
       globals.markers.clear();
       //globals.markersFiltered.clear();
       for (CarparkDetail carpark in globals.filteredCarparkObjects) {
@@ -439,7 +430,19 @@ class _MarkersGeneratorState extends State<MarkersGenerator> {
       globals.distState = false;
       print("filter-distance");
       return LandingMap();
-    } else {
+    }
+    //else if (globals.filterState == true) {
+     // print("filter");
+      // globals.markersFiltered.add(Marker(
+      //     markerId: MarkerId("point"),
+      //     position: globals.point,
+      //     icon: BitmapDescriptor.defaultMarkerWithHue(
+      //         BitmapDescriptor.hueMagenta),
+      //     infoWindow: InfoWindow(title: "Your location")));
+      // globals.filterState = false;
+     // return LandingMap();
+    //} 
+    else {
       print("normal");
       globals.markers.clear();
       globals.markersFiltered.clear();
