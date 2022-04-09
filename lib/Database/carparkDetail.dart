@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/Database/CoorConverter.dart';
 
+/// Class containing details of carparks
 class CarparkDetail extends StatelessWidget {
   //Define attributes
   late String id;

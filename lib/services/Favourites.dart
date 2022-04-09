@@ -6,7 +6,9 @@ import '../models/localUser.dart';
 import '../screens/authenticate/login_or_register.dart';
 import '../screens/home/home.dart';
 
+/// Contains cache of user favourites list
 List<FullDetails> myFavourites = <FullDetails>[];
+/// Contains cache of carparks favourited before by user
 List<String> favourited = <String>[];
 
 class FavouritePage extends StatefulWidget {
@@ -15,10 +17,14 @@ class FavouritePage extends StatefulWidget {
   _FavouritePageState createState() => _FavouritePageState();
 }
 
+/// State of favourite class
+/// 
+/// User must be logged in to use favourites
 class _FavouritePageState extends State<FavouritePage> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<LocalUser?>(context);
+    /// Logic to check log in
     if (user == null) {
       return Scaffold(
         appBar: new AppBar(
@@ -63,6 +69,7 @@ class _FavouritePageState extends State<FavouritePage> {
                       setState(() {
                         Navigator.push(
                             context,
+                            /// Allows user to click to return to full detail page
                             MaterialPageRoute(
                                 builder: (context) => FullDetails(
                                     favourite.id,
@@ -100,6 +107,7 @@ class _FavouritePageState extends State<FavouritePage> {
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     primary: Colors.white, elevation: 0),
+                                /// When users press, they can remove the favourited carpark from their favourite list
                                 onPressed: () {
                                   setState(() {
                                     if (isFavourite) {

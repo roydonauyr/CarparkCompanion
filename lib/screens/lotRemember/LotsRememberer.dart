@@ -2,6 +2,9 @@ import 'dart:async';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
+/// Class of LotRememberer which contains the carpark address for autofilling 
+/// 
+/// Autofill the address of carpark for convenience. If user does not click on any carpark, starts off blank
 class LotsRememberer extends StatefulWidget {
 
   String carparkName;
@@ -17,8 +20,6 @@ class LotsRememberer extends StatefulWidget {
 class _LotsRemembererState extends State<LotsRememberer> {
 
   TextEditingController _textFieldController = TextEditingController();
-  // String carparkName;
-  // _LotsRembererState(this.carparkName);
 
   //Firebase linking
   FirebaseDatabase database = FirebaseDatabase.instance;
@@ -33,6 +34,7 @@ class _LotsRemembererState extends State<LotsRememberer> {
   bool remembered = false;
   late Timer _timer;
 
+  /// Display the prompting questions for users to enter responses
   Future<void> displayTextInputDialog(BuildContext context) async {
     return showDialog(
         context: context,
@@ -107,6 +109,7 @@ class _LotsRemembererState extends State<LotsRememberer> {
         });
   }
 
+  /// Starts timer based on user input and decreases
   void _startTimer() {
     codeDialog3 = timeText;
     _timer = Timer.periodic(Duration(minutes: 1), (timer) {
