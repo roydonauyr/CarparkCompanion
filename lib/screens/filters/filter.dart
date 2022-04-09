@@ -6,8 +6,11 @@ import 'package:flutter_application_2/screens/home/landingMap.dart';
 import 'package:flutter_application_2/services/markersGenerator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+///Filter class to help filter the different types of carparks
 class Filter extends StatefulWidget {
   static Map<String, List<String>> userFilters = {};
+
+  ///Function to map the filters based on UI toggle
   static late Map<String, Map<String, bool>> switchesFilter = {
     'car_park_type': {
       'SURFACE CAR PARK': false,
@@ -55,6 +58,7 @@ class _FilterState extends State<Filter> {
     switches = s;
   }
 
+  ///Turning off all filters/clearing filters
   static void setSwitchesNull() {
     switches = {
       'car_park_type': {

@@ -6,9 +6,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_application_2/main.dart' as globals;
 import 'package:flutter_application_2/screens/lotRemember/LotsRememberer.dart';
 
+///MarkersGenerator helps to add Markers to global markers list to be displayed
+///on google map
 class MarkersGenerator extends StatefulWidget {
   MarkersGenerator({Key? key}) : super(key: key);
 
+  ///Add red markers
   void generate_low_marker_set(
       lat,
       long,
@@ -116,6 +119,7 @@ class MarkersGenerator extends StatefulWidget {
             })));
   }
 
+  ///Add orange markers
   void generate_mid_marker_set(
       lat,
       long,
@@ -223,6 +227,7 @@ class MarkersGenerator extends StatefulWidget {
             })));
   }
 
+  ///Add green markers
   void generate_high_marker_set(
       lat,
       long,
@@ -330,6 +335,7 @@ class MarkersGenerator extends StatefulWidget {
             })));
   }
 
+  ///Wrapper function to call 3 different generate markers
   void generate_colored_markers(CarparkDetail objects, BuildContext context) {
     if (objects.vacancy >= 0 && objects.vacancy < 33) {
       generate_low_marker_set(
@@ -385,6 +391,7 @@ class MarkersGenerator extends StatefulWidget {
     }
   }
 
+  ///Generate position marker
   void generate_point_marker() {
     globals.markers.add(Marker(
         markerId: MarkerId("point"),

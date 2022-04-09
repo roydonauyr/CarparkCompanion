@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+/// List of filtered carpark objects
 List<CarparkDetail> filterDistance(
     List<CarparkDetail> carparkObjects, LatLng lastMapPosition, double value) {
   List<CarparkDetail> filteredCarparks = <CarparkDetail>[];
@@ -17,6 +18,7 @@ List<CarparkDetail> filterDistance(
   return filteredCarparks;
 }
 
+///Function to calculate whether point is within radius
 double calculateDistance(lat1, lon1, lat2, lon2) {
   var p = 0.017453292519943295;
   var c = cos;
