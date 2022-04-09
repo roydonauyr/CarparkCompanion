@@ -46,20 +46,35 @@ In order to lauch the applications, these are the things that are needed to be i
 ## Usage
 ### Landing Page
 <p>
- Landing Page allows user to view carparks within the selected location. Users are able to find carparks by dragging the google map or entering their desired location. They will be able to increase the radius of search using the distance slider at the slide.
+Landing Page allows user to view carparks within the selected location. Users are able to find carparks by dragging the google map or entering their desired location. They will be able to increase the radius of search using the distance slider at the slide.
 </p>
 <img src="https://github.com/bbobohang/CarparkCompanion/blob/main/assets/prototypes_screenshot/landing_map.jpg" width="200" height="380">
 
 ### Filters
+<p>
+Filters allow the users to filter for carparks based on the following:
+* Car park type
+* Parking system type
+* Free parking
+* Short term parking
+* Night parking
+
+</p>
 <img src="https://github.com/bbobohang/CarparkCompanion/blob/main/assets/prototypes_screenshot/filters.jpg" width="200" height="380">
 
 ### Details of Carpark
+<p>
+Shows the details of the carparks including the live availability of parking lots.
+</p>
 <p float = "left">
 <img src="https://github.com/bbobohang/CarparkCompanion/blob/main/assets/prototypes_screenshot/full_detail.jpg" width="200" height="380">
 <img src="https://github.com/bbobohang/CarparkCompanion/blob/main/assets/prototypes_screenshot/half_detail.jpg" width="200" height="380">
 </p>
 
 ### Authentication
+<p>
+Allows user to Login/Register for an account
+</p>
 <p float = "left">
 <img src="https://github.com/bbobohang/CarparkCompanion/blob/main/assets/prototypes_screenshot/sign_in.jpg" width="200" height="380">
 <img src="https://github.com/bbobohang/CarparkCompanion/blob/main/assets/prototypes_screenshot/register.jpg" width="200" height="380">
