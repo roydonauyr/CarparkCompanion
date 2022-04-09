@@ -52,9 +52,10 @@ In order to lauch the applications, these are the things that are needed to be i
 <img src="https://github.com/bbobohang/CarparkCompanion/blob/main/assets/prototypes_screenshot/filters.jpg" width="150" height="300">
 
 ### Details of Carpark
+<p float = "left">
 <img src="https://github.com/bbobohang/CarparkCompanion/blob/main/assets/prototypes_screenshot/full_detail.jpg" width="150" height="300">
 <img src="https://github.com/bbobohang/CarparkCompanion/blob/main/assets/prototypes_screenshot/half_detail.jpg" width="150" height="300">
-
+</p>
 
 
 
