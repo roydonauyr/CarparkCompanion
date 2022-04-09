@@ -53,11 +53,11 @@ Landing Page allows user to view carparks within the selected location. Users ar
 ### Filters
 <p>
 Filters allow the users to filter for carparks based on the following:
-* Car park type
-* Parking system type
-* Free parking
-* Short term parking
-* Night parking
+<ul> Car park type </ul>
+<ul> Parking system type </ul>
+<ul> Free parking </ul>
+<ul> Short term parking </ul>
+<ul> Night parking </ul>
 
 </p>
 <img src="https://github.com/bbobohang/CarparkCompanion/blob/main/assets/prototypes_screenshot/filters.jpg" width="200" height="380">
