@@ -8,6 +8,7 @@ import 'package:flutter_application_2/screens/lotRemember/LotsRememberer.dart';
 
 import '../../models/localUser.dart';
 
+/// Class that contains all carpark details
 class FullDetails extends StatefulWidget {
   // const FullDetails({ Key? key }) : super(key: key);
   late String _id;
@@ -107,6 +108,7 @@ class FullDetails extends StatefulWidget {
   State<FullDetails> createState() => _FullDetailsState();
 }
 
+/// State of full detail class
 class _FullDetailsState extends State<FullDetails> {
   @override
   Widget build(BuildContext context) {
@@ -117,6 +119,7 @@ class _FullDetailsState extends State<FullDetails> {
             title: Text("Full Details"),
             backgroundColor: Color.fromARGB(255, 20, 27, 66),
             actions: <Widget>[
+              ///Allows user to like or unlike carpark in the full details page provided user is logged in
               FavoriteButton(
                   isFavorite: widget.favourite,
                   valueChanged: (_isFavorite) {
