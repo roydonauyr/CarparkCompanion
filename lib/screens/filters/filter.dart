@@ -178,14 +178,20 @@ class _FilterState extends State<Filter> {
                 List<CarparkDetail> cars = globals.carparkObjects;
                 List<CarparkDetail> filtered = filterExecute(filters2, cars);
 
+                //if don't clear will keep stacking markers [duplicate effect]
                 globals.markers.clear();
 
-                for (CarparkDetail objects in filtered) {
-                  MarkersGenerator().generate_colored_markers(objects, context);
-                }
+                globals.filteredCarparkObjectsSaved = filtered;
 
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Home()));
+                globals.distState = true;
+
+                //adding of markers goes here
+                // for (CarparkDetail objects in filtered) {
+                //   MarkersGenerator().generate_colored_markers(objects, context);
+                // }
+
+                // Navigator.push(
+                //     context, MaterialPageRoute(builder: (context) => Home()));
               },
               label: const Text('Apply'),
             ),
