@@ -4,6 +4,8 @@ import 'package:flutter_application_2/services/Favourites.dart' as global;
 import 'package:flutter_application_2/screens/home/home.dart';
 import 'package:provider/provider.dart';
 
+import 'package:flutter_application_2/screens/lotRemember/LotsRememberer.dart';
+
 import '../../models/localUser.dart';
 
 class FullDetails extends StatefulWidget {
@@ -201,10 +203,11 @@ class _FullDetailsState extends State<FullDetails> {
                 child: Text("Lot Rememberer",
                     style: TextStyle(fontSize: 20.0)),
                 onPressed: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => _displayTextInputDialog()));
+                  Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          LotsRememberer(widget.address.toString())));
                 })
 
             ],
@@ -275,10 +278,11 @@ class _FullDetailsState extends State<FullDetails> {
                 child: Text("Lot Rememberer",
                     style: TextStyle(fontSize: 20.0)),
                 onPressed: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => _displayTextInputDialog()));
+                  Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          LotsRememberer(widget.address.toString())));
                 })
 
             ],
