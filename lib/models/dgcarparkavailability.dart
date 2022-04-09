@@ -2,14 +2,19 @@
 //
 //     final carpark = carparkFromJson(jsonString);
 
+/// this class file models the Carpark Availability JSON data provided by DATA.GOV
+
 import 'dart:convert';
 
+/// Convert data.gov JSON into a dart object class equivalent
 DGCarparkAvailability dgCarparkAvailabilityFromJson(String str) =>
     DGCarparkAvailability.fromJson(json.decode(str));
 
+/// Converts dart object: carparkavailability into JSON format
 String dgCarparkAvailabilityToJson(DGCarparkAvailability data) =>
     json.encode(data.toJson());
 
+/// contains a list of data stored as "items"
 class DGCarparkAvailability {
   DGCarparkAvailability({
     required this.items,
@@ -48,6 +53,8 @@ class Item {
       };
 }
 
+/// Actual carpark vacancy data stored in 'carparkInfo'
+/// carparkNumber is also relevant here as the identifier of a carpark object
 class CarparkDatum {
   CarparkDatum({
     required this.carparkInfo,
@@ -73,6 +80,7 @@ class CarparkDatum {
       };
 }
 
+/// carpark vacancy information for a specific carpark
 class CarparkInfo {
   CarparkInfo({
     required this.totalLots,

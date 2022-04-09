@@ -2,15 +2,20 @@
 //
 //     final carparkAvailability = carparkAvailabilityFromJson(jsonString);
 
+/// this class file models the Carpark Availability JSON data provided by LTA DATA MALL
+
 // import 'package:meta/meta.dart';
 import 'dart:convert';
 
+/// Convert data.gov JSON into a dart object class equivalent
 LTACarparkAvailability ltaCarparkAvailabilityFromJson(String str) =>
     LTACarparkAvailability.fromJson(json.decode(str));
 
+/// Converts dart object: carparkavailability into JSON format
 String ltaCarparkAvailabilityToJson(LTACarparkAvailability data) =>
     json.encode(data.toJson());
 
+/// contains metavalue and actual data under 'value' object
 class LTACarparkAvailability {
   LTACarparkAvailability({
     required this.odataMetadata,
@@ -32,6 +37,8 @@ class LTACarparkAvailability {
       };
 }
 
+/// desired carpark availability data found here
+/// other information not utilized but extracted to follow JSON response format
 class Value {
   Value({
     required this.carParkId,

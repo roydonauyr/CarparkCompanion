@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/main.dart' as globals;
 import 'package:flutter_application_2/models/localUser.dart';
 import 'package:flutter_application_2/screens/filters/filter.dart';
-import 'package:flutter_application_2/screens/filters/filterdistance.dart';
 import 'package:flutter_application_2/screens/home/home.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:location/location.dart';
@@ -16,7 +15,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:search_map_place_updated/search_map_place_updated.dart';
 
-import 'package:flutter_application_2/main.dart';
 import '../authenticate/login_or_register.dart';
 
 import 'package:syncfusion_flutter_sliders/sliders.dart';
@@ -151,8 +149,8 @@ class _LandingMap extends State<LandingMap> {
                   primary: Color.fromARGB(255, 20, 27, 66),
                 ),
                 onPressed: () {
-                  print(point.latitude.toString());
-                  print(point.longitude.toString());
+                  print(globals.point.latitude.toString());
+                  print(globals.point.longitude.toString());
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Filter()));
                 },
@@ -176,7 +174,7 @@ class _LandingMap extends State<LandingMap> {
                       apiKey: 'AIzaSyAUvR8wEIPEudD_xfJ6BpGx02vKoohOn5M',
                       onSelected: (Place place) async {
                         geolocation = await place.geolocation;
-                        point = geolocation?.coordinates;
+                        globals.point = geolocation?.coordinates;
                         CameraPosition newCameraPosition = CameraPosition(
                             target: geolocation?.coordinates, zoom: 15.0);
                         mapController.animateCamera(
@@ -219,7 +217,7 @@ class _LandingMap extends State<LandingMap> {
                           });
                         },
                         initialCameraPosition: CameraPosition(
-                          target: point,
+                          target: globals.point,
                           zoom: 15.0,
                         ),
                         /*onMapCreated: _onMapCreated,*/
@@ -284,7 +282,7 @@ class _LandingMap extends State<LandingMap> {
                             fillColor: Color.fromARGB(255, 171, 209, 239)
                                 .withOpacity(0.5),
                             radius: _value));
-                        point = lastMapPosition;
+                        globals.point = lastMapPosition;
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) => Home()));
                       },
@@ -349,7 +347,7 @@ class _LandingMap extends State<LandingMap> {
                       apiKey: 'AIzaSyAUvR8wEIPEudD_xfJ6BpGx02vKoohOn5M',
                       onSelected: (Place place) async {
                         geolocation = await place.geolocation;
-                        point = geolocation?.coordinates;
+                        globals.point = geolocation?.coordinates;
                         CameraPosition newCameraPosition = CameraPosition(
                             target: geolocation?.coordinates, zoom: 15.0);
                         mapController.animateCamera(
@@ -390,7 +388,7 @@ class _LandingMap extends State<LandingMap> {
                           });
                         },
                         initialCameraPosition: CameraPosition(
-                          target: point,
+                          target: globals.point,
                           zoom: 15.0,
                         ),
                         /*onMapCreated: _onMapCreated,*/
@@ -456,7 +454,7 @@ class _LandingMap extends State<LandingMap> {
                               fillColor: Color.fromARGB(255, 171, 209, 239)
                                   .withOpacity(0.5),
                               radius: _value));
-                          point = lastMapPosition;
+                          globals.point = lastMapPosition;
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) => Home()));
                         },
