@@ -48,7 +48,7 @@ In order to lauch the applications, these are the things that are needed to be i
 <p>
  Landing Page allows user to view carparks within the selected location. Users are able to find carparks by dragging the google map or entering their desired location. They will be able to increase the radius of search using the distance slider at the slide.
 </p>
-<img src="https://github.com/bbobohang/CarparkCompanion/blob/main/assets/prototypes_screenshot/landing_map.jpg" width="150" height="300">
+<img src="https://github.com/bbobohang/CarparkCompanion/blob/main/assets/prototypes_screenshot/landing_map.jpg" width="170" height="300">
 
 ### Filters
 <img src="https://github.com/bbobohang/CarparkCompanion/blob/main/assets/prototypes_screenshot/filters.jpg" width="150" height="300">
