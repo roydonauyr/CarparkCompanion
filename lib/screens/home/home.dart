@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/services/markersGenerator.dart';
 import '../../services/Favourites.dart';
-
-//import 'lotsRemberer.dart';
 import 'package:flutter_application_2/screens/lotRemember/LotsRememberer.dart';
 import 'forum.dart';
 
+/// Home class which contains the navigation bar of Home, Favourites, Lot Remember, Forum
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -13,6 +12,7 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
+/// State of home class which allows users to click on navigation bar to switch screens
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
@@ -39,6 +39,7 @@ class _MyBottomNavigatioBarState extends State<MyBottomNavigatioBar> {
     Forum(),
   ];
 
+  /// Switches the indexing of each navigation bar object to switch screens
   void onTappedBar(int index) {
     setState(() {
       _currentIndex = index;
