@@ -52,13 +52,12 @@ In order to lauch the applications, these are the things that are needed to be i
 <!-- CONTACT -->
 ## Contact
 
-Low Lee Hang- [@bbobohang](https://github.com/bbobohang?tab=repositories) - bbobohang@gmail.com
-<br>
-Roydon Au - [@roydonauyr](https://github.com/roydonauyr) 
-Rachel Chua - [@rachel45605](https://github.com/rachel45605)
-Chloe Heng - [@cheenngg](https://github.com/cheenngg)
-Chua Gim Aik - [@AikGim](https://github.com/AikGim)
-Michelle Lam - [@michellelsa](https://github.com/michellelsa)
+Low Lee Hang- [@bbobohang](https://github.com/bbobohang?tab=repositories) - bbobohang@gmail.com<br>
+Roydon Au - [@roydonauyr](https://github.com/roydonauyr) <br>
+Rachel Chua - [@rachel45605](https://github.com/rachel45605)<br>
+Chloe Heng - [@cheenngg](https://github.com/cheenngg)<br>
+Chua Gim Aik - [@AikGim](https://github.com/AikGim)<br>
+Michelle Lam - [@michellelsa](https://github.com/michellelsa)<br>
 
 
 Project Link: [https://github.com/bbobohang/CarparkCompanion](https://github.com/bbobohang/CarparkCompanion)
