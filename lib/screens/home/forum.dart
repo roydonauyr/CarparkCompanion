@@ -6,6 +6,8 @@ import '../authenticate/login_or_register.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
+
+/// Class for forum which allows users to write comments 
 class Forum extends StatefulWidget {
   const Forum({Key? key}) : super(key: key);
 
@@ -13,6 +15,9 @@ class Forum extends StatefulWidget {
   _ForumState createState() => _ForumState();
 }
 
+/// State of forum to show on screen
+/// 
+/// Requires users to be logged in first
 class _ForumState extends State<Forum> {
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   static final GlobalKey<FormState> _formKey2 = GlobalKey<FormState>();
@@ -78,6 +83,7 @@ class _ForumState extends State<Forum> {
     }
   }
 
+  /// Saves the post
   Widget buildNotes() {
     return Padding(
       padding: const EdgeInsets.only(
@@ -197,6 +203,7 @@ class _ForumState extends State<Forum> {
     );
   }
 
+  /// Helps format a list of posts 
   Widget noteList(int index) {
     return ClipRRect(
         borderRadius: BorderRadius.circular(5.5),
@@ -284,6 +291,7 @@ class _ForumState extends State<Forum> {
         ));
   }
 
+  /// Enter details for creation of post
   void _settingModalBottomSheet(context) {
     showModalBottomSheet(
       context: context,
@@ -427,6 +435,7 @@ class _ForumState extends State<Forum> {
   }
 }
 
+/// Forum page creation
 Widget notesHeader() {
   return Padding(
     padding: const EdgeInsets.only(
@@ -454,6 +463,7 @@ Widget notesHeader() {
   );
 }
 
+/// Class for user to add comments
 class newComment extends StatefulWidget {
   int index;
   newComment(this.index, {Key? key});
@@ -461,6 +471,7 @@ class newComment extends StatefulWidget {
   @override
   _newCommentState createState() => _newCommentState(this.index);
 }
+
 
 class _newCommentState extends State<newComment> {
   int index;
@@ -515,54 +526,6 @@ class _newCommentState extends State<newComment> {
     );
   }
 }
-
-// void _editScreen(context) {
-//   showModalBottomSheet(
-//       context: context,
-//       builder: (BuildContext bc) {
-//         return Container(
-//             height: MediaQuery.of(context).size.height * .60,
-//             child: Padding(
-//               padding: const EdgeInsets.all(8.0),
-//               child: Column(
-//                 children: <Widget>[
-//                   Row(children: <Widget>[
-//                     Text("enter forum details", style: TextStyle(fontSize: 30)),
-//                     Spacer(),
-//                     IconButton(
-//                         icon: Icon(
-//                           Icons.cancel,
-//                           color: Colors.orange,
-//                           size: 25,
-//                         ),
-//                         onPressed: () {
-//                           Navigator.of(context).pop();
-//                         })
-//                   ]),
-//                   Column(
-//                     mainAxisSize: MainAxisSize.min,
-//                     crossAxisAlignment: CrossAxisAlignment.start,
-//                     children: [
-//                       const TextField(
-//                         keyboardType: TextInputType.name,
-//                         decoration: InputDecoration(labelText: 'Carpark Name'),
-//                       ),
-//                       const TextField(
-//                         keyboardType: TextInputType.number,
-//                         decoration: InputDecoration(labelText: '???'),
-//                       ),
-//                       const SizedBox(
-//                         height: 15,
-//                       ),
-//                       ElevatedButton(
-//                           onPressed: () {}, child: const Text('Submit'))
-//                     ],
-//                   ),
-//                 ],
-//               ),
-//             ));
-//       });
-// }
 
 void _editScreen(context) {
   showModalBottomSheet(

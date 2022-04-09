@@ -1,6 +1,9 @@
 import 'dart:math';
 
-// ignore: camel_case_types
+/// Class that converts coordinates to latlng
+/// 
+/// The coordinates given by data.gov are not in latlng but rather Singapores own set of coordinate system.
+/// To reflect correctly on google maps, have to convert them to latlng.
 class CoorConverter {
   // Ref: http://www.linz.govt.nz/geodetic/conversion-coordinates/projection-conversions/transverse-mercator-preliminary-computations/index.aspx
   //Attributes:

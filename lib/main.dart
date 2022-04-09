@@ -10,6 +10,7 @@ import 'package:flutter_application_2/models/timer.dart';
 import 'package:flutter_application_2/models/carparkAPIinit.dart';
 import 'package:flutter_application_2/screens/home/landingMap.dart';
 
+///Initialises all the required objects (Initialisation class)
 Set<Circle> circles = new Set();
 Set<Marker> markers = new Set();
 Set<Marker> markersFiltered = new Set();
@@ -28,7 +29,7 @@ void setMarkers(Set<Marker> marked) {
   markers = marked;
 }
 
-//Testing git push
+/// Initialise firebase to obtain carpark objects from database
 void main() async {
   //APItimer;
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,6 +40,7 @@ void main() async {
   runApp(MyApp());
 }
 
+/// Autheticate user
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

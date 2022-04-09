@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
-
 import 'package:flutter_application_2/screens/filters/filterdistance.dart';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -25,12 +23,15 @@ import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 /// _value here is used to control the circle 'search' radius in app
 double _value = 1000;
+/// Obtains a  latlng coordinate of centre of google map screen
 var lastMapPosition = globals.point;
 
+/// Return value of the range of the circle
 double get_value() {
   return _value;
 }
 
+/// Class of landingmap which acts as the main screen of the phone displaying the map
 class LandingMap extends StatefulWidget {
   const LandingMap({Key? key}) : super(key: key);
   static late Map<String, Map<String, bool>> switchesMap = {
@@ -66,6 +67,7 @@ class LandingMap extends StatefulWidget {
   @override
   _LandingMap createState() => _LandingMap();
 
+  ///returns the state of the map
   static GetSwitchesMap() {
     return switchesMap;
   }
@@ -74,6 +76,7 @@ class LandingMap extends StatefulWidget {
   // landingMap(this.initialPosition);
 }
 
+/// State of landing map
 class _LandingMap extends State<LandingMap> {
   static Map<String, Map<String, bool>> switches = {
     'car_park_type': {
@@ -100,6 +103,7 @@ class _LandingMap extends State<LandingMap> {
   Location _location = new Location();
   late GoogleMapController _controller;
 
+  /// First creation of map
   void _onMapCreated(GoogleMapController _cntlr) {
     var _controller = _cntlr;
     _location.onLocationChanged.listen((l) {
@@ -120,6 +124,7 @@ class _LandingMap extends State<LandingMap> {
 
     final user = Provider.of<LocalUser?>(context);
 
+    /// Checking for user login
     if (user == null) {
       return Scaffold(
           appBar: AppBar(
@@ -161,6 +166,7 @@ class _LandingMap extends State<LandingMap> {
             children: <Widget>[
               Column(
                 children: [
+                  ///Search bar for map page for users to search location
                   SearchMapPlaceWidget(
                       bgColor: Color.fromARGB(255, 246, 245, 244),
                       hasClearButton: true,
@@ -233,6 +239,7 @@ class _LandingMap extends State<LandingMap> {
                   alignment: Alignment.bottomRight,
                   width: 100,
                   height: 300,
+                  ///Slider for changing of circle radius to display only carparks within the range
                   child: SfSlider.vertical(
                       min: 500.0,
                       max: 1500.0,
@@ -342,11 +349,6 @@ class _LandingMap extends State<LandingMap> {
                       apiKey: 'AIzaSyAUvR8wEIPEudD_xfJ6BpGx02vKoohOn5M',
                       onSelected: (Place place) async {
                         geolocation = await place.geolocation;
-                        // mapController.animateCamera(
-                        //     CameraUpdate.newLatLng(geolocation?.coordinates));
-                        // mapController.animateCamera(
-                        // //     CameraUpdate.newLatLngBounds(geolocation?.bounds, 0));
-                        // print("Chosen location: " + geolocation.toString());
                         point = geolocation?.coordinates;
                         CameraPosition newCameraPosition = CameraPosition(
                             target: geolocation?.coordinates, zoom: 15.0);
@@ -478,6 +480,7 @@ class _LandingMap extends State<LandingMap> {
   }
 }
 
+/// Returns central coordinate of map
 void _onCameraMove(CameraPosition position) {
   lastMapPosition = position.target;
   print("Camera Position: " + lastMapPosition.toString());
