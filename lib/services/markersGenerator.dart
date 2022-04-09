@@ -11,7 +11,7 @@ import 'package:flutter_application_2/screens/lotRemember/LotsRememberer.dart';
 class MarkersGenerator extends StatefulWidget {
   MarkersGenerator({Key? key}) : super(key: key);
 
-  ///Add red markers
+  ///Add red markers: this refers to markers with low carpark vacancies
   void generate_low_marker_set(
       lat,
       long,
@@ -119,7 +119,7 @@ class MarkersGenerator extends StatefulWidget {
             })));
   }
 
-  ///Add orange markers
+  ///Add orange markers: this refers to carparks with medium carpark vacancies
   void generate_mid_marker_set(
       lat,
       long,
@@ -227,7 +227,7 @@ class MarkersGenerator extends StatefulWidget {
             })));
   }
 
-  ///Add green markers
+  ///Add green markers: this refers to carparks with high vacancy
   void generate_high_marker_set(
       lat,
       long,
@@ -335,7 +335,7 @@ class MarkersGenerator extends StatefulWidget {
             })));
   }
 
-  ///Wrapper function to call 3 different generate markers
+  ///Wrapper function to call 3 different generate markers *above*
   void generate_colored_markers(CarparkDetail objects, BuildContext context) {
     if (objects.vacancy >= 0 && objects.vacancy < 33) {
       generate_low_marker_set(
@@ -405,28 +405,20 @@ class MarkersGenerator extends StatefulWidget {
   State<MarkersGenerator> createState() => _MarkersGeneratorState();
 }
 
+/// Constructing MarkersGenerator calls this child state
 class _MarkersGeneratorState extends State<MarkersGenerator> {
   @override
   Widget build(BuildContext context) {
+    /// the very first boot: ensure that all states are clean
     if (globals.freshStart == true) {
-      globals.markersFiltered.clear();
       globals.freshStart = false;
-      // int x = 0;
-      // for (CarparkDetail objects in globals.carparkObjects) {
-      //   widget.generate_colored_markers(objects, context);
-      //   x++;
-      // }
-      //widget.generate_point_marker();
-      //globals.markersFiltered = globals.markers;
-      // for (Marker marker in globals.markers) {
-      //   globals.markersFinal.add(marker);
-      // }
+      globals.markersFiltered.clear();
       globals.markers.clear();
-      // print("markersfinal set : " + globals.markersFinal.toString());
-      // print("Markers created: " + x.toString());
-      // print("Markers Array size: " + globals.markersFinal.length.toString());
+      print("Number of carparks found: " + globals.carparkObjects.length.toString());
       return LandingMap();
     }
+    /// if carpark searched button is pressed, distState would be true
+    /// if so, search for carparks with in radius
     else if (globals.distState == true) {
       globals.markers.clear();
       //globals.markersFiltered.clear();
@@ -438,30 +430,12 @@ class _MarkersGeneratorState extends State<MarkersGenerator> {
       print("filter-distance");
       return LandingMap();
     }
-    //else if (globals.filterState == true) {
-     // print("filter");
-      // globals.markersFiltered.add(Marker(
-      //     markerId: MarkerId("point"),
-      //     position: globals.point,
-      //     icon: BitmapDescriptor.defaultMarkerWithHue(
-      //         BitmapDescriptor.hueMagenta),
-      //     infoWindow: InfoWindow(title: "Your location")));
-      // globals.filterState = false;
-     // return LandingMap();
-    //} 
+    /// ELSE: all states should become clean (i.e. no markers on map)
     else {
       print("normal");
       globals.markers.clear();
       globals.markersFiltered.clear();
-      // for (Marker marker in globals.markersFinal) {
-      //   globals.markersFiltered.add(marker);
-      // }
-      // globals.markersFiltered.add(Marker(
-      //     markerId: MarkerId("point"),
-      //     position: globals.point,
-      //     icon: BitmapDescriptor.defaultMarkerWithHue(
-      //         BitmapDescriptor.hueMagenta),
-      //     infoWindow: InfoWindow(title: "Last search point")));
+
       return LandingMap();
     }
   }

@@ -1,6 +1,10 @@
 import 'package:flutter_application_2/Database/carparkDetail.dart';
 import 'package:flutter_application_2/services/APIs.dart';
 
+/// this is a controller class created for the purpose of initializing carpark objects in main
+/// this connects the main and the API Service for extracting carparks
+
+///initialize car park objects using API retrieved data and return a list of carpark objects
 Future<List<CarparkDetail>> initCP() async {
   List<CarparkDetail> carparkObjects = <CarparkDetail>[];
   final api = APIServiceCP();

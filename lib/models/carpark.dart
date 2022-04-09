@@ -1,9 +1,14 @@
 import 'dart:convert';
 
+/// this class was created to model the JSON data returned by Data.Gov API for Carpark Information
+
+/// converts JSON data into carpark class object
 Carpark carparkFromJson(String str) => Carpark.fromJson(json.decode(str));
 
+/// converts carpark data into JSON data format
 String carparkToJson(Carpark data) => json.encode(data.toJson());
 
+/// carpark class data model as extracted from data.gov - this will later be processed into CarparkDetails objects
 class Carpark {
   Carpark({
     required this.help,
@@ -15,6 +20,9 @@ class Carpark {
   bool success;
   Result result;
 
+/// help is the fetch message
+/// success refers to the fetch state (pass/fail?); 
+/// result contains the actual carpark data
   factory Carpark.fromJson(Map<String, dynamic> json) => Carpark(
         help: json["help"],
         success: json["success"],
@@ -28,6 +36,7 @@ class Carpark {
       };
 }
 
+/// Result stores metadata; the actual carpark data is found in 'records'
 class Result {
   Result({
     required this.resourceId,
@@ -38,6 +47,7 @@ class Result {
     required this.total,
   });
 
+/// aside from 'records', everything is just metadata - i.e. fetch information
   String resourceId;
   List<Field> fields;
   List<Record> records;
@@ -105,6 +115,7 @@ class Links {
       };
 }
 
+/// Carpark information to be extracted stored in this part of the JSON format
 class Record {
   Record({
     required this.shortTermParking,

@@ -2,6 +2,11 @@ import 'dart:async';
 import 'package:flutter_application_2/services/APIs.dart';
 import 'package:flutter_application_2/Database/carparkDetail.dart';
 
+/// timer class acts as the boundary class
+/// to periodically refresh API calls to update dynamic information like carpark vacancies
+
+/// refreshes API calls to LTA every 60 seconds: inactive
+/// to be triggered when API calls to data.gov fail
 Timer refreshLTA(List<CarparkDetail> carparkObjects) {
   final APItimer = Timer.periodic(
     const Duration(seconds: 60),
@@ -12,6 +17,9 @@ Timer refreshLTA(List<CarparkDetail> carparkObjects) {
   return APItimer;
 }
 
+/// refreshes API calls to data.gov every 60 seconds: active
+/// currently in use by the Application
+/// on active standby for when firebase is slow/does not work
 Timer refreshDG(List<CarparkDetail> carparkObjects) {
   final APItimer = Timer.periodic(
     const Duration(seconds: 60),
@@ -22,6 +30,7 @@ Timer refreshDG(List<CarparkDetail> carparkObjects) {
   return APItimer;
 }
 
+/// a single ad-hoc call to update carpark vacancies of existing carpark objects using LTA's API
 void updateLTA(carparkObjects) async {
   final api = APIServiceLTA();
   final data = await api.fetch();
@@ -36,6 +45,7 @@ void updateLTA(carparkObjects) async {
   }
 }
 
+/// a single ad-hoc call to update carpark vacancies of existing carpark objects using data.gov's API
 void updateDG(carparkObjects) async {
   final api = APIServiceDG();
 
