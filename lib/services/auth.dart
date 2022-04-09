@@ -1,22 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_application_2/models/localUser.dart';
-
+///Design pattern: Observer Pattern
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  //Creating local user object
+  ///Creating local user object
   LocalUser? _userFromFirebaseUser(User user) {
     return user != null ? LocalUser(uid: user.uid) : null;
   }
 
-  //auth change user stream, this is to check if the user is signed in anot
+  ///auth change user stream, this is to check if the user is signed in anot
   Stream<LocalUser?> get user {
     return _auth
         .authStateChanges()
         .map((User? user) => _userFromFirebaseUser(user!));
   }
 
-  // sign in anon
+  /// sign in anon
   Future signInAnon() async {
     try {
       UserCredential userCredential =
@@ -29,7 +29,7 @@ class AuthService {
     }
   }
 
-  // sign in with email and password
+  /// sign in with email and password
   Future registerWithEmailAndPassword(String email, String password) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
@@ -42,7 +42,7 @@ class AuthService {
     }
   }
 
-  // register with email and password
+  /// register with email and password
   Future signInWithEmailAndPassword(String email, String password) async {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(
@@ -55,7 +55,7 @@ class AuthService {
     }
   }
 
-  // sign out
+  /// sign out
   Future signOut() async {
     try {
       return await _auth.signOut();
