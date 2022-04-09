@@ -23,6 +23,7 @@ import '../authenticate/login_or_register.dart';
 
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
+/// _value here is used to control the circle 'search' radius in app
 double _value = 1000;
 var lastMapPosition = globals.point;
 
