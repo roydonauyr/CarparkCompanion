@@ -250,39 +250,45 @@ class _LandingMap extends State<LandingMap> {
                   //padding: const EdgeInsets.fromLTRB(380, 200, 200, 100)
                 ),
               ),
-              Container(
-                  alignment: Alignment.bottomLeft,
-                  height: 550,
-                  width: 40,
-                  child: RawMaterialButton(
-                    onPressed: () {
-                      globals.distState = true;
-                      globals.filteredCarparkObjects = filterDistance(
-                          globals.carparkObjects, lastMapPosition, _value);
-                      globals.circles.clear();
-                      globals.circles.add(Circle(
-                          circleId: CircleId("1"),
-                          center: lastMapPosition,
-                          strokeWidth: 2,
-                          strokeColor: Color.fromARGB(255, 171, 209, 239)
-                              .withOpacity(0.5),
-                          fillColor: Color.fromARGB(255, 171, 209, 239)
-                              .withOpacity(0.5),
-                          radius: _value));
-                      point = lastMapPosition;
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Home()));
-                    },
-                    fillColor: Color.fromARGB(255, 20, 27, 66),
-                    elevation: 2.0,
-                    shape: CircleBorder(),
-                    child: Icon(
-                      Icons.gps_fixed_sharp,
-                      size: 20.0,
-                      color: Colors.white,
-                    ),
-                    padding: EdgeInsets.all(0),
-                  )),
+              Align(
+                alignment : Alignment.bottomCenter,
+                child: Container(
+                    alignment: Alignment.bottomCenter,
+                    height: 525,
+                    width: 100,
+                    child: RawMaterialButton(
+                      onPressed: () {
+                        globals.distState = true;
+                        globals.filteredCarparkObjects = filterDistance(
+                            globals.carparkObjects, lastMapPosition, _value);
+                        globals.circles.clear();
+                        globals.circles.add(Circle(
+                            circleId: CircleId("1"),
+                            center: lastMapPosition,
+                            strokeWidth: 2,
+                            strokeColor: Color.fromARGB(255, 171, 209, 239)
+                                .withOpacity(0.5),
+                            fillColor: Color.fromARGB(255, 171, 209, 239)
+                                .withOpacity(0.5),
+                            radius: _value));
+                        point = lastMapPosition;
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Home()));
+                      },
+                      fillColor: Color.fromARGB(255, 20, 27, 66),
+                      elevation: 2.0,
+                      shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(100.0),
+                            side: BorderSide(width:100, color: Color.fromARGB(255, 20, 27, 66)),
+                          ),
+                      child: Icon(
+                        Icons.directions_car_filled,
+                        size: 40.0,
+                        color: Colors.white,
+                      ),
+                      padding: EdgeInsets.all(0),
+                    )),
+              ),
             ],
           ))));
     } else {
@@ -414,39 +420,46 @@ class _LandingMap extends State<LandingMap> {
                   //padding: const EdgeInsets.fromLTRB(380, 200, 200, 100)
                 ),
               ),
-              Container(
-                  alignment: Alignment.bottomLeft,
-                  height: 550,
-                  width: 40,
-                  child: RawMaterialButton(
-                    onPressed: () {
-                      globals.distState = true;
-                      globals.filteredCarparkObjects = filterDistance(
-                          globals.carparkObjects, lastMapPosition, _value);
-                      globals.circles.clear();
-                      globals.circles.add(Circle(
-                          circleId: CircleId("1"),
-                          center: lastMapPosition,
-                          strokeWidth: 2,
-                          strokeColor: Color.fromARGB(255, 171, 209, 239)
-                              .withOpacity(0.5),
-                          fillColor: Color.fromARGB(255, 171, 209, 239)
-                              .withOpacity(0.5),
-                          radius: _value));
-                      point = lastMapPosition;
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Home()));
-                    },
-                    fillColor: Color.fromARGB(255, 20, 27, 66),
-                    elevation: 2.0,
-                    shape: CircleBorder(),
-                    child: Icon(
-                      Icons.gps_fixed_sharp,
-                      size: 20.0,
-                      color: Colors.white,
-                    ),
-                    padding: EdgeInsets.all(0),
-                  ))
+
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                      alignment: Alignment.bottomCenter,
+                      height: 525,
+                      width: 100,
+                      child: RawMaterialButton(
+                        onPressed: () {
+                          globals.distState = true;
+                          globals.filteredCarparkObjects = filterDistance(
+                              globals.carparkObjects, lastMapPosition, _value);
+                          globals.circles.clear();
+                          globals.circles.add(Circle(
+                              circleId: CircleId("1"),
+                              center: lastMapPosition,
+                              strokeWidth: 2,
+                              strokeColor: Color.fromARGB(255, 171, 209, 239)
+                                  .withOpacity(0.5),
+                              fillColor: Color.fromARGB(255, 171, 209, 239)
+                                  .withOpacity(0.5),
+                              radius: _value));
+                          point = lastMapPosition;
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Home()));
+                        },
+                        fillColor: Color.fromARGB(255, 20, 27, 66),
+                        elevation: 2.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100.0),
+                          side: BorderSide(width:100, color: Color.fromARGB(255, 20, 27, 66)),
+                        ),
+                        child: Icon(
+                          Icons.directions_car_filled,
+                          size: 40.0,
+                          color: Colors.white,
+                        ),
+                        padding: EdgeInsets.all(0),
+                      )),
+              ),
             ],
           ))));
     }

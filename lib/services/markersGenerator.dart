@@ -451,7 +451,7 @@ class _MarkersGeneratorState extends State<MarkersGenerator> {
       //     position: globals.point,
       //     icon: BitmapDescriptor.defaultMarkerWithHue(
       //         BitmapDescriptor.hueMagenta),
-      //     infoWindow: InfoWindow(title: "Your location")));
+      //     infoWindow: InfoWindow(title: "Last search point")));
       return LandingMap();
     }
   }
