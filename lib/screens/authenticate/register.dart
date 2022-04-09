@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/services/auth.dart';
 
+//Register class to register the user using Firebase authentication
 class Register extends StatefulWidget {
   //To toggle between the register and sign in page
   final Function toggleView;

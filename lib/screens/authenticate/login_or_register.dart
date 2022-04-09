@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/services/auth.dart';
 import 'package:provider/provider.dart';
 
+//LoginOrRegsiter class acts as a wrapper to call Register or SignIn class
 class LoginOrRegsiter extends StatelessWidget {
   const LoginOrRegsiter({Key? key}) : super(key: key);
 
