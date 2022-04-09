@@ -3,7 +3,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-<img src="https://github.com/bbobohang/CarparkCompanion/blob/main/assets/logo.png" width="200" height="400">
+<img src="https://github.com/bbobohang/CarparkCompanion/blob/main/assets/logo.png" width="100" height="200">
 
 Flutter application build for CZ2006 Software Engineering course in NTU
 
@@ -45,13 +45,20 @@ In order to lauch the applications, these are the things that are needed to be i
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Below are some screenshots of the working prototype
+### Landing Page
+
 
 
 <!-- CONTACT -->
 ## Contact
 
 Low Lee Hang- [@bbobohang](https://github.com/bbobohang?tab=repositories) - bbobohang@gmail.com
+Roydon Au - [@roydonauyr](https://github.com/roydonauyr) 
+Rachel Chua - [@rachel45605](https://github.com/rachel45605)
+Chloe Heng - [@cheenngg](https://github.com/cheenngg)
+Chua Gim Aik - [@AikGim](https://github.com/AikGim)
+Michelle Lam - [@michellelsa](https://github.com/michellelsa)
+
 
 Project Link: [https://github.com/bbobohang/CarparkCompanion](https://github.com/bbobohang/CarparkCompanion)
 
